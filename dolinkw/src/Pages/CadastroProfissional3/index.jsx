@@ -49,7 +49,7 @@ const CadastroProfissional3 = () => {
 
                             <div class="input-container">
                                 <input id="datafinal" class="input" type="text" pattern=".+" required />
-                                <label class="label" for="datafinal">Data Fina</label>
+                                <label class="label" for="datafinal">Data fina</label>
                             </div>
 
                             <div class="input-container">
