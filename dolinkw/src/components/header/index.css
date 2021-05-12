@@ -1,59 +1,35 @@
 * {
     margin: 0;
     padding: 0;
-    list-style: none;
-    text-decoration: none;
-
 }
 
-.header {
-
+.cabecalho{
     width: 100%;
-    height: 100px;
-    display: block;
+    height: 76px;
+    display: flex;
+    justify-content: space-between;
     background-color: #1A82D6;
-
 }
-
-.header_dentro {
-    
-    width: 1280px;
-    height: 100%;
-    display: block;
-    margin: 0 auto;
-
-}
-
-.logo_div {
-
-    width: 100%;
+.botoes{
+    width: 26%;
     height: 100%;
     display: flex;
     align-items: center;
-
 }
 
-.logo {
-
-    max-width: 100%;
-    height: 55px;
-
-}
-
-.botoes_sign {
-
-    width: 100%;
-    height: 50%;
+.logo{
+    width: 30%;
+    height: 100%;
     display: flex;
-    justify-content: flex-end;
-    font-family: 'Raleway';
-    font-weight: bold;
-
+    align-items: center;
+    justify-content: center;
 }
-
+.logo img{
+    width: 180px;
+    height: 40px;
+}
 .buttonIn {
-
-    background-color: #1A82D6; /* Green */
+    background-color: #1A82D6; 
     border: none;
     color: white;
     padding: 15px 32px;
@@ -63,17 +39,12 @@
     font-size: 16px;
     border-radius: 6px 0px 0px 6px;
 }
-
 .buttonIn:hover {
-
     color: white;
     background-color: #136eb9;
-
 }
-
-.buttonUp {
-
-    background-color: #00C74F; /* Green */
+.buttonUp{
+    background-color: #00C74F;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -83,11 +54,7 @@
     font-size: 16px;
     border-radius: 6px;
 }
-
-.buttonUp:hover {
-
+.buttonUp:hover{
     color: white;
     background-color: #10A94D;
-
 }
-

@@ -7,35 +7,17 @@ const Header = () => {
 
     return (
 
-        <body>
-            
-            <header>
-
-                <div className="header">
-
-                    <div className="header_dentro">
-
-                        <div className="logo_div">
-
-                            <img className="logo" src={logo} alt="" />
-                            
-                            <div className="botoes_sign">
-                                <a href="#" class="buttonIn">Sign In</a>
-                                <a href="/choosesignup" class="buttonUp">Sign Up</a>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </header>
-
-        </body>
+        <div className="cabecalho">
+            <div className="logo">
+                <img src={logo} alt="logo da empresa Dolink" />
+            </div>
+            <div className="botoes">
+                <button className="buttonIn">Sing in</button>
+                <button className="buttonUp">Sing Up</button>
+            </div>
+        </div>
 
     )
 
 }
-
 export default Header;
