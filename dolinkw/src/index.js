@@ -12,6 +12,7 @@ import CadastroProfissional from './Pages/CadastroProfissional';
 import CadastroProfissional2 from './Pages/CadastroProfissional2';
 import CadastroProfissional3 from './Pages/CadastroProfissional3';
 
+
 const routing = (
   <Router>
     <Switch>
