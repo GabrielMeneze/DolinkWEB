@@ -17,68 +17,11 @@
     height: 2px;
     background-color: black;
 }
-
 .controle{
-    width: 66%;
-    height: 600px;
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    margin-left: 330px;
+    width: 100%;
+    height: 800px;
+    background-color: blue;
 }
-
-.inputsPessoais{
-    width: 450px;
-    height: 550px;
-    margin: 0 auto;
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-
-.input-container{
-    position: relative;
-}
-
-input{
-    border: 0;
-    outline: none;
-    transition: .2s ease-in-out;
-    box-sizing: border-box;
-    border-radius: 10px;
-    padding-left: 10px;
-}
-label {
-    top: 0;
-    left: 0; right: 0;
-    color: #616161;
-    display: flex;
-    align-items: center;
-    position: absolute;
-    font-size: 1rem;
-    cursor: text;
-    transition: .2s ease-in-out;
-    margin-left: 8px;
-}
-
-input,
-label {
-  width: 100%;
-  height: 3rem;
-  font-size: 1rem;
-}
-input:valid + label,
-input:focus + label {
-  color: #26a69a;
-  font-size: .8rem;
-  top: -35px;
-  margin-right: 15px;
-  pointer-events: none;
-}
-
-.controle2{
-    width: 600px;
-    height: 550px;
-    background-color: rgb(196, 192, 194);
+.separacao{
+    width: 70;
 }
