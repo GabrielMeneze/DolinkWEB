@@ -14,58 +14,20 @@ const CadastroDeVagas = () => {
                 <h1>cadastrar vagas</h1>
                 <hr className="linha" />
             </div>
-
             <div className="controle">
-                <div className="inputsPessoais">
 
-                    <div class="input-container">
-                        <input id="name" class="input" type="text" pattern=".+" required />
-                        <label class="label" for="name">Nome</label>
+                <div className="separacao">
+                    <div className="fields">
+                        <div className="fild">
+
+                        </div>
                     </div>
 
-                    <div class="input-container">
-                        <input id="cpf" class="input" type="text" pattern=".+" required />
-                        <label class="label" for="cpf">CPF</label>
-                    </div>
+                    <div className="utilss">
 
-                    <div class="input-container">
-                        <input id="cep" class="input" type="text" pattern=".+" required />
-                        <label class="label" for="cep">CEP</label>
-                    </div>
-
-                    <div class="input-container">
-                        <input id="telefone" class="input" type="text" pattern=".+" required />
-                        <label class="label" for="telefone">Telefone</label>
-                    </div>
-
-                    <div class="input-container">
-                        <input id="email" class="input" type="text" pattern=".+" required />
-                        <label class="label" for="email">Email</label>
-                    </div>
-
-                    <div class="input-container">
-                        <input id="senha" class="input" type="text" pattern=".+" required />
-                        <label class="label" for="senha">Senha</label>
-                    </div>
-
-                </div>
-
-                <div className="controle2">
-                    <div className="upload">
-                        <p>selecione logo para sua vaga</p>
-                        <button>Upload</button>
-                    </div>
-                    <div className="selecionador">
-                        <button>selecione a linguagem de programação</button>
-                    </div>
-                    <div className="listaDasEscolidas">
-                        <p>c#</p>
-                        <p>node.js</p>
                     </div>
                 </div>
             </div>
-
-            <Footer />
         </div>
     )
 }
