@@ -5,7 +5,7 @@ const CadastroProfissional3 = () => {
 
     return(
 
-        <div>
+    <div>
             
         <div className="body2">
 
@@ -26,7 +26,7 @@ const CadastroProfissional3 = () => {
                         
                         <div className="primeiraLinhaSignup">
 
-                            <a href="/cadastroProfissional"><img className="botaoBackHomePessoal" src="https://media.discordapp.net/attachments/819577034530881567/841666319303704617/unknown.png" alt="" /></a>
+                            <a href="/cadastroProfissional2"><img className="botaoBackHomePessoal" src="https://media.discordapp.net/attachments/819577034530881567/841666319303704617/unknown.png" alt="" /></a>
                             <div className="primeiraLinhaTextos">
                             <img className="linhaSignup" src="https://cdn.discordapp.com/attachments/836953521751326720/840966116675420200/unknown.png" alt="" width="130px" height="2px" />
                             <h1 className="signUph1Pessoal">Sign up</h1>
@@ -67,8 +67,6 @@ const CadastroProfissional3 = () => {
                         <a href="/choosesignup" class="botaoCadastro">Cadastrar</a>
                         
                     </div>
-
-
 
                 </div>
 

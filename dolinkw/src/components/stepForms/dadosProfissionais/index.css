@@ -1,0 +1,31 @@
+* {
+
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+
+}
+
+
+.textField {
+
+    width: 80%;
+    left: 15%;
+    padding-top: 40px;
+
+}
+
+.container {
+
+    height: 60vh;
+
+}
+
+.botaoProximo2 {
+
+    top: 4vh;
+    left: 5.6vw;
+
+
+}
+
