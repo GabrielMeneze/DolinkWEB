@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -8,6 +8,9 @@ export const DadosPessoais = ({formData, setForm, navigation}) => {
 
 
     const { nome, cpf, cep, telefone, email, senha } = formData;
+
+
+
     console.log(navigation);
 
     return(
