@@ -28,6 +28,15 @@ const CadastroDeVagas = () => {
     };
 
 
+    function Validar(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData);
+
+        console.log(data)
+    }
+
+
     return (
         <div className="main">
             <Header />
@@ -51,6 +60,51 @@ const CadastroDeVagas = () => {
                             <option value="7">Engenheiro de software</option>
                         </select>
                     </div>
+
+                    <form className="form-cupom" onSubmit={Validar}>
+                        <div className="form-group">
+                            <input
+                                type="text"
+                                name="Titulo"
+                                className="form-control"
+                                placeholder="Titulo"
+                            >
+                            </input>
+                            <input
+                                type="text"
+                                name="Faixa salarial"
+                                className="form-control"
+                                placeholder="Faixa salarial"
+                            >
+                            </input>
+                            <input
+                                type="text"
+                                name="Local"
+                                className="form-control"
+                                placeholder="Local"
+                            >
+                            </input>
+                            <input
+                                type="text"
+                                name="Descrição"
+                                className="form-control"
+                                placeholder="Descrição da vaga"
+                            >
+                            </input>
+                            <input
+                                type="text"
+                                name="Beneficios"
+                                className="form-control"
+                                placeholder="Beneficios"
+                            >
+                            </input>
+                            <button
+                                type="submit"
+                                value="vcupom"
+                                className="input-btn"
+                            >Salvar</button>
+                        </div>
+                    </form>
                 </div>
 
                 <div className="utilss">
