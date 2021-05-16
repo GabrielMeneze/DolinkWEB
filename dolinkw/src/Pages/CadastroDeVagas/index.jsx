@@ -111,7 +111,7 @@ const CadastroDeVagas = () => {
                     <div className="logovaga">
                         <form>
                             <input type="file" multiple={true} onChange={e => onFileChange(e.target.files)} />
-                            <button onClick={handleClick}>Upload</button>
+                            <button class="button" onClick={handleClick}>Upload</button>
                         </form>
                     </div>
                 </div>
