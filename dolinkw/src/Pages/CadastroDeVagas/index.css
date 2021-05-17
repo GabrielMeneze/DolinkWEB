@@ -41,3 +41,11 @@
     position: relative;
     margin-left: 260px;
 }
+.button{
+   height: 25PX;
+   width: 70px;
+   background-color: green;
+   border-radius: 6px;
+   border: none;
+   color: white;
+}
