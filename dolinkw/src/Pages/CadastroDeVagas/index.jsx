@@ -28,13 +28,32 @@ const CadastroDeVagas = () => {
     };
 
 
-    function Validar(event) {
+    const cadastrar = (event) => {
         event.preventDefault();
-        const formData = new FormData(event.target);
-        const data = Object.fromEntries(formData);
 
-        console.log(data)
-    }
+        fetch(url + "o caminho do cadastro vai aqui", {
+            method: "POST",
+            body: JSON.stringify({
+                titulo: titulo,
+                faixasalarial: faixasalarial,
+                local: local,
+                descricao: descricao,
+                beneficios: beneficios,
+
+            }),
+            headers: {
+                "content-type": "application/json",
+            },
+        })
+            .then((response) => {
+                // Verifica se a validação for OK e caso seja, informa a resposta
+                if (response.ok) return response.json();
+
+                // Caso validação não seja OK informa um alert
+                alert("Dado inválido");
+            })
+            .catch((err) => console.error(err));
+    };
 
 
     return (
@@ -61,39 +80,44 @@ const CadastroDeVagas = () => {
                         </select>
                     </div>
 
-                    <form className="form-cupom" onSubmit={Validar}>
+                    <form className="form-cupom" onSubmit={cadastrar}>
                         <div className="form-group">
                             <input
                                 type="text"
-                                name="Titulo"
+                                name="titulo"
+                                value={titulo}
                                 className="form-control"
                                 placeholder="Titulo"
                             >
                             </input>
                             <input
                                 type="text"
-                                name="Faixa salarial"
+                                name="faixasalarial"
+                                value={faixasalarial}
                                 className="form-control"
                                 placeholder="Faixa salarial"
                             >
                             </input>
                             <input
                                 type="text"
-                                name="Local"
+                                name="local"
+                                value={local}
                                 className="form-control"
                                 placeholder="Local"
                             >
                             </input>
                             <input
                                 type="text"
-                                name="Descrição"
+                                name="descricao"
+                                value={descricao}
                                 className="form-control"
                                 placeholder="Descrição da vaga"
                             >
                             </input>
                             <input
                                 type="text"
-                                name="Beneficios"
+                                name="beneficios"
+                                value={beneficios}
                                 className="form-control"
                                 placeholder="Beneficios"
                             >
