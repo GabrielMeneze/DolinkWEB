@@ -74,7 +74,7 @@ export const Portfolio = ({ navigation }) => {
                     variant="contained"
                     color="primary"
                     type="submit"
-                    onClick={() => navigation.next()}>Voltar</Button>
+                    onClick={() => navigation.next()}>Próximo</Button>
 
                 </div>
                 

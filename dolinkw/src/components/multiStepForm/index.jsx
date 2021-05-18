@@ -93,14 +93,14 @@ export const MultiStepForm = () => {
     return(
 
         <div>
-            <h1>MultiStepForm</h1>
+            <h1>Usuário Pronto!</h1>
             <Form >
 
                 <Button className="botaoProximo3"
                         variant="contained"
                         color="primary"
                         type="submit"
-                        onSubmit={event => cadastro(event)}>Próximo</Button>
+                        onSubmit={event => cadastro(event)}>Cadastrar</Button>
 
             </Form>
         </div>
