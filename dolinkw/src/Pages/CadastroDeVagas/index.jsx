@@ -141,10 +141,14 @@ const CadastroDeVagas = () => {
 
                 <div className="utilss">
                     <div className="logovaga">
-                        <form>
-                            <input type="file" multiple={true} onChange={e => onFileChange(e.target.files)} />
+                       <form>
+                        
+                            <label For="arquivo">Logo da empresa</label>
+                            <input  type="file" alt="logo da empresa" id="arquivo" multiple={true} onChange={e =>  onFileChange(e.target.files)} />
+                         
+                          </form>
+                         
                             <button class="button" onClick={handleClick}>Upload</button>
-                        </form>
                     </div>
 
                     <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..." />
