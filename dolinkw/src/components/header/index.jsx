@@ -20,7 +20,7 @@ const Header = () => {
                             <img className="logo" src={logo} alt="" />
                             
                             <div className="botoes_sign">
-                                <a href="#" class="buttonIn">Sign In</a>
+                                <a href="/login" class="buttonIn">Sign In</a>
                                 <a href="/choosesignup" class="buttonUp">Sign Up</a>
                             </div>
 
