@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './Pages/Home';
 import EscolhaCadastro from './Pages/EscolhaCadastro';
 import CadastroProfissional from './Pages/CadastroProfissional';
+import CadastroDeVagas from './Pages/CadastroDeVagas';
 import Login from './Pages/Login';
 
 const routing = (
@@ -16,6 +17,7 @@ const routing = (
       <Route exact path="/" component={Home} />
       <Route path="/choosesignup" component={EscolhaCadastro}/>
       <Route path="/cadastroprofissional" component={CadastroProfissional}/>
+      <Route path="/cadastrodevagas" component={CadastroDeVagas}/>
       <Route path="/login" component={Login}/>
     </Switch>
   </Router>
