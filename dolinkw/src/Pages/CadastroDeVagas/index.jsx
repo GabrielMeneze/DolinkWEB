@@ -1,37 +1,42 @@
 import React, { useState } from "react"
 import Header from "../../components/header";
-import './index.css';
+import "./index.css";
 
 
 
 const CadastroDeVagas = () => {
-
+    
     const [images, setImages] = useState([]);
-
+    
     const onFileChange = (files) => {
         setImages(f => [...f, ...files]);
     };
-
+    
     const handleClick = (e) => {
         e.preventDefault();
-
+        
         const formData = new FormData();
         for (let i = 0; i < images.length; i++) {
-
+            
             formData.append(`images`, images[i]);
         }
-
+        
         fetch('https://609a8adb0f5a13001721b68b.mockapi.io/api/v1/', {
             body: formData,
             method: "POST"
         }).then(res => console.log(res));
     };
-
-
+    
+    const [titulo, setTitulo] = useState("");
+    const [faixasalarial, setFaixasalarial] = useState("");
+    const [local, setLocal] = useState("");
+    const [descricao, setDescricao] = useState("");
+    const [beneficios, setBeneficios] = useState("");
+    
     const cadastrar = (event) => {
         event.preventDefault();
 
-        fetch(url + "o caminho do cadastro vai aqui", {
+        fetch('url' + "o caminho do cadastro vai aqui", {
             method: "POST",
             body: JSON.stringify({
                 titulo: titulo,
@@ -56,7 +61,21 @@ const CadastroDeVagas = () => {
     };
 
 
+
+    var produto;
+    function joao(params) {
+        for (let produto = 0; produto < 13; produto++) {
+            if (produto > 2) {
+                console.log('voce cadastrou 2')
+            }else if(produto > 13){
+                console.log('sdjasjdl')
+            }
+        }
+    }
+
+
     return (
+        joao(),
         <div className="main">
             <Header />
             <div className="titulo">
