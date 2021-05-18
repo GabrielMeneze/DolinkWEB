@@ -41,14 +41,7 @@
     position: relative;
     margin-left: 260px;
 }
-.button{
-   height: 25PX;
-   width: 70px;
-   background-color: green;
-   border-radius: 6px;
-   border: none;
-   color: white;
-}
+
 .form-cupom{
     width: 260px;
     position: relative;
@@ -71,4 +64,38 @@
 .input-btn:hover{
     color: white;
     background-color: #10A94D;
+}
+.button{
+   height: 25PX;
+   width: 70px;
+   background-color: #00CA51;
+   border-radius: 6px;
+   border: none;
+   text-align: center;
+   color: white;
+   margin-top: 7px;
+   margin-left: 30px;
+
+}
+
+.input[type="file"] {
+    display: none;
+}
+label {
+    border-radius: 6px;
+    padding: 8px 8px;
+    width: 115;
+    height: 25;
+    background-color: white;
+    color: black;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    margin-right: 20px;
+    cursor: pointer;
+    font-size: 15px;
+}
+label:hover{
+    background-color: white;
+    color: black;
 }
