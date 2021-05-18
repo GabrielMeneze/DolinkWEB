@@ -5,34 +5,34 @@ import "./index.css";
 
 
 const CadastroDeVagas = () => {
-    
+
     const [images, setImages] = useState([]);
-    
+
     const onFileChange = (files) => {
         setImages(f => [...f, ...files]);
     };
-    
+
     const handleClick = (e) => {
         e.preventDefault();
-        
+
         const formData = new FormData();
         for (let i = 0; i < images.length; i++) {
-            
+
             formData.append(`images`, images[i]);
         }
-        
+
         fetch('https://609a8adb0f5a13001721b68b.mockapi.io/api/v1/', {
             body: formData,
             method: "POST"
         }).then(res => console.log(res));
     };
-    
+
     const [titulo, setTitulo] = useState("");
     const [faixasalarial, setFaixasalarial] = useState("");
     const [local, setLocal] = useState("");
     const [descricao, setDescricao] = useState("");
     const [beneficios, setBeneficios] = useState("");
-    
+
     const cadastrar = (event) => {
         event.preventDefault();
 
@@ -82,6 +82,9 @@ const CadastroDeVagas = () => {
                             <option value="5">Desenvolvedor Full-Stack</option>
                             <option value="6">Estagio de TI</option>
                             <option value="7">Engenheiro de software</option>
+                            <option value="8">Devops</option>
+                            <option value="9">Engenheiro de testes</option>
+                            <option value="10">Analista de segurança</option>
                         </select>
                     </div>
 
@@ -143,6 +146,22 @@ const CadastroDeVagas = () => {
                             <button class="button" onClick={handleClick}>Upload</button>
                         </form>
                     </div>
+
+                    <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..." />
+                    <datalist id="datalistOptions">
+                    <option value="C#" />
+                    <option value=".NET" />
+                    <option value="Java" />
+                    <option value="Javascript" />
+                    <option value="HTML" />
+                    <option value="CSS" />
+                    <option value="Ruby" />
+                    <option value="Lua" />
+                    <option value="Reat.js" />
+                    <option value="Angular" />
+                    </datalist>
+
+
                 </div>
             </div>
         </div>
