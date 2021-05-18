@@ -61,21 +61,7 @@ const CadastroDeVagas = () => {
     };
 
 
-
-    var produto;
-    function joao(params) {
-        for (let produto = 0; produto < 13; produto++) {
-            if (produto > 2) {
-                console.log('voce cadastrou 2')
-            }else if(produto > 13){
-                console.log('sdjasjdl')
-            }
-        }
-    }
-
-
     return (
-        joao(),
         <div className="main">
             <Header />
             <div className="titulo">
@@ -145,7 +131,7 @@ const CadastroDeVagas = () => {
                                 type="submit"
                                 value="vcupom"
                                 className="input-btn"
-                            >Salvar</button>
+                            >cadastrar</button>
                         </div>
                     </form>
                 </div>

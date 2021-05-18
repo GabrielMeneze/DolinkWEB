@@ -49,3 +49,26 @@
    border: none;
    color: white;
 }
+.form-cupom{
+    width: 260px;
+    position: relative;
+    margin-left: 260px;
+}
+.input-btn{
+    width: 100px;
+    height: 28px;
+    background-color: #00C74F;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 6px;
+    position: relative;
+    margin-left: 350px;
+    margin-top: 70px;
+}
+.input-btn:hover{
+    color: white;
+    background-color: #10A94D;
+}
