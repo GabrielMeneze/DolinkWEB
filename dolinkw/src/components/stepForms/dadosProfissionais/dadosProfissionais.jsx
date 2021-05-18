@@ -1,17 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import {  Form  } from 'react-bootstrap';
+import {  url  } from '../../../utils/constants';
 import './index.css';
 
-export const DadosProfissionais = ({formData, setForm, navigation}) => {
+export const DadosProfissionais = ({ navigation }) => {
 
-    const { ultimaEmpresa, dataInicio, dataFinal, cargo, principaisFuncoes } = formData;
-    console.log(navigation);
+    // const { ultimaEmpresa, dataInicio, dataFinal, cargo, principaisFuncoes } = formData;
+    // console.log(navigation);
+
+    const [ultimaEmpresa, setUltimaEmpresa] = useState('');
+    const [dataInicio, setDataInicio] = useState('');
+    const [dataFinal, setDataFinal] = useState('');
+    const [cargo, setCargo] = useState('');
+    const [principaisFuncoes, setPrincipaisFuncoes] = useState('');
+
+    const cadastro = (event) => {
+        event.preventDefault();
+
+        fetch(`${url}Profissional`, {
+            method: 'POST',
+            body: JSON.stringify({
+
+                ultimaEmpresa     : ultimaEmpresa,
+                dataInicio        : dataInicio,
+                dataFinal         : dataFinal,
+                cargo             : cargo,
+                principaisFuncoes : principaisFuncoes,
+
+
+            }),
+            headers: {
+                'content-type': 'application/json'
+            }
+            })
+    }
 
     return(
 
         <Container className="container">
+
+            <Form onSubmit={event => cadastro(event)}>
 
             <h1 className="h1Pessoal">Dados Profissionais</h1>
             <div className="textFieldBlock">
@@ -20,25 +51,31 @@ export const DadosProfissionais = ({formData, setForm, navigation}) => {
                     label="Última Empresa"
                     name="ultimaEmpresa"
                     value={ultimaEmpresa}
-                    onChange={setForm}/>
+                    onChange={event => setUltimaEmpresa(event.target.value)}/>
 
                 <TextField className="textField"
                     label="Data de Ínicio"
                     name="dataInicio"
                     value={dataInicio}
-                    onChange={setForm}/>
+                    onChange={event => setDataInicio(event.target.value)}/>
 
                 <TextField className="textField"
                     label="Data Final"
                     name="dataFinal"
                     value={dataFinal}
-                    onChange={setForm}/>
+                    onChange={event => setDataFinal(event.target.value)}/>
 
                 <TextField className="textField"
                     label="Cargo"
                     name="cargo"
                     value={cargo}
-                    onChange={setForm}/>
+                    onChange={event => setCargo(event.target.value)}/>
+
+                <TextField className="textField"
+                    label="Principais Funções"
+                    name="principaisFuncoes"
+                    value={principaisFuncoes}
+                    onChange={event => setPrincipaisFuncoes(event.target.value)}/>
 
             </div>
 
@@ -57,6 +94,8 @@ export const DadosProfissionais = ({formData, setForm, navigation}) => {
                 onClick={() => navigation.next()}>Próximo</Button>
 
             </div>
+
+            </Form>
 
 
         </Container>
