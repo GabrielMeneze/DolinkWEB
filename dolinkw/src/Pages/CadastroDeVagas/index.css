@@ -1,3 +1,4 @@
+
 *{
     margin: 0;
     padding: 0;
@@ -40,6 +41,10 @@
     width: 260px;
     position: relative;
     margin-left: 260px;
+    border-radius: 8px;
+    border: none;
+    background-color: white
+
 }
 
 .form-cupom{
@@ -78,7 +83,7 @@
 
 }
 
-.input[type="file"] {
+input[type="file"] {
     display: none;
 }
 label {
@@ -95,7 +100,23 @@ label {
     cursor: pointer;
     font-size: 15px;
 }
-label:hover{
+
+
+input[type="text"] {
+    border-radius: 8px;
+    margin-top: 29px;
+    border: none;
+    color: white;
+    background-color: white
+}
+input[type="search"] {
+    border-radius: 8px;
+    width: 270px;
+    height: 36px;
+    border: none;
+    color: white;
+    margin-top: -35px;
+    margin-left: 105px ;  
     background-color: white;
-    color: black;
+    
 }
