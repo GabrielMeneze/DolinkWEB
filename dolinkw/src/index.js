@@ -12,6 +12,7 @@ import CadastroProfissional from './Pages/CadastroProfissional';
 import CadastroProfissional2 from './Pages/CadastroProfissional2';
 import CadastroProfissional3 from './Pages/CadastroProfissional3';
 import CadastroDeVagas from './Pages/CadastroDeVagas';
+import CadastroEmpresa from './Pages/CadastroEmpresa';
 
 
 const routing = (
@@ -23,6 +24,7 @@ const routing = (
       <Route path="/cadastroprofissional2" component={CadastroProfissional2}/>
       <Route path="/cadastroprofissional3" component={CadastroProfissional3}/>
       <Route path="/CadastroDeVagas" component={CadastroDeVagas}/>
+      <Route path="/CadastroEmpresa" component={CadastroEmpresa}/>
     </Switch>
   </Router>
 )

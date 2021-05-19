@@ -44,7 +44,7 @@ const EscolhaCadastro = () => {
 
                                 <h1 className="h1Cadastro">Ou</h1>
 
-                                <a href="/cadastro" class="botaoCadastroEmpresa">
+                                <a href="/CadastroEmpresa" class="botaoCadastroEmpresa">
                                     Empresa
                                 </a>
 
