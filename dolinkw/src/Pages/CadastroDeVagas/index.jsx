@@ -151,7 +151,7 @@ const CadastroDeVagas = () => {
                             <button class="button" onClick={handleClick}>Upload</button>
                     </div>
 
-                    <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..." />
+                    <input type="search" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..." />
                     <datalist id="datalistOptions">
                     <option value="C#" />
                     <option value=".NET" />
