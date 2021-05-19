@@ -1,15 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.css';
-import {  Form  } from 'react-bootstrap';
+import {  Form, Button  } from 'react-bootstrap';
+import { url } from '../../utils/constants';
 import TextField from '@material-ui/core/TextField';
 
 const Login = () => {
+
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+
+    const logar = (event) => {
+        event.preventDefault();
+
+        fetch(`${url}usuario`, {
+            method: 'POST',
+            body: JSON.stringify({
+
+                email : email,
+                senha : senha
+
+            }),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+    }
+
 
     return (
 
         <div>
             
-            <Form>
+            <Form onSubmit={event => logar(event)}>
 
                 <div className="bodyLogin">
 
@@ -34,16 +56,18 @@ const Login = () => {
                                 <TextField className="textFieldLogin"
                                     label="Informe seu e-mail"
                                     type="email"
-                                    name="email"/>
+                                    value={email}
+                                    onChange={event => setEmail(event.target.value)}
+                                    name="email" required/>
 
                                 <TextField className="textFieldLogin"            
                                     label="Informe sua senha"
                                     type="password"
-                                    name="senha"/>
+                                    value={senha}
+                                    onChange={event => setSenha(event.target.value)}
+                                    name="senha" required/>
 
-                                <a href="#" class="botaoLogin">
-                                    Sign In
-                                </a>
+                                <Button class="botaoLogin" type="submit">Logar!</Button>
 
 
                             </div>

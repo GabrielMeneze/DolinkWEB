@@ -1,6 +1,6 @@
 import React from 'react';
 import {useFormik} from 'formik';
-import { MultiStepForm } from '../../components/multiStepForm';
+import MultiStep from '../../components/multiStepForm'
 import './index.css';
 
 const CadastroProfissional = () => {   
@@ -24,7 +24,7 @@ const CadastroProfissional = () => {
 
                         <div className="middleSectionPessoal">
 
-                            <MultiStepForm />
+                            <MultiStep />
 
                         </div>
 

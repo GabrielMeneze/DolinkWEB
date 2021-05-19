@@ -1,109 +1,51 @@
-import React, { useState } from 'react';
-import {  useForm, useStep  } from 'react-hooks-helper';
-import './index.css'
-import {  DadosPessoais } from '../stepForms/dadosPessoais/dadosPessoais';
-import {  DadosProfissionais } from '../stepForms/dadosProfissionais/dadosProfissionais';
-import Button from '@material-ui/core/Button';
-import {  Form  } from 'react-bootstrap';
-import {  url  } from '../../utils/constants';
-import {  Portfolio } from '../stepForms/portfolio/portfolio';
-import {  Review } from '../stepForms/review/review';
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+import {  Card, CardContent, Typography  } from '@material-ui/core';
+import {  Field, Form, Formik  } from 'formik';
+import {  TextField  } from 'formik-material-ui';
 
-
-    
-
-const steps = [
-
-    { id : 'Dados Pessoais' }, 
-    { id : 'Dados Profissionais' }, 
-    { id : 'Portfolio' }, 
-    { id : 'review' }, 
-
-];
-
-export const MultiStepForm = () => {
-
-    const [nome, setNome] = useState('');
-    const [cpf, setCpf] = useState('');
-    const [cep, setCep] = useState('');
-    const [telefone, setTelefone] = useState('');
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-    const [ultimaEmpresa, setUltimaEmpresa] = useState('');
-    const [dataInicio, setDataInicio] = useState('');
-    const [dataFinal, setDataFinal] = useState('');
-    const [cargo, setCargo] = useState('');
-    const [principaisFuncoes, setPrincipaisFuncoes] = useState('');
-    const [linkedin, setLinkedin] = useState('');
-    const [github, setGithub] = useState('');
-    const [sobreMim, setSobreMim] = useState('');
-
-    const cadastro = (event) => {
-        event.preventDefault();
-
-        fetch(`${url}Profissional`, {
-            method: 'POST',
-            body: JSON.stringify({
-
-                nome     : nome,
-                cpf      : cpf,
-                cep      : cep,
-                telefone : telefone,
-                email    : email,
-                senha    : senha,
-                ultimaEmpresa     : ultimaEmpresa,
-                dataInicio        : dataInicio,
-                dataFinal         : dataFinal,
-                cargo             : cargo,
-                principaisFuncoes : principaisFuncoes,
-                linkedin  : linkedin,
-                github    : github,
-                sobreMim  : sobreMim,
-
-
-            }),
-            headers: {
-                'content-type': 'application/json'
-            }
-            })
-    }
-
-    const {step, navigation} = useStep({
-        steps,
-        initialStep: 0,
-
-    })
-
-    const props = { navigation }
-
-    switch(step.id) {
-
-    case 'Dados Pessoais':
-        return <DadosPessoais {...props} />
-    
-    case 'Dados Profissionais':
-        return <DadosProfissionais {...props}/>
-
-    case 'Portfolio':
-        return <Portfolio {...props}/>
-        
-    }
+export default function MultiStep() {
 
     return(
 
-        <div>
-            <h1>Usuário Pronto!</h1>
-            <Form >
+        <Card>
+            <CardContent>
+                <Formik initialValues={{
 
-                <Button className="botaoProximo3"
-                        variant="contained"
-                        color="primary"
-                        type="submit"
-                        onSubmit={event => cadastro(event)}>Cadastrar</Button>
+                    nome: '',
+                    cpf: '',
+                    cep: '',
+                    telefone: '',
+                    email: '',
+                    senha: '',
+                    ultimaEmpresa: '',
+                    dataInicio: '',
+                    dataFinal: '',
+                    cargo: '',
+                    principaisFuncoes: '',
+                    linkedin: '',
+                    github: '',
+                    sobreMim: ''    
 
-            </Form>
-        </div>
+                }} onSubmit={() => {} } >
+                    <Form>
+                        <Field name="nome" component={TextField} label="Nome"/>
+                        <Field name="cpf" component={TextField} label="Cpf"/>
+                        <Field name="cep" component={TextField} label="Cep"/>
+                        <Field name="telefone" component={TextField} label="Telefone"/>
+                        <Field name="email" type="email" component={TextField} label="Email"/>
+                        <Field name="senha" type="password" component={TextField} label="Senha"/>
+                        <Field name="ultimaEmpresa" component={TextField} label="Última Empresa"/>
+                        <Field name="dataInicio" component={TextField} label="Data Início"/>
+                        <Field name="dataFinal" component={TextField} label="Data Final"/>
+                        <Field name="cargo" component={TextField} label="Cargo"/>
+                        <Field name="principaisFuncoes" component={TextField} label="Principais Funções"/>
+                        <Field name="linkedin" component={TextField} label="Linkedin"/>
+                        <Field name="github" component={TextField} label="GitHub"/>
+                        <Field name="sobreMim" component={TextField} label="Sobre Mim"/>
+                    </Form>
+                </Formik>
+            </CardContent>
+        </Card>
 
-    );
+    )
+
 }
