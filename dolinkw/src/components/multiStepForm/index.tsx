@@ -1,34 +1,38 @@
 import { Card, CardContent, Typography, Button, Step, Stepper, StepLabel } from '@material-ui/core';
+import {useHistory} from 'react-router-dom';
 import { Field, Form, Formik, FormikConfig, FormikValues } from 'formik';
 import { TextField } from 'formik-material-ui';
+import cadastrarProfissional from '../../servicos/profissionalServico';
 import React, { useState } from 'react';
+import profissionalServico from '../../servicos/profissionalServico';
 
 export default function MultiStep() {
 
     const [nome, setNome] = useState('')
 
-    const cadastrar = () => {
+    // const cadastrar = (event) => {
 
-        fetch('https://609a8adb0f5a13001721b68b.mockapi.io/api/v1/profissional', {
-            method: "POST",
-            body: JSON.stringify({
-                nome: nome,
+    //     fetch('https://609a8adb0f5a13001721b68b.mockapi.io/api/v1/profissional', {
+    //         method: "POST",
+    //         body: JSON.stringify({
+    //             nome: nome,
 
-            }),
-            headers: {
-                "content-type": "application/json",
-            },
-        })
-            .then((response) => {
-                // Verifica se a validação for OK e caso seja, informa a resposta
-                if (response.ok) return response.json();
+    //         }),
+    //         headers: {
+    //             "content-type": "application/json",
+    //         },
+    //     })
+    //         .then((response) => {
+    //             // Verifica se a validação for OK e caso seja, informa a resposta
+    //             if (response.ok) return response.json();
 
-                // Caso validação não seja OK informa um alert
-                alert("Dado inválido");
-            })
-            .catch((err) => console.error(err));
-    };
+    //             // Caso validação não seja OK informa um alert
+    //             alert("Dado inválido");
+    //         })
+    //         .catch((err) => console.error(err));
+    // };
 
+    const history = useHistory();
 
     return (
 
@@ -52,9 +56,34 @@ export default function MultiStep() {
                         github: '',
                         sobreMim: ''
 
-                    }} onSubmit={() => { }} >
+                    }} onSubmit={(values) => { 
+
+                        alert(JSON.stringify(values));
+                        profissionalServico
+                            .cadastrarProfissional(values)
+                            .then(resultado => resultado.json())
+                            .then(resultado =>{
+                                if(resultado.sucesso){
+                                  // addToast(resultado.mensagem, { appearance: 'success', autoDismiss : true })
+                                  //apresenta a notificação
+                                    alert(resultado.mensagem)
+                                    //redireciona página admin
+                                    history.push('/login');
+                                } else {
+            
+                                    alert(resultado.mensagem)
+            
+                                }
+                            })
+                            .catch(erro => {
+                                console.error('erro na API ' + erro);
+                            })
+                        
+                        
+
+                    }}>
                     <FormikStep label="Dados Pessoais">
-                        <Field name="nome" value={nome} component={TextField} label="Nome" />
+                        <Field name="nome" component={TextField} label="Nome" />
                         <Field name="cpf" component={TextField} label="Cpf" />
                         <Field name="cep" component={TextField} label="Cep" />
                         <Field name="telefone" component={TextField} label="Telefone" />
@@ -76,7 +105,7 @@ export default function MultiStep() {
                         <Field name="sobreMim" component={TextField} label="Sobre Mim" />
                     </FormikStep>
                 </FormikStepper>
-            <Button onClick={cadastrar}>ooo</Button>
+            {/* <Button onClick={cadastrar}>ooo</Button> */}
             </CardContent>
         </Card>
 
@@ -94,9 +123,9 @@ export function FormikStep({ children }: FormikStepProps) {
 
 export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>) {
 
-    const childrenArray = React.Children.toArray(children);
+    const childrenArray = React.Children.toArray(children) as React.ReactElement<FormikStepProps>[];
     const [step, setStep] = useState(0);
-    const currentChild = childrenArray[step] as React.ElementType<FormikStepProps>;
+    const currentChild = childrenArray[step];
 
     function IsLastStep() {
         return step === childrenArray.length - 1;
@@ -115,14 +144,13 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
         }}>
             <Form autoComplete="off">
 
-                //ERRO DO PROPS (NAO É DO TIPO 'STRING')
-                {/* <Stepper alternativeLabel activeStep={step}>
+                <Stepper alternativeLabel activeStep={step}>
                 {childrenArray.map((child) => (
                  <Step key={child.props.label} >
                     <StepLabel>{child.props.label}</StepLabel>
                 </Step>
                 ))}
-                </Stepper> */}
+                </Stepper>
 
                 {currentChild}
 
