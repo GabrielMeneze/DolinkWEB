@@ -1,5 +1,5 @@
 import {  Card, CardContent, Typography, Button, Step, Stepper, StepLabel } from '@material-ui/core';
-import {  Field, Form, Formik, FormikConfig, FormikValues } from 'formik';
+import {  Field, Form, Formik, FormikConfig, FormikValues, useFormik } from 'formik';
 import {  TextField  } from 'formik-material-ui';
 import React, {useState} from 'react';
 
@@ -27,7 +27,11 @@ export default function MultiStep() {
                     github: '',
                     sobreMim: ''    
 
-                }} onSubmit={() => {} } >
+                }} onSubmit={(values) => {}
+                
+                
+                }>
+                    <form>
                         <FormikStep label="Dados Pessoais">
                             <Field name="nome" component={TextField} label="Nome"/>
                             <Field name="cpf" component={TextField} label="Cpf"/>
@@ -50,6 +54,7 @@ export default function MultiStep() {
                             <Field name="github" component={TextField} label="GitHub"/>
                             <Field name="sobreMim" component={TextField} label="Sobre Mim"/>
                         </FormikStep>
+                    </form>
                 </FormikStepper>
             </CardContent>
         </Card>
