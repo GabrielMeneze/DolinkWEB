@@ -68,9 +68,9 @@ export function FormikStep({ children }: FormikStepProps) {
 
 export function FormikStepper({children, ...props}: FormikConfig<FormikValues>) {
 
-    const childrenArray = React.Children.toArray(children) ;
+    const childrenArray = React.Children.toArray(children) as React.ReactElement<FormikStepProps>[];
     const [step, setStep] = useState(0);
-    const currentChild = childrenArray[step] as React.ElementType<FormikStepProps>;
+    const currentChild = childrenArray[step];
 
     function IsLastStep() {
        return step === childrenArray.length - 1;
@@ -89,14 +89,13 @@ export function FormikStepper({children, ...props}: FormikConfig<FormikValues>) 
         }}>
             <Form autoComplete="off">
 
-                //ERRO DO PROPS (NAO É DO TIPO 'STRING')
-                {/* <Stepper alternativeLabel activeStep={step}>
+                <Stepper alternativeLabel activeStep={step}>
                 {childrenArray.map((child) => (
                  <Step key={child.props.label} >
                     <StepLabel>{child.props.label}</StepLabel>
                 </Step>
                 ))}
-                </Stepper> */}
+                </Stepper>
 
                 {currentChild}
                 
