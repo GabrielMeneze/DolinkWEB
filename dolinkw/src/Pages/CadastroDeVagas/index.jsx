@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import Header from "../../components/header";
+import Footer from "../../components/footer"
 import "./index.css";
 
 
@@ -66,7 +67,9 @@ const CadastroDeVagas = () => {
             <Header />
             <div className="titulo">
                 <hr className="linha" />
+                <div className="esp"></div>
                 <h1>cadastrar vagas</h1>
+                <div className="esp"></div>
                 <hr className="linha" />
             </div>
             <div className="controle">
@@ -141,33 +144,49 @@ const CadastroDeVagas = () => {
 
                 <div className="utilss">
                     <div className="logovaga">
-                       <form>
-                        
+                        <form>
+
                             <label For="arquivo">Logo da empresa</label>
-                            <input  type="file" alt="logo da empresa" id="arquivo" multiple={true} onChange={e =>  onFileChange(e.target.files)} />
-                         
-                          </form>
-                         
-                            <button class="button" onClick={handleClick}>Upload</button>
+                            <input type="file" alt="escolha a logo da empresa" id="arquivo" multiple={true} onChange={e => onFileChange(e.target.files)} />
+
+                        </form>
+
+                        <button class="button" onClick={handleClick}>Upload</button>
                     </div>
 
                     <input type="search" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..." />
                     <datalist id="datalistOptions">
-                    <option value="C#" />
-                    <option value=".NET" />
-                    <option value="Java" />
-                    <option value="Javascript" />
-                    <option value="HTML" />
-                    <option value="CSS" />
-                    <option value="Ruby" />
-                    <option value="Lua" />
-                    <option value="Reat.js" />
-                    <option value="Angular" />
+                        <option value="C#" />
+                        <option value=".NET" />
+                        <option value="Java" />
+                        <option value="Javascript" />
+                        <option value="HTML" />
+                        <option value="CSS" />
+                        <option value="Ruby" />
+                        <option value="Lua" />
+                        <option value="Reat.js" />
+                        <option value="Angular" />
+                        <option value="Python" />
+                        <option value="Swift" />
+                        <option value="PHP" />
+                        <option value="C" />
+                        <option value="C++" />
+                        <option value="Perl" />
+                        <option value="Assembly" />
+                        <option value="Ruby" />
+                        <option value="Objective-C" />
+                        <option value="Jquery" />
+                        <option value="TypeScript" />
+                        <option value="Shell" />
+                        <option value="Haskell" />
+                        <option value="Kotlin" />
+                        <option value="Scala " />
                     </datalist>
 
 
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }
