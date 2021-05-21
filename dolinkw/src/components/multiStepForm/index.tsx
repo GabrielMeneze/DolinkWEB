@@ -38,8 +38,7 @@ export default function MultiStep() {
 
         <Card>
             <CardContent>
-                <FormikStepper
-
+                <FormikStepper 
                     initialValues={{
                         nome: '',
                         cpf: '',
@@ -78,8 +77,6 @@ export default function MultiStep() {
                             .catch(erro => {
                                 console.error('erro na API ' + erro);
                             })
-                        
-                        
 
                     }}>
                     <FormikStep label="Dados Pessoais">
@@ -155,7 +152,7 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
                 {currentChild}
 
                 {step > 0 ? <Button onClick={() => setStep(s => s - 1)}>Voltar</Button> : null}
-                <Button type="submit">{IsLastStep() ? 'Cadastrar' : 'Próximo'}</Button>
+                <Button type="submit">{IsLastStep() ? 'Cadastrar' : 'Próximo'} </Button>
 
             </Form>
         </Formik>
