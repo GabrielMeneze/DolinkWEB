@@ -3,6 +3,24 @@
     left: 15%;
     padding-top: 40px;
 }
+.infotext input[type="text"]:focus,
+.infotext input[type="password"]:focus,
+.infotext input[type="tel"]:focus,
+.infotext textarea:focus {
+  background-color: #fff;
+}
+
+.infotext input[type="text"],
+.infotext input[type="password"],
+.infotext input[type="tel"],
+.infotext textarea {
+  width: 100%;
+  color: #707070;
+  border: solid 2px rgba(82, 82, 82, 1);
+  font-family: "Questrial";
+  padding: 3px;
+  background-color: var(--main-color-01);
+}
 .infotext {
     width: 550px;
     height: 50px;

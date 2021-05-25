@@ -1,7 +1,31 @@
 import './index.css';
-import React from "react"
+import React, {useState} from "react"
 
 const CadastroEmprsa = () => {
+
+    const [nomeempresa, setNomeempresa] = useState("");
+    const [cnpj, setCnpj] = useState("");
+    const [nomerecrutador, setNomerecrutador] = useState("");
+    const [telefone, setTelefone] = useState("");
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+
+    const cadastrar = (event) =>{
+        event.preventDefault();
+
+        fetch('https://609a8adb0f5a13001721b68b.mockapi.io/api/v1/usuario',{
+            method: "POST",
+            body: JSON.stringify({
+                nomeempresa: nomeempresa,
+                cnpj: cnpj,
+                nomerecrutador: nomerecrutador,
+                telefone: telefone,
+                email: email,
+                senha: senha,
+            })
+        })
+    }
+
     return (
 
         <div>
@@ -30,37 +54,44 @@ const CadastroEmprsa = () => {
 
                                 <div className="infotext">
 
-                                    <input type="text" class="form-control" placeholder="Nome da Empresa" />
+                                    <input type="text" class="form-control" placeholder="Nome da Empresa" value={nomeempresa} 
+                                     onChange={(event) => setNomeempresa(event.target.value)}
+                                    />
 
                                 </div>
 
                                 <div className="infotext">
 
-                                    <input type="text" class="form-control" placeholder="CNPJ" />
+                                    <input type="text" class="form-control" placeholder="CNPJ" value={cnpj} 
+                                     onChange={(event) => setCnpj(event.target.value)}/>
 
                                 </div>
 
                                 <div className="infotext">
 
-                                    <input type="text" class="form-control" placeholder="Nome do Recrutador" />
+                                    <input type="text" class="form-control" placeholder="Nome do Recrutador" value={nomerecrutador} 
+                                     onChange={(event) => setNomerecrutador(event.target.value)}/>
 
                                 </div>
 
                                 <div className="infotext">
 
-                                    <input type="text" class="form-control" placeholder="Telefone com DDD (Ex: 11 99999-9999)" />
+                                    <input type="text" class="form-control" placeholder="Telefone com DDD (Ex: 11 99999-9999)" value={telefone} 
+                                     onChange={(event) => setTelefone(event.target.value)}/>
 
                                 </div>
 
                                 <div className="infotext">
 
-                                    <input type="text" class="form-control" placeholder="Email" />
+                                    <input type="text" class="form-control" placeholder="Email" value={email} 
+                                     onChange={(event) => setEmail(event.target.value)}/>
 
                                 </div>
 
                                 <div className="infotext">
                                     
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha"/>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha" value={senha} 
+                                     onChange={(event) => setSenha(event.target.value)}/>
 
                                 </div>
 
@@ -73,11 +104,10 @@ const CadastroEmprsa = () => {
 
                                 </div>
 
+                                         
                                 <div className="btn1">
 
-                                    <a href="/CadastroEmpresa"      class="cadastroEmpresa">
-                                    Cadastrar-se
-                                    </a>
+                                    <button onClick={cadastrar} className="cadastroEmpresa">CADASTRAR</button>
 
                                 </div>
 
