@@ -10,6 +10,7 @@ import EscolhaCadastro from './Pages/EscolhaCadastro';
 import CadastroProfissional from './Pages/CadastroProfissional';
 import CadastroDeVagas from './Pages/CadastroDeVagas';
 import CadastroEmpresa from './Pages/CadastroEmpresa';
+import EditarVagas from './Pages/EditarVagas';
 import Login from './Pages/Login';
 
 const routing = (
@@ -20,6 +21,7 @@ const routing = (
       <Route path="/cadastroprofissional" component={CadastroProfissional}/>
       <Route path="/cadastrodevagas" component={CadastroDeVagas}/>
       <Route path="/CadastroEmpresa" component={CadastroEmpresa}/>
+      <Route path="/EditarVagas" component={EditarVagas}/>
       <Route path="/login" component={Login}/>
     </Switch>
   </Router>

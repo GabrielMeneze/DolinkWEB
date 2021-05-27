@@ -1,11 +1,21 @@
 import React, { useState } from "react"
+import { useHistory } from "react-router-dom";
 import Header from "../../components/header";
 import Footer from "../../components/footer"
+import LogoVaga from '../../imgs/Logovaga.png'
 import "./index.css";
 
 
 
-const CadastroDeVagas = () => {
+
+const EditarVagas = () => {
+
+    const [titulo, setTitulo] = useState("");
+    const [faixasalarial, setFaixasalarial] = useState("");
+    const [local, setLocal] = useState("");
+    const [descricao, setDescricao] = useState("");
+    const [beneficios, setBeneficios] = useState("");
+
 
     const [images, setImages] = useState([]);
 
@@ -28,17 +38,13 @@ const CadastroDeVagas = () => {
         }).then(res => console.log(res));
     };
 
-    const [titulo, setTitulo] = useState("");
-    const [faixasalarial, setFaixasalarial] = useState("");
-    const [local, setLocal] = useState("");
-    const [descricao, setDescricao] = useState("");
-    const [beneficios, setBeneficios] = useState("");
 
-    const cadastrar = (event) => {
+
+    const alterar = (event) => {
         event.preventDefault();
 
         fetch('https://609a8adb0f5a13001721b68b.mockapi.io/api/v1/usuario', {
-            method: "POST",
+            method: "UPDATE",
             body: JSON.stringify({
                 titulo: titulo,
                 faixasalarial: faixasalarial,
@@ -53,14 +59,16 @@ const CadastroDeVagas = () => {
         })
             .then((response) => {
                 // Verifica se a validação for OK e caso seja, informa a resposta
-                if (response.ok) return response.json();
+                if (response.ok) {
+                    console.log(response.json());
+                    alert('Vaga alterada')
+                }
 
                 // Caso validação não seja OK informa um alert
                 alert("Dado inválido");
             })
             .catch((err) => console.error(err));
     };
-
 
     return (
         <div className="main">
@@ -72,26 +80,20 @@ const CadastroDeVagas = () => {
                 <div className="esp"></div>
                 <hr className="linha" />
             </div>
-            <div className="controle">
+            <div className="imagem">
+                <img src={LogoVaga} alt="Logo da vaga da empresa" />
+            </div>
+            <div className="logovaga">
+                <form>
 
-                <div className="fields">
-                    <div className="fild">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected >Selecionar Vaga</option>
-                            <option value="1">Cientista de dados</option>
-                            <option value="2">Desenvolvedor de Sistemas</option>
-                            <option value="3">Desenvolvedor Front-End</option>
-                            <option value="4">Desenvolvedor Back-End</option>
-                            <option value="5">Desenvolvedor Full-Stack</option>
-                            <option value="6">Estagio de TI</option>
-                            <option value="7">Engenheiro de software</option>
-                            <option value="8">Devops</option>
-                            <option value="9">Engenheiro de testes</option>
-                            <option value="10">Analista de segurança</option>
-                        </select>
-                    </div>
+                    <label For="arquivo">escolha a logo da empresa</label>
+                    <input type="file" alt="escolha a logo da empresa" id="arquivo" multiple={true} onChange={e => onFileChange(e.target.files)} />
 
-                    <form className="form-cupom" onSubmit={cadastrar}>
+                </form>
+
+                <button class="button" onClick={handleClick}>Upload</button>
+            </div>
+            <form className="form-cupom" onSubmit={alterar}>
                         <div className="form-group">
                             <div className="textarea">
                                 <input
@@ -152,59 +154,12 @@ const CadastroDeVagas = () => {
                                 type="submit"
                                 value="vcupom"
                                 className="input-btn"
-                            >cadastrar</button>
+                            >Salvar Alterações</button>
                         </div>
                     </form>
-                </div>
-
-                <div className="utilss">
-                    <div className="logovaga">
-                        <form>
-
-                            <label For="arquivo">escolha a logo da empresa</label>
-                            <input type="file" alt="escolha a logo da empresa" id="arquivo" multiple={true} onChange={e => onFileChange(e.target.files)} />
-
-                        </form>
-
-                        <button class="button" onClick={handleClick}>Upload</button>
-                    </div>
-
-
-                    <input type="search" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..." />
-                    <datalist id="datalistOptions">
-                        <option value="C#" />
-                        <option value=".NET" />
-                        <option value="Java" />
-                        <option value="Javascript" />
-                        <option value="HTML" />
-                        <option value="CSS" />
-                        <option value="Ruby" />
-                        <option value="Lua" />
-                        <option value="Reat.js" />
-                        <option value="Angular" />
-                        <option value="Python" />
-                        <option value="Swift" />
-                        <option value="PHP" />
-                        <option value="C" />
-                        <option value="C++" />
-                        <option value="Perl" />
-                        <option value="Assembly" />
-                        <option value="Ruby" />
-                        <option value="Objective-C" />
-                        <option value="Jquery" />
-                        <option value="TypeScript" />
-                        <option value="Shell" />
-                        <option value="Haskell" />
-                        <option value="Kotlin" />
-                        <option value="Scala " />
-                    </datalist>
-
-
-                </div>
-            </div>
-            <Footer />
+                    <Footer/>
         </div>
-    )
+    );
 }
 
-export default CadastroDeVagas;
+export default EditarVagas;
