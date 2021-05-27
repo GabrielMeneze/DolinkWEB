@@ -8,30 +8,6 @@ import profissionalServico from '../../servicos/profissionalServico';
 
 export default function MultiStep() {
 
-    const [nome, setNome] = useState('')
-
-    // const cadastrar = (event) => {
-
-    //     fetch('https://609a8adb0f5a13001721b68b.mockapi.io/api/v1/profissional', {
-    //         method: "POST",
-    //         body: JSON.stringify({
-    //             nome: nome,
-
-    //         }),
-    //         headers: {
-    //             "content-type": "application/json",
-    //         },
-    //     })
-    //         .then((response) => {
-    //             // Verifica se a validação for OK e caso seja, informa a resposta
-    //             if (response.ok) return response.json();
-
-    //             // Caso validação não seja OK informa um alert
-    //             alert("Dado inválido");
-    //         })
-    //         .catch((err) => console.error(err));
-    // };
-
     const history = useHistory();
 
     return (
