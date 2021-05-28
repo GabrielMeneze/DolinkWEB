@@ -4,6 +4,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ToastProvider } from 'react-toast-notifications'
 
 import Home from './Pages/Home';
 import EscolhaCadastro from './Pages/EscolhaCadastro';
@@ -28,7 +29,9 @@ const routing = (
 )
 
 ReactDOM.render(
-  routing,
+  <ToastProvider>
+    {routing}
+  </ToastProvider>,
   document.getElementById('root')
 );
 
