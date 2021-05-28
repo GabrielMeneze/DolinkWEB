@@ -12,10 +12,10 @@ const Login = () => {
     const logar = (event) => {
         event.preventDefault();
 
-        fetch(`${url}usuario`, {
+        fetch(`${url}account/signin`, {
             method: 'POST',
             body: JSON.stringify({
-
+                
                 email : email,
                 senha : senha
 

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import './index.css';
+import '../../Pages/PerfilEmpresa/index.css';
 import Header from '../../components/header';
 import Rodape from '../../components/footer';
 import {  Table, Button } from 'react-bootstrap';
@@ -15,7 +15,7 @@ const PerfilEmpresa = () => {
     const [senha, setSenha] = useState('');
     const [infoEmpresa, setInfoEmpresa] = useState([]);
 
-    useEffect(() =>{
+    useEffect(() => {
 
         listarEmpresa();
 
@@ -39,7 +39,7 @@ const PerfilEmpresa = () => {
 
                 <div className="sectionPerfilEmpresa">{
 
-                    <Table striped bordered hover>
+                    <Table>
                     <thead>
                         <tr>
                             <th>Nome da Empresa</th>
@@ -71,24 +71,9 @@ const PerfilEmpresa = () => {
                         }
                     </tbody>
                     </Table>
-
-                    // infoEmpresa.map((item, index) => {
-                    //     return(
-
-                    //         <div key={index}>
-                    //                 <ListGroup.Item className="tituloPerfil">Perfil</ListGroup.Item>
-                    //                 <ListGroup.Item className="infoPerfil" >Nome da Empresa: {item.nomeEmpresa}</ListGroup.Item>
-                    //                 <ListGroup.Item className="infoPerfil" >CNPJ: {item.cnpj}</ListGroup.Item>
-                    //                 <ListGroup.Item className="infoPerfil" >Nome do Recrutador: {item.nomeRecrutador}</ListGroup.Item>
-                    //                 <ListGroup.Item className="infoPerfil" >Telefone: {item.telefone}</ListGroup.Item>
-                    //                 <ListGroup.Item className="infoPerfil" >Email: {item.email}</ListGroup.Item>
-                    //                 <ListGroup.Item className="infoPerfil" >Senha: {item.senha}</ListGroup.Item>
-                    //         </div>
-                    //     )
-                    // })
                 }
                 </div>
-            <Rodape/>
+            <Rodape className="rodapePerfilEmpresa"/>
         </div>
     )
 }

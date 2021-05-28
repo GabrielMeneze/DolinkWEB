@@ -1,6 +1,6 @@
 const cadastrarProfissional = dados =>{
 
-    return fetch('https://609a8adb0f5a13001721b68b.mockapi.io/api/v1/profissional', {
+    return fetch('https://localhost:44363/v1/professional/signup', {
         method : 'POST',
         body : JSON.stringify(dados),
         headers : {
