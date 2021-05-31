@@ -12,7 +12,7 @@ const CadastroEmpresa = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [telefone, setTelefone] = useState('');
-    const [urlImagem, setUrlImagem] = useState('');
+    const [imagem, setImagem] = useState('');
     const [cnpj, setCnpj] = useState('');
     const [cep, setCep] = useState('');
     const [regiao, setRegiao] = useState('');
@@ -23,18 +23,18 @@ const CadastroEmpresa = () => {
         event.preventDefault();
 
         fetch(`${url}company/signup`,{
-            method: "POST",
+            method: 'POST',
             body: JSON.stringify({
-                nome: nome,
-                email: email,
-                senha: senha,
-                telefone: telefone,
-                urlImagem: urlImagem,
-                cnpj: cnpj,
-                cep: cep,
-                regiao: regiao,
-                descricao: descricao,
-                dominio: dominio
+                Nome: nome,
+                Email: email,
+                Senha: senha,
+                Telefone: telefone,
+                Imagem: imagem,
+                CNPJ: cnpj,
+                CEP: cep,
+                Regiao: regiao,
+                Descricao: descricao,
+                Dominio: dominio
             }),
             headers: {
                 'content-type': 'application/json'
@@ -43,28 +43,28 @@ const CadastroEmpresa = () => {
             .then(response => {
                 if(response.ok) {
                     alert("Cadastro realizado com sucesso!");
-                    history.push('/cadastrodevagas');
+                    // history.push('/cadastrodevagas');
                 }
             })
     }
 
-    const uploadFile = (event) => {
-        event.preventDefault();
+    // const uploadFile = (event) => {
+    //     event.preventDefault();
 
-        let formdata = new FormData();
+    //     let formdata = new FormData();
 
-        formdata.append('arquivo', event.target.files[0]);
+    //     formdata.append('arquivo', event.target.files[0]);
 
-        fetch(`${url}company/signup`, {
-            method: 'POST',
-            body: formdata
-        })
-            .then(response => response.json)
-            .then(data => {
-                setUrlImagem(data.url)
-            })
-            .catch(err => console.error(err))
-    }
+    //     fetch(`${url}company/signup`, {
+    //         method: 'POST',
+    //         body: formdata
+    //     })
+    //         .then(response => response.json)
+    //         .then(data => {
+    //             setImagem(data.url)
+    //         })
+    //         .catch(err => console.error(err))
+    // }
 
     return (
 
@@ -158,8 +158,10 @@ const CadastroEmpresa = () => {
 
                                 <div className="infotextcompany">
                                     
-                                    <Form.File id="fileCategoria" label="Logo da Empresa" onChange={event => uploadFile(event)} />
-                                        {urlImagem && <img src={urlImagem} style={{ widht: '120px' }} />}
+                                    <input className="form-control" id="exampleInputPassword1" placeholder="Imagem" value={imagem} 
+                                     onChange={(event) => setImagem(event.target.value)}/>
+                                    {/* <Form.File id="fileCategoria" label="Logo da Empresa" onChange={event => uploadFile(event)} />
+                                        {imagem && <img src={imagem} style={{ widht: '120px' }} />} */}
                                      {/* <input type="file" value={imagem} alt="escolha a logo da empresa" id="arquivo" multiple={true} onChange={(event) => setImagem(event.target.files)} /> */}
 
                                 </div>

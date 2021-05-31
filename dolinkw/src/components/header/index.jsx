@@ -18,36 +18,58 @@ const Header = () => {
     }
 
     const renderMenu = () => {
-        const token = localStorage.getItem('token-dolink');
-
-        if(token !== null){
+        const token = localStorage.getItem('token-dolink')
+    
+        if (token === null) {
             return (
-                <Nav>
-                    <Nav.Link href="/cadastrodevagas">Pacotes</Nav.Link>
-                    <Nav.Link href="/perfilEmpresa">Pacotes</Nav.Link>
-                    <NavDropdown title={jwt_decode(token).family_name} id="basic-nav-dropdown">
-                        <NavDropdown.Item href="/perfilEmpresa">Perfil</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item onClick={event => sair(event)} >Sair</NavDropdown.Item>
-                    </NavDropdown>
-                </Nav>
+                <div className="cabecalho">
+                    <div className="logo">
+                        <img src={logo} alt="logo da empresa Dolink" />
+                    </div>
+                    <div className="botoes">
+                        <a className="buttonIn" href="/login">Sign In</a>
+                        <a className="buttonUp" href="/choosesignup"> Sign Up</a>
+                    </div>
+                </div>
+            );
+        } else if (jwt_decode(token).Role === "Empresa") {
+            // Role = 2 (Administrador)
+            // Role = 3 (Padrão)
+            return (
+                <div className="cabecalho">
+                <div className="logo">
+                    <img src={logo} alt="logo da empresa Dolink" />
+                </div>
+                <div className="botoes">
+                    <a className="buttonPerfilCompany" href="/perfilEmpresa">Perfil</a>
+                    <a className="buttonCadastroVagasCompany" href="/cadastrodevagas">Cadastro de Vagas</a>
+                    <a className="buttonExitCompany"hreft="" onClick={event => sair(event)}>Sair</a>
+                </div>
+        </div>
             )
         } else {
+            return (
+                <div className="cabecalho">
+                <div className="logo">
+                    <img src={logo} alt="logo da empresa Dolink" />
+                </div>
+                <div className="botoes">
+                    <a className="buttonIn" href="/login">Sign In</a>
+                    <a className="buttonUp" href="/choosesignup"> Sign Up</a>
+                </div>
+        </div>
+            )
         }
     }
-
     
 
     return (
-        <div className="cabecalho">
-            <div className="logo">
-                <img src={logo} alt="logo da empresa Dolink" />
-            </div>
+
             <div className="botoes">
-                <a className="buttonIn" href="/login">Sign In</a>
-                <a className="buttonUp" href="/choosesignup"> Sign Up</a>
+
+                { renderMenu () }
+
             </div>
-        </div>
     )
 }
 

@@ -21,7 +21,6 @@ const Login = () => {
 
         },
         onSubmit : values => { 
-            alert(JSON.stringify(values));
             contaServico
                 .logar(values)
                 .then(resultado => resultado.json())
@@ -33,7 +32,7 @@ const Login = () => {
                         localStorage.setItem('token-dolink', resultado.data.token);
                         console.log(resultado);
                         //redireciona página admin
-                        history.push('/');
+                        history.push('/perfilEmpresa');
                     } else {
 
                         addToast(resultado.mensagem, { appearance: 'error', autoDismiss : true })
