@@ -12,6 +12,11 @@ const PerfilEmpresa = () => {
 
     const {addToast} = useToasts();
 
+    const [nome, setNome] = useState('');
+    const [telefone, setTelefone] = useState('');
+    const [cnpj, setCnpj] = useState('');
+    const [cep, setCep] = useState('');
+    const [regiao, setRegiao] = useState('');
     const [empresas, setEmpresas] = useState([]);
 
     const formik = useFormik({
@@ -65,6 +70,36 @@ const PerfilEmpresa = () => {
 
         })
     }
+
+    const alterar = (event) => {
+        event.preventDefault();
+
+        fetch(`${url}company/signup`, {
+            method: "UPDATE",
+            body: JSON.stringify({
+                Nome: nome,
+                CNPJ: cnpj,
+                CEP: cep,
+                Regiao: regiao,
+                Telefone: telefone,
+
+            }),
+            headers: {
+                "content-type": "application/json",
+            },
+        })
+            .then((response) => {
+                // Verifica se a validação for OK e caso seja, informa a resposta
+                if (response.ok) {
+                    console.log(response.json());
+                    alert('Empresa alterada')
+                }
+
+                // Caso validação não seja OK informa um alert
+                alert("Dado inválido");
+            })
+            .catch((err) => console.error(err));
+    };
 
     
     const excluir = (event) => {
@@ -120,7 +155,7 @@ const PerfilEmpresa = () => {
                                             <td>{item.telefone}</td>
                                             
                                             <td>
-                                                <Button variant="warning" value={item.id} onClick={event => editar(event)} >Editar</Button>
+                                                <Button variant="warning" value={item.id} onClick={event => (event)} >Editar</Button>
                                                 <Button variant="danger" value={item.id} OnClick={event => excluir(event)} style={{ marginLeft : '40px'}}>Desativar</Button>
                                             </td>
                                         </tr>
