@@ -1,37 +1,76 @@
 import React, { useState } from 'react';
+import contaServico from '../../servicos/contaServico';
+import {  useFormik  } from 'formik';
 import './index.css';
 import {  Form, Button  } from 'react-bootstrap';
-import { url } from '../../utils/constants';
 import TextField from '@material-ui/core/TextField';
+import {  useToasts  } from 'react-toast-notifications';
+import {useHistory} from 'react-router-dom';
 
 const Login = () => {
 
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
+    const { addToast } = useToasts();
 
-    const logar = (event) => {
-        event.preventDefault();
+    const history = useHistory();
 
-        fetch(`${url}usuario`, {
-            method: 'POST',
-            body: JSON.stringify({
+    const formik = useFormik({
 
-                email : email,
-                senha : senha
+        initialValues :{
+            email : '',
+            senha : ''
 
-            }),
-            headers: {
-                'content-type': 'application/json'
-            }
-        })
-    }
+        },
+        onSubmit : values => { 
+            alert(JSON.stringify(values));
+            contaServico
+                .logar(values)
+                .then(resultado => resultado.json())
+                .then(resultado =>{
+                    if(resultado.sucesso){
+                        //apresenta a notificação
+                        addToast(resultado.mensagem, { appearance: 'success', autoDismiss : true })
+                        //salva token no localstorage
+                        localStorage.setItem('token-dolink', resultado.data.token);
+                        console.log(resultado);
+                        //redireciona página admin
+                        history.push('/');
+                    } else {
 
+                        addToast(resultado.mensagem, { appearance: 'error', autoDismiss : true })
+
+                    }
+                })
+                .catch(erro => {
+                    console.error('erro na API ' + erro);
+                })
+        }
+    });
+
+    // const [email, setEmail] = useState('');
+    // const [senha, setSenha] = useState('');
+
+    // const logar = (event) => {
+    //     event.preventDefault();
+
+    //     fetch(`${url}account/signin`, {
+    //         method: 'POST',
+    //         body: JSON.stringify({
+                
+    //             email : email,
+    //             senha : senha
+
+    //         }),
+    //         headers: {
+    //             'content-type': 'application/json'
+    //         }
+    //     })
+    // }
 
     return (
 
         <div>
             
-            <Form onSubmit={event => logar(event)}>
+            <Form onSubmit={formik.handleSubmit}>
 
                 <div className="bodyLogin">
 
@@ -56,18 +95,18 @@ const Login = () => {
                                 <TextField className="textFieldLogin"
                                     label="Informe seu e-mail"
                                     type="email"
-                                    value={email}
-                                    onChange={event => setEmail(event.target.value)}
+                                    value={formik.values.email}
+                                    onChange={formik.handleChange}
                                     name="email" required/>
 
                                 <TextField className="textFieldLogin"            
                                     label="Informe sua senha"
                                     type="password"
-                                    value={senha}
-                                    onChange={event => setSenha(event.target.value)}
+                                    value={formik.values.senha}
+                                    onChange={formik.handleChange}
                                     name="senha" required/>
 
-                                <Button class="botaoLogin" type="submit">Logar!</Button>
+                                <Button className="botaoLogin" type="submit">Logar!</Button>
 
 
                             </div>
