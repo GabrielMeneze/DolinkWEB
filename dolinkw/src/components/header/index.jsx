@@ -44,6 +44,7 @@ const Header = () => {
                     <a className="buttonPerfilCompany" href="/perfilEmpresa">Perfil</a>
                     <a className="buttonCadastroVagasCompany" href="/cadastrodevagas">Cadastro de Vagas</a>
                     <a className="buttonCadastroVagasCompany" href="/EditarVagas">Editar Vaga</a>
+                    <a className="buttonCadastroVagasCompany" href="/ListagemVagas">Listagem de Vagas</a>
                     <a className="buttonExitCompany"hreft="" onClick={event => sair(event)}>Sair</a>
                 </div>
         </div>
