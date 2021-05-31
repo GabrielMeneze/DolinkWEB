@@ -43,7 +43,8 @@ const CadastroEmpresa = () => {
             .then(response => {
                 if(response.ok) {
                     alert("Cadastro realizado com sucesso!");
-                    // history.push('/cadastrodevagas');
+                    // localStorage.setItem('token-dolink', response.data.token);
+                    history.push('/login');
                 }
             })
     }

@@ -23,7 +23,7 @@ const Home = () => {
             </a>
           </div>
 
-          <div className="image">
+          <div className="imageHome">
             <img
               src="https://media.discordapp.net/attachments/836953521751326720/839940212125073518/unknown.png"
               alt=""
