@@ -31,6 +31,7 @@ const Login = () => {
                         addToast(resultado.mensagem, { appearance: 'success', autoDismiss : true })
                         //salva token no localstorage
                         localStorage.setItem('token-dolink', resultado.data.token);
+                        console.log(resultado);
                         //redireciona página admin
                         history.push('/');
                     } else {
