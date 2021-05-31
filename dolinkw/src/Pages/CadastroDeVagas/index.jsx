@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import Header from "../../components/header";
-import Footer from "../../components/footer"
+import Footer from "../../components/footer";
+import {  url  } from '../../utils/constants';
 import "./index.css";
 
 
@@ -37,14 +38,12 @@ const CadastroDeVagas = () => {
     const cadastrar = (event) => {
         event.preventDefault();
 
-        fetch('https://609a8adb0f5a13001721b68b.mockapi.io/api/v1/usuario', {
+        fetch(url + 'vagancy/create', {
             method: "POST",
             body: JSON.stringify({
                 titulo: titulo,
-                faixasalarial: faixasalarial,
                 local: local,
                 descricao: descricao,
-                beneficios: beneficios,
 
             }),
             headers: {
@@ -53,10 +52,14 @@ const CadastroDeVagas = () => {
         })
             .then((response) => {
                 // Verifica se a validação for OK e caso seja, informa a resposta
-                if (response.ok) return response.json();
+                if (response.ok) {
+
+                    console.log(response.json());
+                    alert('Vaga Cadastrada!')
+
+                }
 
                 // Caso validação não seja OK informa um alert
-                alert("Dado inválido");
             })
             .catch((err) => console.error(err));
     };
@@ -104,7 +107,7 @@ const CadastroDeVagas = () => {
                                 >
                                 </input>
                             </div>
-                            <div className="textarea">
+                            {/* <div className="textarea">
                                 <input
                                     type="text"
                                     name="faixasalarial"
@@ -114,7 +117,7 @@ const CadastroDeVagas = () => {
                                     onChange={(event) => setFaixasalarial(event.target.value)}
                                 >
                                 </input>
-                            </div>
+                            </div> */}
                             <div className="textarea">
                                 <input
                                     type="text"
@@ -137,7 +140,7 @@ const CadastroDeVagas = () => {
                                 >
                                 </input>
                             </div>
-                            <div className="textarea">
+                            {/* <div className="textarea">
                                 <input
                                     type="text"
                                     name="beneficios"
@@ -147,12 +150,12 @@ const CadastroDeVagas = () => {
                                     onChange={(event) => setBeneficios(event.target.value)}
                                 >
                                 </input>
-                            </div>
+                            </div> */}
                             <button
                                 type="submit"
                                 value="vcupom"
                                 className="input-btn"
-                            >cadastrar</button>
+                            >Cadastrar</button>
                         </div>
                     </form>
                 </div>
