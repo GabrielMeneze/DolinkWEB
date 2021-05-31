@@ -43,14 +43,13 @@ const EditarVagas = () => {
     const alterar = (event) => {
         event.preventDefault();
 
-        fetch('https://609a8adb0f5a13001721b68b.mockapi.io/api/v1/usuario', {
-            method: "UPDATE",
+        fetch('https://localhost:44371/v1/vagancy/update', {
+            method: "PUT",
             body: JSON.stringify({
+                id: "60b4eb464d4da4da64cbe9f1",
                 titulo: titulo,
-                faixasalarial: faixasalarial,
                 local: local,
                 descricao: descricao,
-                beneficios: beneficios,
 
             }),
             headers: {

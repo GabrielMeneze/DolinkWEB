@@ -37,9 +37,10 @@ const CadastroDeVagas = () => {
     const cadastrar = (event) => {
         event.preventDefault();
 
-        fetch('https://609a8adb0f5a13001721b68b.mockapi.io/api/v1/usuario', {
+        fetch('https://localhost:44371/v1/vagancy/create', {
             method: "POST",
             body: JSON.stringify({
+                idEmpresa: "60b4e906853110a492e6afa2",
                 titulo: titulo,
                 faixasalarial: faixasalarial,
                 local: local,
