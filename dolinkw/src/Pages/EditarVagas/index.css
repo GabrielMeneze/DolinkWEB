@@ -25,3 +25,22 @@
 .titulo h1{
     font-size: x-large;
 }
+.image{
+    margin-left: 900px;
+
+}
+input[type="text"]{
+    margin-left: 350px;
+    background-color: white;
+    border: none;
+    width: 800px;
+}
+
+input[name="descricao"]{
+    height: 200px;
+    
+}
+button[type="submit"]{
+    height: 55px;
+    width: 130px;
+}
