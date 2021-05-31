@@ -74,8 +74,8 @@ const PerfilEmpresa = () => {
     const alterar = (event) => {
         event.preventDefault();
 
-        fetch(`${url}company/signup`, {
-            method: "UPDATE",
+        fetch(`${url}company/update`, {
+            method: "PUT",
             body: JSON.stringify({
                 Nome: nome,
                 CNPJ: cnpj,
@@ -155,7 +155,7 @@ const PerfilEmpresa = () => {
                                             <td>{item.telefone}</td>
                                             
                                             <td>
-                                                <Button variant="warning" value={item.id} onClick={event => (event)} >Editar</Button>
+                                                <Button variant="warning" value={item.id} onClick={event => alterar(event)} >Editar</Button>
                                                 <Button variant="danger" value={item.id} OnClick={event => excluir(event)} style={{ marginLeft : '40px'}}>Desativar</Button>
                                             </td>
                                         </tr>

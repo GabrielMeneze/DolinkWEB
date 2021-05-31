@@ -37,10 +37,10 @@ const CadastroDeVagas = () => {
     const cadastrar = (event) => {
         event.preventDefault();
 
-        fetch('https://localhost:44371/v1/vagancy/create', {
+        fetch('https://localhost:44348/v1/vagancy/create', {
             method: "POST",
             body: JSON.stringify({
-                idEmpresa: "60b4e906853110a492e6afa2",
+                idEmpresa: "60b53bd4e50d690ec037bab8",
                 titulo: titulo,
                 faixasalarial: faixasalarial,
                 local: local,
@@ -54,8 +54,10 @@ const CadastroDeVagas = () => {
         })
             .then((response) => {
                 // Verifica se a validação for OK e caso seja, informa a resposta
-                if (response.ok) return response.json();
-
+                if (response.ok) {
+                    console.log(response.json());
+                    alert('Vaga Cadastrada!');
+                }
                 // Caso validação não seja OK informa um alert
                 alert("Dado inválido");
             })
