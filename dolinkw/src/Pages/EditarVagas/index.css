@@ -29,18 +29,52 @@
     margin-left: 900px;
 
 }
-input[type="text"]{
-    margin-left: 350px;
+input[name="beneficios novo"]{
+    margin-left: 450px;
     background-color: white;
     border: none;
-    width: 800px;
-}
-
-input[name="descricao"]{
-    height: 200px;
+    width: 600px;
     
 }
-button[type="submit"]{
-    height: 55px;
-    width: 130px;
+input[name="local novo"]{
+    margin-left: 450px;
+    background-color: white;
+    border: none;
+    width: 600px;
+}
+input[name="faixasalarial nova"]{
+    margin-left: 450px;
+    background-color: white;
+    border: none;
+    width: 600px;
+}
+input[name="titulo novo"]{
+    margin-left: 450px;
+    background-color: white;
+    border: none;
+    width: 600px;
+}
+
+input[name="descricao nova"]{
+    margin-left: 450px;
+    background-color: white;
+    border: none;
+    width: 600px;
+    
+}
+
+.input-btn2{
+    width: 120px;
+    height: 40px;
+    background-color: #00C74F;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 6px;
+    position: relative;
+    margin-left: 680px;
+    margin-top: 70px;
+    font-size: 25px;
 }
