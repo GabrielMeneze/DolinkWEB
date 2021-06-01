@@ -43,7 +43,6 @@ const CadastroEmpresa = () => {
             .then(response => {
                 if(response.ok) {
                     alert("Cadastro realizado com sucesso!");
-                    // localStorage.setItem('token-dolink', response.data.token);
                     history.push('/login');
                 }
             })

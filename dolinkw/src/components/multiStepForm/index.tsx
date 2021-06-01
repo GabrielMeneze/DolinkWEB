@@ -41,12 +41,12 @@ export default function MultiStep() {
                                 if(resultado.sucesso){
                                   // addToast(resultado.mensagem, { appearance: 'success', autoDismiss : true })
                                   //apresenta a notificação
-                                    alert(resultado.mensagem)
+                                    alert('Profissional Cadastrado!!')
                                     //redireciona página admin
                                     history.push('/login');
                                 } else {
             
-                                    alert(resultado.mensagem)
+                                    alert('Dados Inválidos!')
             
                                 }
                             })
