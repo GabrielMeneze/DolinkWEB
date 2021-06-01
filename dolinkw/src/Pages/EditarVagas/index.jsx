@@ -46,10 +46,12 @@ const EditarVagas = () => {
         fetch('https://localhost:44348/v1/vagancy/update', {
             method: "PUT",
             body: JSON.stringify({
-                id: "60b53c3ce50d690ec037bab9",
+                id: "60b6710ccd5b4b4cffea7453",
                 titulo: titulo,
+                faixasalarial: faixasalarial,
                 local: local,
                 descricao: descricao,
+                beneficios: beneficios
 
             }),
             headers: {
@@ -75,14 +77,14 @@ const EditarVagas = () => {
             <div className="titulo">
                 <hr className="linha" />
                 <div className="esp"></div>
-                <h1>cadastrar vagas</h1>
+                <h1>Editar Vaga</h1>
                 <div className="esp"></div>
                 <hr className="linha" />
             </div>
-            <div className="imagem">
+            {/* <div className="imagem">
                 <img src={LogoVaga} alt="Logo da vaga da empresa" />
-            </div>
-            <div className="logovaga">
+            </div> */}
+            {/* <div className="logovaga">
                 <form>
 
                     <label For="arquivo">escolha a logo da empresa</label>
@@ -91,59 +93,59 @@ const EditarVagas = () => {
                 </form>
 
                 <button class="button" onClick={handleClick}>Upload</button>
-            </div>
-            <form className="form-cupom" onSubmit={alterar}>
-                        <div className="form-group">
-                            <div className="textarea">
+            </div> */}
+            <form className="form-cupom-edit" onSubmit={alterar}>
+                        <div className="form-group-edit">
+                            <div className="textarea-edit">
                                 <input
                                     type="text"
                                     name="titulo novo"
                                     value={titulo}
-                                    className="form-control"
+                                    className="form-control-edit"
                                     placeholder="Titulo"
                                     onChange={(event) => setTitulo(event.target.value)}
                                 >
                                 </input>
                             </div>
-                            <div className="textarea">
+                            <div className="textarea-edit">
                                 <input
                                     type="text"
                                     name="faixasalarial nova"
                                     value={faixasalarial}
-                                    className="form-control"
+                                    className="form-control-edit"
                                     placeholder="Faixa Salarial"
                                     onChange={(event) => setFaixasalarial(event.target.value)}
                                 >
                                 </input>
                             </div>
-                            <div className="textarea">
+                            <div className="textarea-edit">
                                 <input
                                     type="text"
                                     name="local novo"
                                     value={local}
-                                    className="form-control"
+                                    className="form-control-edit"
                                     placeholder="Local"
                                     onChange={(event) => setLocal(event.target.value)}
                                 >
                                 </input>
                             </div>
-                            <div className="textarea">
+                            <div className="textarea-edit">
                                 <input
                                     type="text"
                                     name="descricao nova"
                                     value={descricao}
-                                    className="form-control"
+                                    className="form-control-edit"
                                     placeholder="Descrição da vaga"
                                     onChange={(event) => setDescricao(event.target.value)}
                                 >
                                 </input>
                             </div>
-                            <div className="textarea">
+                            <div className="textarea-edit">
                                 <input 
                                     type="text"
                                     name="beneficios novo"
                                     value={beneficios}
-                                    className="form-control"
+                                    className="form-control-edit"
                                     placeholder="Beneficios"
                                     onChange={(event) => setBeneficios(event.target.value)}
                                 >
