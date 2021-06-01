@@ -1,8 +1,8 @@
 import http from '../utils/http-axious';
 
-const listar = () =>{
+const listar = dados =>{
 
-    return http.get('company', {
+    return http.get(`company`, JSON.stringify(dados), {
 
     });
 

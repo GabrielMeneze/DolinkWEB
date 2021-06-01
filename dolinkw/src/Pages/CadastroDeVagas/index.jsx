@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import Header from "../../components/header";
 import Footer from "../../components/footer"
+import jwtDecode from 'jwt-decode';
 import "./index.css";
 
 
@@ -8,6 +9,10 @@ import "./index.css";
 const CadastroDeVagas = () => {
 
     const [images, setImages] = useState([]);
+
+    const token = localStorage.getItem('token-dolink'); 
+    
+    const idEmpresa = jwtDecode(token).Id;
 
     const onFileChange = (files) => {
         setImages(f => [...f, ...files]);
@@ -40,7 +45,7 @@ const CadastroDeVagas = () => {
         fetch('https://localhost:44348/v1/vagancy/create', {
             method: "POST",
             body: JSON.stringify({
-                idEmpresa: "60b62041f76da50d80cfe4c6",
+                idEmpresa: idEmpresa,
                 titulo: titulo,
                 faixasalarial: faixasalarial,
                 local: local,

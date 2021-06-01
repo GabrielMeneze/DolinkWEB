@@ -6,6 +6,7 @@ import {  Table, Button } from 'react-bootstrap';
 import { useToasts } from 'react-toast-notifications';
 import {  useFormik  } from 'formik';
 import {  url  } from '../../utils/constants';
+import jwtDecode from 'jwt-decode';
 import empresaServico from '../../servicos/empresaServico';
 
 const PerfilEmpresa = () => {
@@ -18,6 +19,8 @@ const PerfilEmpresa = () => {
     const [cep, setCep] = useState('');
     const [regiao, setRegiao] = useState('');
     const [empresas, setEmpresas] = useState([]);
+
+    const token = localStorage.getItem('token-dolink');  
 
     const formik = useFormik({
         initialValues : {
@@ -42,7 +45,6 @@ const PerfilEmpresa = () => {
         empresaServico
         .listar()
         .then(resultado =>{
-            console.log(`resultado ${JSON.stringify(resultado.data)}`);
             setEmpresas(resultado.data.data);
         })
         .catch(erro =>{
@@ -145,9 +147,10 @@ const PerfilEmpresa = () => {
                         </thead>
                         <tbody>
                         {
-                                empresas.map((item, index) => {
-                                    return (
+                               empresas.filter(item => jwtDecode(token).Id === item.id).map((item, index) => {
+                                return (
                                         <tr key={index}>
+
                                             <td>{item.nome}</td>
                                             <td>{item.cnpj}</td>
                                             <td>{item.cep}</td>
