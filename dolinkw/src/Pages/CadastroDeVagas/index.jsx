@@ -76,7 +76,7 @@ const CadastroDeVagas = () => {
             <div className="titulo">
                 <hr className="linha" />
                 <div className="esp"></div>
-                <h1>cadastrar vagas</h1>
+                <h1>Cadastrar Vagas</h1>
                 <div className="esp"></div>
                 <hr className="linha" />
             </div>
@@ -159,8 +159,8 @@ const CadastroDeVagas = () => {
                             <button
                                 type="submit"
                                 value="vcupom"
-                                className="input-btn"
-                            >cadastrar</button>
+                                className="input-btn-vagas"
+                            >Cadastrar</button>
                         </div>
                     </form>
                 </div>
@@ -169,12 +169,12 @@ const CadastroDeVagas = () => {
                     <div className="logovaga">
                         <form>
 
-                            <label For="arquivo">escolha a logo da empresa</label>
+                            <label For="arquivo">Escolha a logo da empresa</label>
                             <input type="file" alt="escolha a logo da empresa" id="arquivo" multiple={true} onChange={e => onFileChange(e.target.files)} />
 
                         </form>
 
-                        <button class="button" onClick={handleClick}>Upload</button>
+                        <button class="buttonUploadImgVaga" onClick={handleClick}>Upload</button>
                     </div>
 
 
@@ -210,7 +210,7 @@ const CadastroDeVagas = () => {
 
                 </div>
             </div>
-            <Footer />
+            <Footer className="rodapeVagas" />
         </div>
     )
 }

@@ -3,24 +3,22 @@
     margin: 0;
     padding: 0;
 }
-.textarea input[type="text"]:focus,
-.textarea input[type="password"]:focus,
-.textarea input[type="tel"]:focus,
-.textarea textarea:focus {
-  background-color: #fff;
-}
+
 
 .textarea input[type="text"],
 .textarea input[type="password"],
 .textarea input[type="tel"],
 .textarea textarea {
   width: 100%;
-  color: #707070;
-  border: solid 2px rgba(82, 82, 82, 1);
-  font-family: "Questrial";
-  padding: 3px;
-  background-color: var(--main-color-01);
+  color: black;
+  padding: 15px;
 }
+
+.input-btn-vagas[type="submit"] {
+    height: 35px;
+    width: 260px;
+}
+
 .main{
     background-color: rgba(248, 239, 239, 1);
 }
@@ -29,7 +27,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    margin-top: 20px;
+    margin-top: 120px;
 }
 .titulo hr{
     width: 300px;
@@ -39,13 +37,14 @@
 .esp{
     width: 28px;
     height: 90px;
+    margin-top: 10vh;
 }
 .titulo h1{
     font-size: x-large;
 }
 .controle{
     width: 100%;
-    height: 340px;
+    height: 540px;
     display: flex;
     justify-content: space-between;
 }
@@ -75,34 +74,32 @@
     position: relative;
     margin-left: 260px;
 }
-.input-btn{
-    width: 110px;
-    height: 35px;
+.input-btn-vagas{
+    width: 0px;
+    height: 65px;
     background-color: #00C74F;
     border: none;
     color: white;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     border-radius: 6px;
     position: relative;
-    margin-left: 720px;
-    margin-top: 70px;
+    margin-left: 18.5vw;
+    margin-top: 3vh;
 }
-.input-btn:hover{
+.input-btn-vagas:hover{
     color: white;
     background-color: #10A94D;
 }
-.button{
-   height: 35PX;
+.buttonUploadImgVaga{
+   height: 35px;
    width: 90px;
    background-color: #00CA51;
    border-radius: 6px;
    border: none;
    text-align: center;
    color: white;
-   margin-left: 90px;
-
+   margin-left: 30px;
 
 }
 
@@ -118,8 +115,6 @@ label {
     color: black;
     text-transform: uppercase;
     text-align: center;
-    display: block;
-    margin-right: 20px;
     cursor: pointer;
     font-size: 15px;
 }
@@ -142,5 +137,6 @@ input[type="search"] {
     margin-left: 65px;  
     background-color: white;
     
-    
 }
+
+
