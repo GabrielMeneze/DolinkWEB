@@ -40,50 +40,34 @@ const EditarVagas = () => {
 
 
 
-    // const alterar = (event) => {
-    //     event.preventDefault();
-
-    //     fetch('https://localhost:44348/v1/vagancy/update/' + event.target.value, {
-    //         method: 'PUT',
-    //         body: JSON.stringify({
-    //             id: event.target.value,
-    //             titulo: titulo,
-    //             local: local,
-    //             descricao: descricao,
-
-    //         }),
-    //         headers: {
-    //             "content-type": "application/json",
-    //         },
-    //     })
-    //         .then((response) => {
-    //             // Verifica se a validação for OK e caso seja, informa a resposta
-    //             if (response.ok) {
-    //                 console.log(response.json());
-    //                 alert('Vaga alterada')
-    //             }
-
-    //             // Caso validação não seja OK informa um alert
-    //             alert("Dado inválido");
-    //         })
-    //         .catch((err) => console.error(err));
-    // };
-
     const alterar = (event) => {
         event.preventDefault();
 
-        fetch('https://localhost:44348/v1/vagancy/update/' + event.target.value)
-            .then(response => response.json())
-            .then(dado => {
-                console.log(dado)
-                this.setState({ id: dado.id })
-                this.setState({ titulo: dado.titulo })
-                this.setState({ faixasalarial: dado.faixasalarial })
-                this.setState({ local: dado.local })
-                this.setState({ descricao: dado.descricao })
-                this.setState({ beneficios: dado.beneficios })
+        fetch('https://localhost:44348/v1/vagancy/update', {
+            method: "PUT",
+            body: JSON.stringify({
+                id: "60b53c3ce50d690ec037bab9",
+                titulo: titulo,
+                local: local,
+                descricao: descricao,
+
+            }),
+            headers: {
+                "content-type": "application/json",
+            },
+        })
+            .then((response) => {
+                // Verifica se a validação for OK e caso seja, informa a resposta
+                if (response.ok) {
+                    console.log(response.json());
+                    alert('Vaga alterada')
+                }
+
+                // Caso validação não seja OK informa um alert
+                alert("Dado inválido");
             })
-    }
+            .catch((err) => console.error(err));
+    };
 
     return (
         <div className="main">
@@ -113,7 +97,7 @@ const EditarVagas = () => {
                             <div className="textarea">
                                 <input
                                     type="text"
-                                    name="titulo"
+                                    name="titulo novo"
                                     value={titulo}
                                     className="form-control"
                                     placeholder="Titulo"
@@ -124,7 +108,7 @@ const EditarVagas = () => {
                             <div className="textarea">
                                 <input
                                     type="text"
-                                    name="faixasalarial"
+                                    name="faixasalarial nova"
                                     value={faixasalarial}
                                     className="form-control"
                                     placeholder="Faixa Salarial"
@@ -135,7 +119,7 @@ const EditarVagas = () => {
                             <div className="textarea">
                                 <input
                                     type="text"
-                                    name="local"
+                                    name="local novo"
                                     value={local}
                                     className="form-control"
                                     placeholder="Local"
@@ -146,7 +130,7 @@ const EditarVagas = () => {
                             <div className="textarea">
                                 <input
                                     type="text"
-                                    name="descricao"
+                                    name="descricao nova"
                                     value={descricao}
                                     className="form-control"
                                     placeholder="Descrição da vaga"
@@ -155,21 +139,23 @@ const EditarVagas = () => {
                                 </input>
                             </div>
                             <div className="textarea">
-                                <input
+                                <input 
                                     type="text"
-                                    name="beneficios"
+                                    name="beneficios novo"
                                     value={beneficios}
                                     className="form-control"
                                     placeholder="Beneficios"
                                     onChange={(event) => setBeneficios(event.target.value)}
                                 >
                                 </input>
+                                
                             </div>
                             <button
+                                class="salvar"
                                 type="submit"
                                 value="vcupom"
-                                className="input-btn"
-                            >Salvar Alterações</button>
+                                className="input-btn2"
+                            >Editar</button>
                         </div>
                     </form>
                     <Footer/>
