@@ -40,7 +40,7 @@ const CadastroDeVagas = () => {
         fetch('https://localhost:44348/v1/vagancy/create', {
             method: "POST",
             body: JSON.stringify({
-                idEmpresa: "60b62041f76da50d80cfe4c6",
+                idEmpresa: "60b53bd4e50d690ec037bab8",
                 titulo: titulo,
                 faixasalarial: faixasalarial,
                 local: local,
@@ -211,3 +211,4 @@ const CadastroDeVagas = () => {
 }
 
 export default CadastroDeVagas;
+
