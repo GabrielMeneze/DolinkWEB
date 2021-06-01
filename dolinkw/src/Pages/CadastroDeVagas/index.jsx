@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import Header from "../../components/header";
-import Footer from "../../components/footer";
-import {  url  } from '../../utils/constants';
+import Footer from "../../components/footer"
 import "./index.css";
 
 
@@ -38,12 +37,15 @@ const CadastroDeVagas = () => {
     const cadastrar = (event) => {
         event.preventDefault();
 
-        fetch(url + 'vagancy/create', {
+        fetch('https://localhost:44348/v1/vagancy/create', {
             method: "POST",
             body: JSON.stringify({
+                idEmpresa: "60b62041f76da50d80cfe4c6",
                 titulo: titulo,
+                faixasalarial: faixasalarial,
                 local: local,
                 descricao: descricao,
+                beneficios: beneficios,
 
             }),
             headers: {
@@ -53,13 +55,11 @@ const CadastroDeVagas = () => {
             .then((response) => {
                 // Verifica se a validação for OK e caso seja, informa a resposta
                 if (response.ok) {
-
                     console.log(response.json());
-                    alert('Vaga Cadastrada!')
-
+                    alert('Vaga Cadastrada!');
                 }
-
                 // Caso validação não seja OK informa um alert
+                alert("Dado inválido");
             })
             .catch((err) => console.error(err));
     };
@@ -107,7 +107,7 @@ const CadastroDeVagas = () => {
                                 >
                                 </input>
                             </div>
-                            {/* <div className="textarea">
+                            <div className="textarea">
                                 <input
                                     type="text"
                                     name="faixasalarial"
@@ -117,7 +117,7 @@ const CadastroDeVagas = () => {
                                     onChange={(event) => setFaixasalarial(event.target.value)}
                                 >
                                 </input>
-                            </div> */}
+                            </div>
                             <div className="textarea">
                                 <input
                                     type="text"
@@ -140,7 +140,7 @@ const CadastroDeVagas = () => {
                                 >
                                 </input>
                             </div>
-                            {/* <div className="textarea">
+                            <div className="textarea">
                                 <input
                                     type="text"
                                     name="beneficios"
@@ -150,12 +150,12 @@ const CadastroDeVagas = () => {
                                     onChange={(event) => setBeneficios(event.target.value)}
                                 >
                                 </input>
-                            </div> */}
+                            </div>
                             <button
                                 type="submit"
                                 value="vcupom"
                                 className="input-btn"
-                            >Cadastrar</button>
+                            >cadastrar</button>
                         </div>
                     </form>
                 </div>
@@ -164,7 +164,7 @@ const CadastroDeVagas = () => {
                     <div className="logovaga">
                         <form>
 
-                            <label For="arquivo">Logo da empresa</label>
+                            <label For="arquivo">escolha a logo da empresa</label>
                             <input type="file" alt="escolha a logo da empresa" id="arquivo" multiple={true} onChange={e => onFileChange(e.target.files)} />
 
                         </form>

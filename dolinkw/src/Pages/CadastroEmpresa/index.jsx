@@ -43,7 +43,7 @@ const CadastroEmpresa = () => {
             .then(response => {
                 if(response.ok) {
                     alert("Cadastro realizado com sucesso!");
-                    // history.push('/cadastrodevagas');
+                    history.push('/login');
                 }
             })
     }
