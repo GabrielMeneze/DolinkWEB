@@ -5,7 +5,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastProvider } from 'react-toast-notifications'
+import { LinkedInPopUp } from 'react-linkedin-login-oauth2';
 
+import LinkedInPage from './Pages/LinkedinReact';
 import Home from './Pages/Home';
 import EscolhaCadastro from './Pages/EscolhaCadastro';
 import CadastroProfissional from './Pages/CadastroProfissional';
@@ -20,6 +22,8 @@ const routing = (
   <Router>
     <Switch>
       <Route exact path="/" component={Home} />
+      <Route exact path="/linkedinpopup" component={LinkedInPopUp} />
+      <Route path="/linkedin" component={LinkedInPage} />
       <Route path="/choosesignup" component={EscolhaCadastro}/>
       <Route path="/cadastroprofissional" component={CadastroProfissional}/>
       <Route path="/cadastrodevagas" component={CadastroDeVagas}/>

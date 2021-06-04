@@ -42,7 +42,9 @@ const CadastroDeVagas = () => {
     const cadastrar = (event) => {
         event.preventDefault();
 
-        fetch('https://localhost:44348/v1/vagancy/create', {
+        //44348 (CASA - TOSHI)
+        //44383 (SENAI - TOSHI)
+        fetch('https://localhost:44383/v1/vagancy/create', {
             method: "POST",
             body: JSON.stringify({
                 idEmpresa: idEmpresa,

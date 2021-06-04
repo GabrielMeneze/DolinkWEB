@@ -12,7 +12,7 @@ const CadastroEmpresa = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [telefone, setTelefone] = useState('');
-    const [imagem, setImagem] = useState('');
+    const [imagem, setImagem] = useState([]);
     const [cnpj, setCnpj] = useState('');
     const [cep, setCep] = useState('');
     const [regiao, setRegiao] = useState('');
@@ -47,6 +47,31 @@ const CadastroEmpresa = () => {
                 }
             })
     }
+
+    const uploadFile = (event) =>{
+        event.preventDefault();
+
+        let formdata = new FormData();
+
+        formdata.append('imagem', event.target.files[0]);
+
+        fetch(url + 'company/signup', {
+
+            method : 'POST',
+            body : formdata, 
+            headers : {
+                'authorization' : 'Bearer ' + localStorage.getItem('token-dolink')
+            }
+
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            setImagem(data.url);
+        })
+        .catch(err => console.log(err));  
+    }
+ 
 
     // const uploadFile = (event) => {
     //     event.preventDefault();
@@ -158,11 +183,10 @@ const CadastroEmpresa = () => {
 
                                 <div className="infotextcompany">
                                     
-                                    <input className="form-control" id="exampleInputPassword1" placeholder="Imagem" value={imagem} 
-                                     onChange={(event) => setImagem(event.target.value)}/>
-                                    {/* <Form.File id="fileCategoria" label="Logo da Empresa" onChange={event => uploadFile(event)} />
-                                        {imagem && <img src={imagem} style={{ widht: '120px' }} />} */}
-                                     {/* <input type="file" value={imagem} alt="escolha a logo da empresa" id="arquivo" multiple={true} onChange={(event) => setImagem(event.target.files)} /> */}
+                                    {/* <input className="form-control" id="exampleInputPassword1" placeholder="Imagem" value={imagem} 
+                                     onChange={(event) => setImagem(event.target.value)}/> */}
+                                    <Form.File id="fileCategoria" label="Logo da Empresa" onChange={event => uploadFile(event)} />
+                                        {imagem && <img src={imagem} style={{ widht: '120px' }} />} 
 
                                 </div>
 
