@@ -127,6 +127,7 @@ input[type="text"] {
     margin-left: 350px;
     height: 37px;
 }
+
 input[type="search"] {
     border-radius: 8px;
     width: 350px;
@@ -138,5 +139,7 @@ input[type="search"] {
     background-color: white;
     
 }
+
+
 
 
