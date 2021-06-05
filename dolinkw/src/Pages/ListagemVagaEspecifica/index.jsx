@@ -29,7 +29,11 @@ const ListagemVagaEspecifica = (props) => {
         empresaServico
         .listarvaga(IdVaga)
         .then(resultado =>{
-            setVagas(resultado.data.data);
+            setTitulo(resultado.data.data.titulo)
+            setFaixaSalarial(resultado.data.data.faixaSalarial)
+            setLocal(resultado.data.data.local)
+            setDescricao(resultado.data.data.descricao)
+            setBeneficios(resultado.data.data.beneficios)
             console.log(resultado.data.data)
         })
         .catch(erro =>{
@@ -52,28 +56,20 @@ const ListagemVagaEspecifica = (props) => {
                             <th>Título</th>
                             <th>Faixa Salarial</th>
                             <th>Local</th>
+                            <th>Descrição</th>
+                            <th>Benefícios</th>
 
                         </tr>
                     </thead>
-                    {/* <tbody>
-                    {
-                        vagas.filter(item => jwtDecode(token).Id === item.empresa).map((item, index) => {
-                            return (
-                                    <tr key={index}>
+                    <tbody>
 
-                                        <td>{item.titulo}</td>
-                                        <td>{item.faixaSalarial}</td>
-                                        <td>{item.local}</td>
-                                        
-                                        <td>
-                                            <Button href="/ListagemVagaEspecifica" value={item.id} >Detalhes</Button>
-                                            
-                                        </td>
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody> */}
+                            <td>{titulo}</td>
+                            <td>{faixaSalarial}</td>
+                            <td>{local}</td>
+                            <td>{beneficios}</td>
+                            <td>{descricao}</td>
+
+                    </tbody>
                 </Table>
                 </div>
                 </div>

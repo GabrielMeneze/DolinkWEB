@@ -64,7 +64,7 @@ const ListagemVagas = () => {
                                             <td>{item.local}</td>
                                             
                                             <td>
-                                                <Button><Link to={{ pathname : '/ListagemVagaEspecifica', state : {IdVaga : item.id} }}>Detalhes</Link></Button>                                               
+                                                <Button className="botaoDetalhesVaga" ><Link to={{ pathname : '/ListagemVagaEspecifica', state : {IdVaga : item.id} }}>Detalhes</Link></Button>                                               
                                             </td>
                                         </tr>
                                     )
