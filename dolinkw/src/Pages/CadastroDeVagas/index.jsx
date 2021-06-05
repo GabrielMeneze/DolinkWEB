@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import {  useHistory  } from 'react-router-dom';
 import Header from "../../components/header";
 import Footer from "../../components/footer"
 import jwtDecode from 'jwt-decode';
@@ -9,6 +10,8 @@ import "./index.css";
 const CadastroDeVagas = () => {
 
     const [images, setImages] = useState([]);
+
+    const history = useHistory();
 
     const token = localStorage.getItem('token-dolink'); 
     
@@ -64,9 +67,11 @@ const CadastroDeVagas = () => {
                 if (response.ok) {
                     console.log(response.json());
                     alert('Vaga Cadastrada!');
-                }
+                    history.push('/ListagemVagas')
+                } else {
                 // Caso validação não seja OK informa um alert
                 alert("Dado inválido");
+                }
             })
             .catch((err) => console.error(err));
     };

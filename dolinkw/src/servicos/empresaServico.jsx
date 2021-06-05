@@ -16,6 +16,14 @@ const listarvagas = dados =>{
 
 }
 
+const listarvaga = dados => {
+    
+    return http.get(`vagancy/search/id/${dados}`, {
+
+    });
+
+}
+
 const alterar = dados => {
     return http.put(`company/${dados.id}`, JSON.stringify(dados), {
         headers : {
@@ -35,6 +43,7 @@ const excluir = dados => {
 export default {
 
     listar,
-    listarvagas
+    listarvagas,
+    listarvaga
 
 }

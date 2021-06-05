@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/header';
 import Rodape from '../../components/footer';
-import {  Table, Button } from 'react-bootstrap';
+import { Table, Button, Card } from 'react-bootstrap';
+import {  Link  } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import empresaServico from '../../servicos/empresaServico';
 import {  useFormik  } from 'formik';
@@ -63,7 +64,7 @@ const ListagemVagas = () => {
                                             <td>{item.local}</td>
                                             
                                             <td>
-                                                <Button href="/ListagemVagaEspecifica" value={item.id} >Detalhes</Button>
+                                                <Button><Link to={{ pathname : '/ListagemVagaEspecifica', state : {IdVaga : item.id} }}>Detalhes</Link></Button>                                               
                                             </td>
                                         </tr>
                                     )
