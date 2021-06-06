@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import {  useHistory  } from 'react-router-dom';
 import Header from "../../components/header";
 import Footer from "../../components/footer"
 import jwtDecode from 'jwt-decode';
@@ -9,6 +10,8 @@ import "./index.css";
 const CadastroDeVagas = () => {
 
     const [images, setImages] = useState([]);
+
+    const history = useHistory();
 
     const token = localStorage.getItem('token-dolink'); 
     
@@ -42,6 +45,8 @@ const CadastroDeVagas = () => {
     const cadastrar = (event) => {
         event.preventDefault();
 
+        //44348 (CASA - TOSHI)
+        //44383 (SENAI - TOSHI)
         fetch('https://localhost:44348/v1/vagancy/create', {
             method: "POST",
             body: JSON.stringify({
@@ -62,9 +67,11 @@ const CadastroDeVagas = () => {
                 if (response.ok) {
                     console.log(response.json());
                     alert('Vaga Cadastrada!');
-                }
+                    history.push('/ListagemVagas')
+                } else {
                 // Caso validação não seja OK informa um alert
                 alert("Dado inválido");
+                }
             })
             .catch((err) => console.error(err));
     };
@@ -83,22 +90,6 @@ const CadastroDeVagas = () => {
             <div className="controle">
 
                 <div className="fields">
-                    <div className="fild">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected >Selecionar Vaga</option>
-                            <option value="1">Cientista de dados</option>
-                            <option value="2">Desenvolvedor de Sistemas</option>
-                            <option value="3">Desenvolvedor Front-End</option>
-                            <option value="4">Desenvolvedor Back-End</option>
-                            <option value="5">Desenvolvedor Full-Stack</option>
-                            <option value="6">Estagio de TI</option>
-                            <option value="7">Engenheiro de software</option>
-                            <option value="8">Devops</option>
-                            <option value="9">Engenheiro de testes</option>
-                            <option value="10">Analista de segurança</option>
-                        </select>
-                    </div>
-
                     <form className="form-cupom" onSubmit={cadastrar}>
                         <div className="form-group">
                             <div className="textarea">
