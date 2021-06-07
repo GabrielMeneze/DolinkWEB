@@ -9,22 +9,21 @@
 
 .body2 {
 
-    height: 900px;
     width: 100%;
-    display: block;
 
 }
 
 .sectionLargura2 {
 
     height: 100%;
-    width: 1870px;
+    width: 99%;
 
 }
 
-.sectionImagePessoal {
+.sectionImagePessoal img {
 
-    display: block;
+    width: 46%;
+    height: 100%;
     position: absolute;
     
 }

@@ -1,66 +1,103 @@
-import React from 'react'
-import Container from '@material-ui/core/Container';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import './index.css'
+// import React, { useState } from 'react'
+// import Container from '@material-ui/core/Container';
+// import TextField from '@material-ui/core/TextField';
+// import Button from '@material-ui/core/Button';
+// import {  Form  } from 'react-bootstrap';
+// import {  url  } from '../../../utils/constants';
+// import './index.css'
 
-export const DadosPessoais = ({formData, setForm, navigation}) => {
+// // usar dentro dos () caso o useState dê errado.
+// // {formData, setForm, navigation}
+// export const DadosPessoais = ( {navigation} ) => {
 
 
-    const { nome, cpf, cep, telefone, email, senha } = formData;
-    console.log(navigation);
+//     // definir como formData caso o useState dê errado.
+//     // const { nome, cpf, cep, telefone, email, senha } = formData;
 
-    return(
-        <Container className="container">
+//     const [nome, setNome] = useState('');
+//     const [cpf, setCpf] = useState('');
+//     const [cep, setCep] = useState('');
+//     const [telefone, setTelefone] = useState('');
+//     const [email, setEmail] = useState('');
+//     const [senha, setSenha] = useState('');
 
-            <h1 className="h1Pessoal">Dados Pessoais</h1>
+//     const cadastro = (event) => {
+//         event.preventDefault();
 
-            <div className="textFieldBlock">
+//         fetch(`${url}profissional`, {
+//             method: 'POST',
+//             body: console.log(JSON.stringify)({
 
-            <TextField className="textField"
-                label="Nome"
-                name="nome"
-                value={nome}
-                onChange={setForm}/>
+//                 nome     : nome,
+//                 cpf      : cpf,
+//                 cep      : cep,
+//                 telefone : telefone,
+//                 email    : email,
+//                 senha    : senha,
 
-            <TextField className="textField"
-                label="CPF"
-                name="cpf"
-                value={cpf}
-                onChange={setForm}/>
-                
-            <TextField className="textField"
-                label="CEP"
-                name="cep"
-                value={cep}
-                onChange={setForm}/>
+//             }),
+//             headers: {
+//                 'content-type': 'application/json'
+//             }
+//             })
+//     }
 
-            <TextField className="textField"
-                label="Telefone"
-                name="telefone"
-                value={telefone}
-                onChange={setForm}/>
+//     return(
+//         <Container className="container">
 
-            <TextField className="textField"
-                label="Email"
-                name="email"
-                value={email}
-                onChange={setForm}/>
+//            <Form onSubmit={event => cadastro(event)}>
 
-            <TextField className="textField"
-                label="Senha"
-                name="senha"
-                value={senha}
-                onChange={setForm}/>
+//                 <h1 className="h1Pessoal">Dados Pessoais</h1>
 
-            </div>
+//                 <div className="textFieldBlock">
 
-            <Button className="botaoProximo"
-                variant="contained"
-                color="primary"
-                onClick={() => navigation.next()}>Próximo</Button>
+//                 <TextField className="textField"
+//                     label="Nome"
+//                     name="nome"
+//                     value={nome}
+//                     onChange={event => setNome(event.target.value)}/>
 
-        </Container>
-    );
+//                 <TextField className="textField"
+//                     label="CPF"
+//                     name="cpf"
+//                     value={cpf}
+//                     onChange={event => setCpf(event.target.value)}/>
+                    
+//                 <TextField className="textField"
+//                     label="CEP"
+//                     name="cep"
+//                     value={cep}
+//                     onChange={event => setCep(event.target.value)}/>
 
-};
+//                 <TextField className="textField"
+//                     label="Telefone"
+//                     name="telefone"
+//                     value={telefone}
+//                     onChange={event => setTelefone(event.target.value)}/>
+
+//                 <TextField className="textField"
+//                     label="Email"
+//                     name="email"
+//                     value={email}
+//                     onChange={event => setEmail(event.target.value)}/>
+
+//                 <TextField className="textField"
+//                     label="Senha"
+//                     name="senha"
+//                     value={senha}
+//                     onChange={event => setSenha(event.target.value)}/>
+
+//                 </div>
+
+//                 <Button className="botaoProximo"
+//                     variant="contained"
+//                     color="primary"
+//                     type="submit"
+//                     onClick={() => navigation.next()}>Próximo</Button>
+
+//             </Form>
+
+//         </Container>
+//     );
+
+// };

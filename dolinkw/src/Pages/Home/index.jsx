@@ -23,7 +23,7 @@ const Home = () => {
             </a>
           </div>
 
-          <div className="image">
+          <div className="imageHome">
             <img
               src="https://media.discordapp.net/attachments/836953521751326720/839940212125073518/unknown.png"
               alt=""
@@ -80,7 +80,7 @@ const Home = () => {
 
             <div className="textoDireito">
 
-              <a href="#" class="botaoVaga">
+              <a href="/cadastrodevagas" class="botaoVaga">
                 Divulgar Vaga
               </a>
 

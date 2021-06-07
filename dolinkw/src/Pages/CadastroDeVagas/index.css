@@ -1,84 +1,145 @@
+
 *{
     margin: 0;
     padding: 0;
 }
+
+
+.textarea input[type="text"],
+.textarea input[type="password"],
+.textarea input[type="tel"],
+.textarea textarea {
+  width: 100%;
+  color: black;
+  padding: 15px;
+}
+
+.input-btn-vagas[type="submit"] {
+    height: 35px;
+    width: 260px;
+}
+
 .main{
-    background-color: rgb(236, 228, 228);
+    background-color: rgba(248, 239, 239, 1);
 }
 .titulo{
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    margin-top: 50px;
+    margin-top: 120px;
 }
 .titulo hr{
     width: 300px;
     height: 2px;
     background-color: black;
 }
-
+.esp{
+    width: 28px;
+    height: 90px;
+    margin-top: 10vh;
+}
+.titulo h1{
+    font-size: x-large;
+}
 .controle{
-    width: 66%;
-    height: 600px;
+    width: 100%;
+    height: 380px;
     display: flex;
     justify-content: space-between;
-    position: relative;
-    margin-left: 330px;
 }
-
-.inputsPessoais{
-    width: 450px;
-    height: 550px;
-    margin: 0 auto;
-    margin-top: 30px;
+.utilss{
+    width: 50%;
+    height: 500px;
+}
+.logovaga{
+    width: 480px;
+    height: 100px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
 }
-
-.input-container{
+.form-select{
+    width: 260px;
     position: relative;
+    margin-left: 609px;
+    border-radius: 8px;
+    border: none;
+    background-color: white;
+    
+
 }
 
-input{
-    border: 0;
-    outline: none;
-    transition: .2s ease-in-out;
-    box-sizing: border-box;
-    border-radius: 10px;
-    padding-left: 10px;
+.form-cupom{
+    width: 260px;
+    position: relative;
+    margin-left: 260px;
+}
+.input-btn-vagas{
+    width: 0px;
+    height: 65px;
+    background-color: #00C74F;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    position: relative;
+    margin-left: 18.5vw;
+    margin-top: 3vh;
+}
+.input-btn-vagas:hover{
+    color: white;
+    background-color: #10A94D;
+}
+.buttonUploadImgVaga{
+   height: 35px;
+   width: 90px;
+   background-color: #00CA51;
+   border-radius: 6px;
+   border: none;
+   text-align: center;
+   color: white;
+   margin-left: 30px;
+
+}
+
+input[type="file"] {
+    display: none;
 }
 label {
-    top: 0;
-    left: 0; right: 0;
-    color: #616161;
-    display: flex;
-    align-items: center;
-    position: absolute;
-    font-size: 1rem;
-    cursor: text;
-    transition: .2s ease-in-out;
-    margin-left: 8px;
+    border-radius: 6px;
+    padding: 8px 8px;
+    width: 115;
+    height: 25;
+    background-color: white;
+    color: black;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    font-size: 15px;
 }
 
-input,
-label {
-  width: 100%;
-  height: 3rem;
-  font-size: 1rem;
-}
-input:valid + label,
-input:focus + label {
-  color: #26a69a;
-  font-size: .8rem;
-  top: -35px;
-  margin-right: 15px;
-  pointer-events: none;
+
+input[type="text"] {
+    border-radius: 8px;
+    margin-top: 29px;
+    border: none;
+    margin-left: 350px;
+    height: 37px;
 }
 
-.controle2{
-    width: 600px;
-    height: 550px;
-    background-color: rgb(196, 192, 194);
+input[type="search"] {
+    border-radius: 8px;
+    width: 350px;
+    height: 36px;
+    border: none;
+    color: white;
+    margin-top: -35px;
+    margin-left: 65px;  
+    background-color: white;
+    
 }
+
+
+
+

@@ -1,7 +1,98 @@
 import './index.css';
-import React from "react"
 
-const CadastroEmprsa = () => {
+
+import {  url  } from '../../utils/constants';
+import React, {useState} from "react"
+import { Form } from 'react-bootstrap';
+import {useHistory} from 'react-router-dom';
+
+const CadastroEmpresa = () => {
+
+    const history = useHistory();
+
+    const [nome, setNome] = useState('');
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+    const [telefone, setTelefone] = useState('');
+    const [imagem, setImagem] = useState([]);
+    const [cnpj, setCnpj] = useState('');
+    const [cep, setCep] = useState('');
+    const [regiao, setRegiao] = useState('');
+    const [descricao, setDescricao] = useState('');
+    const [dominio, setDominio] = useState('');
+
+    const cadastrar = (event) =>{
+        event.preventDefault();
+
+        fetch(`${url}company/signup`,{
+            method: 'POST',
+            body: JSON.stringify({
+                Nome: nome,
+                Email: email,
+                Senha: senha,
+                Telefone: telefone,
+                Imagem: imagem,
+                CNPJ: cnpj,
+                CEP: cep,
+                Regiao: regiao,
+                Descricao: descricao,
+                Dominio: dominio
+            }),
+            headers: {
+                'content-type': 'application/json'
+            }
+            })
+            .then(response => {
+                if(response.ok) {
+                    alert("Cadastro realizado com sucesso!");
+                    history.push('/login');
+                }
+            })
+    }
+
+    const uploadFile = (event) =>{
+        event.preventDefault();
+
+        let formdata = new FormData();
+
+        formdata.append('imagem', event.target.files[0]);
+
+        fetch(url + 'company/signup', {
+
+            method : 'POST',
+            body : formdata, 
+            headers : {
+                'authorization' : 'Bearer ' + localStorage.getItem('token-dolink')
+            }
+
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            setImagem(data.url);
+        })
+        .catch(err => console.log(err));  
+    }
+ 
+
+    // const uploadFile = (event) => {
+    //     event.preventDefault();
+
+    //     let formdata = new FormData();
+
+    //     formdata.append('arquivo', event.target.files[0]);
+
+    //     fetch(`${url}company/signup`, {
+    //         method: 'POST',
+    //         body: formdata
+    //     })
+    //         .then(response => response.json)
+    //         .then(data => {
+    //             setImagem(data.url)
+    //         })
+    //         .catch(err => console.error(err))
+    // }
+
     return (
 
         <div>
@@ -16,7 +107,7 @@ const CadastroEmprsa = () => {
 
                     </div>
 
-                    <div className="sectionDadosPessoais">
+                    <div className="sectionDadosPessoais" onSubmit={event => cadastrar(event)}>
 
                         <div className="middleSectionPessoal">
 
@@ -28,39 +119,76 @@ const CadastroEmprsa = () => {
 
                                 </div>
 
-                                <div className="infotext">
+                                <div className="infotextcompany">
 
-                                    <input type="text" class="form-control" placeholder="Nome da Empresa" />
-
-                                </div>
-
-                                <div className="infotext">
-
-                                    <input type="text" class="form-control" placeholder="CNPJ" />
+                                    <input className="form-control" placeholder="Nome da Empresa" value={nome} 
+                                     onChange={(event) => setNome(event.target.value)}
+                                    />
 
                                 </div>
 
-                                <div className="infotext">
+                                <div className="infotextcompany">
 
-                                    <input type="text" class="form-control" placeholder="Nome do Recrutador" />
-
-                                </div>
-
-                                <div className="infotext">
-
-                                    <input type="text" class="form-control" placeholder="Telefone com DDD (Ex: 11 99999-9999)" />
+                                    <input type="email" className="form-control" placeholder="Email" value={email} 
+                                     onChange={(event) => setEmail(event.target.value)}/>
 
                                 </div>
 
-                                <div className="infotext">
+                                <div className="infotextcompany">
 
-                                    <input type="text" class="form-control" placeholder="Email" />
+                                    <input type="password" className="form-control" placeholder="Senha" value={senha} 
+                                     onChange={(event) => setSenha(event.target.value)}/>
 
                                 </div>
 
-                                <div className="infotext">
+                                <div className="infotextcompany">
+
+                                    <input className="form-control" placeholder="Telefone com DDD (Ex: 11 99999-9999)" value={telefone} 
+                                     onChange={(event) => setTelefone(event.target.value)}/>
+
+                                </div>
+
+                                <div className="infotextcompany">
+
+                                    <input className="form-control" placeholder="Cnpj" value={cnpj} 
+                                     onChange={(event) => setCnpj(event.target.value)}/>
+
+                                </div>
+
+                                <div className="infotextcompany">
                                     
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha"/>
+                                    <input className="form-control" id="exampleInputPassword1" placeholder="Cep" value={cep} 
+                                     onChange={(event) => setCep(event.target.value)}/>
+
+                                </div>
+
+                                <div className="infotextcompany">
+                                    
+                                    <input className="form-control" id="exampleInputPassword1" placeholder="Região" value={regiao} 
+                                     onChange={(event) => setRegiao(event.target.value)}/>
+
+                                </div>
+
+                                <div className="infotextcompany">
+                                    
+                                    <input className="form-control" id="exampleInputPassword1" placeholder="Descrição" value={descricao} 
+                                     onChange={(event) => setDescricao(event.target.value)}/>
+
+                                </div>
+
+                                <div className="infotextcompany">
+                                    
+                                    <input className="form-control" id="exampleInputPassword1" placeholder="Domínio" value={dominio} 
+                                     onChange={(event) => setDominio(event.target.value)}/>
+
+                                </div>
+
+                                <div className="infotextcompany">
+                                    
+                                    {/* <input className="form-control" id="exampleInputPassword1" placeholder="Imagem" value={imagem} 
+                                     onChange={(event) => setImagem(event.target.value)}/> */}
+                                    <Form.File id="fileCategoria" label="Logo da Empresa" onChange={event => uploadFile(event)} />
+                                        {imagem && <img src={imagem} style={{ widht: '120px' }} />} 
 
                                 </div>
 
@@ -69,15 +197,14 @@ const CadastroEmprsa = () => {
 
                                     <a className="linkCadastro">Já possui cadastro?</a> 
 
-                                    <a className="loginLink1" href="">Login</a>
+                                    <a className="loginLink1" href="/login">Login</a>
 
                                 </div>
 
+                                         
                                 <div className="btn1">
 
-                                    <a href="/CadastroEmpresa"      class="cadastroEmpresa">
-                                    Cadastrar-se
-                                    </a>
+                                    <button onClick={cadastrar} type="submit" className="cadastroEmpresa">Cadastrar</button>
 
                                 </div>
 
@@ -96,4 +223,5 @@ const CadastroEmprsa = () => {
     )
 
 }
-export default CadastroEmprsa;
+
+export default CadastroEmpresa;
