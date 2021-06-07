@@ -12,7 +12,7 @@ const CadastroEmpresa = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [telefone, setTelefone] = useState('');
-    const [imagem, setImagem] = useState([]);
+    const [arquivo, setArquivo] = useState([]);
     const [cnpj, setCnpj] = useState('');
     const [cep, setCep] = useState('');
     const [regiao, setRegiao] = useState('');
@@ -29,7 +29,7 @@ const CadastroEmpresa = () => {
                 Email: email,
                 Senha: senha,
                 Telefone: telefone,
-                Imagem: imagem,
+                Arquivo: arquivo,
                 CNPJ: cnpj,
                 CEP: cep,
                 Regiao: regiao,
@@ -53,7 +53,7 @@ const CadastroEmpresa = () => {
 
         let formdata = new FormData();
 
-        formdata.append('imagem', event.target.files[0]);
+        formdata.append('arquivo', event.target.files[0]);
 
         fetch(url + 'company/signup', {
 
@@ -67,7 +67,7 @@ const CadastroEmpresa = () => {
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            setImagem(data.url);
+            setArquivo(data.url);
         })
         .catch(err => console.log(err));  
     }
@@ -186,7 +186,7 @@ const CadastroEmpresa = () => {
                                     {/* <input className="form-control" id="exampleInputPassword1" placeholder="Imagem" value={imagem} 
                                      onChange={(event) => setImagem(event.target.value)}/> */}
                                     <Form.File id="fileCategoria" label="Logo da Empresa" onChange={event => uploadFile(event)} />
-                                        {imagem && <img src={imagem} style={{ widht: '120px' }} />} 
+                                        {arquivo && <img src={arquivo} style={{ widht: '120px' }} />} 
 
                                 </div>
 
