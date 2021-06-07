@@ -10,7 +10,7 @@
 
 
     width: 100%;
-    height: 50vh;
+    height: 55vh;
 
 
 }
@@ -20,7 +20,7 @@
     width: 50vw;
     height: 100%;
     display: flex;
-    justify-content: center;
+    box-shadow: 0.1px 2px 5px 0px black;
     margin: 0 auto;
     margin-top: 15vh;
     background-color: #f5f5f5;
@@ -35,5 +35,40 @@
 
 }
 
+.itensPerfilEmpresa {
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+
+}
+
+.itemPerfilEmpresa {
+
+    padding: 2vh;
+    margin-right: 2vw;
+
+}
+
+.sectionItensEmpresa {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.botoesPerfilEmpresa {
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 4vh;
+    margin-left: 0.8vw;
+
+}
 
 

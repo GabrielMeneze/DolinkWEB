@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import './index.css'
 import Header from '../../components/header';
 import Rodape from '../../components/footer';
 import { Table, Button, Card } from 'react-bootstrap';
@@ -43,16 +44,16 @@ const ListagemVagas = () => {
 
                     <div className="sectionPerfilEmpresaLargura">
 
-                    <Table className="tabelaPerfilEmpresa">
+                    <Table className="tabelaVagasEmpresa">
 
-                        <thead>
-                            <tr>
+                            <tr className="topicosVagas">
+                                
                                 <th>Título</th>
                                 <th>Faixa Salarial</th>
                                 <th>Local</th>
 
                             </tr>
-                        </thead>
+
                         <tbody>
                         {
                             vagas.filter(item => jwtDecode(token).Id === item.empresa).map((item, index) => {

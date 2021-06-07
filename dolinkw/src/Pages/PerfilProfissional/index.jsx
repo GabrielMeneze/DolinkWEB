@@ -66,54 +66,52 @@ const PerfilProfissional = () => {
     //     })
     // }
 
-    // const alterar = (event) => {
-    //     event.preventDefault();
+    const alterar = (event) => {
+        event.preventDefault();
 
-    //     fetch(`${url}company/update`, {
-    //         method: "PUT",
-    //         body: JSON.stringify({
-    //             Nome: nome,
-    //             CNPJ: cnpj,
-    //             CEP: cep,
-    //             Regiao: regiao,
-    //             Telefone: telefone,
+        fetch(`${url}professional/update`, {
+            method: "PUT",
+            body: JSON.stringify({
+                Nome: nome,
+                Email: email,
+                Telefone: telefone
 
-    //         }),
-    //         headers: {
-    //             "content-type": "application/json",
-    //         },
-    //     })
-    //         .then((response) => {
-    //             // Verifica se a validação for OK e caso seja, informa a resposta
-    //             if (response.ok) {
-    //                 console.log(response.json());
-    //                 alert('Empresa alterada')
-    //             }
+            }),
+            headers: {
+                "content-type": "application/json",
+            },
+        })
+            .then((response) => {
+                // Verifica se a validação for OK e caso seja, informa a resposta
+                if (response.ok) {
+                    console.log(response.json());
+                    alert('Empresa alterada')
+                }
 
-    //             // Caso validação não seja OK informa um alert
-    //             alert("Dado inválido");
-    //         })
-    //         .catch((err) => console.error(err));
-    // };
+                // Caso validação não seja OK informa um alert
+                alert("Dado inválido");
+            })
+            .catch((err) => console.error(err));
+    };
 
     
-    // const excluir = (event) => {
-    //     event.preventDefault();
+    const excluir = (event) => {
+        event.preventDefault();
 
-    //     console.log(event.target.value)
+        console.log(event.target.value)
 
-    //     fetch(url + 'company/Delete/' + event.target.value, {
-    //         method: 'DELETE',
-    //         headers: {
-    //             'authorization': 'Bearer ' + localStorage.getItem('token-dolink')
-    //         }
-    //     })
-    //         .then(response => response.json())
-    //         .then(dados => {
-    //             alert('Empresa Excluída!')
-    //             listarEmpresa();
-    //         })
-    // }
+        fetch(url + 'company/Delete/' + event.target.value, {
+            method: 'DELETE',
+            headers: {
+                'authorization': 'Bearer ' + localStorage.getItem('token-dolink')
+            }
+        })
+            .then(response => response.json())
+            .then(dados => {
+                alert('Empresa Excluída!')
+                listarProfissional();
+            })
+    }
 
    
 
@@ -128,27 +126,29 @@ const PerfilProfissional = () => {
 
                     <Table className="tabelaPerfilEmpresa">
 
-                        <thead>
-                            <tr>
-                                <th>Nome do Profissional</th>
-                                <th>Email</th>
-                                <th>Telefone</th>
-                            </tr>
-                        </thead>
                         <tbody>
                         {
                                profissionais.filter(item => jwtDecode(token).Id === item.id).map((item, index) => {
                                 return (
                                         <tr key={index}>
 
-                                            <td>{item.nome}</td>
-                                            <td>{item.email}</td>
-                                            <td>{item.telefone}</td>
-                                            
-                                            {/* <td>
+                                            <div className="itensPerfilProfissional">
+
+                                                                                            
+                                                <div className="sectionItensProfissional">
+
+                                                    <input type="text" className="itemPerfilProfissional" placeholder={item.nome}  />
+                                                    <input type="text" className="itemPerfilProfissional" placeholder={item.email}  />
+                                                    <input type="text" className="itemPerfilProfissional" placeholder={item.telefone}  />
+
+                                                </div>
+
+                                            </div>
+
+                                            <div className="botoesPerfilProfissional">
                                                 <Button variant="warning" value={item.id} onClick={event => alterar(event)} >Editar</Button>
                                                 <Button variant="danger" value={item.id} OnClick={event => excluir(event)} style={{ marginLeft : '40px'}}>Desativar</Button>
-                                            </td> */}
+                                            </div>
                                         </tr>
                                     )
                                 })

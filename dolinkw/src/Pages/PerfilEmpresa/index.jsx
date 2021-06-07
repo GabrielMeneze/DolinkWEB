@@ -135,32 +135,33 @@ const PerfilEmpresa = () => {
 
                     <Table className="tabelaPerfilEmpresa">
 
-                        <thead>
-                            <tr>
-                                <th>Nome da Empresa</th>
-                                <th>CNPJ</th>
-                                <th>CEP</th>
-                                <th>Região</th>
-                                <th>Telefone</th>
+                        
 
-                            </tr>
-                        </thead>
                         <tbody>
                         {
                                empresas.filter(item => jwtDecode(token).Id === item.id).map((item, index) => {
                                 return (
                                         <tr key={index}>
-
-                                            <td>{item.nome}</td>
-                                            <td>{item.cnpj}</td>
-                                            <td>{item.cep}</td>
-                                            <td>{item.regiao}</td>
-                                            <td>{item.telefone}</td>
                                             
-                                            <td>
+                                            <div className="itensPerfilEmpresa">
+
+                                                
+                                                <div className="sectionItensEmpresa">
+
+                                                    <input type="text" className="itemPerfilEmpresa" placeholder={item.nome}  />
+                                                    <input type="text" className="itemPerfilEmpresa" placeholder={item.cnpj}  />
+                                                    <input type="text" className="itemPerfilEmpresa" placeholder={item.cep}  />
+                                                    <input type="text" className="itemPerfilEmpresa" placeholder={item.regiao}  />
+                                                    <input type="text" className="itemPerfilEmpresa" placeholder={item.telefone}  />
+
+                                                </div>
+                                            
+                                            </div>
+
+                                            <div className="botoesPerfilEmpresa">
                                                 <Button variant="warning" value={item.id} onClick={event => alterar(event)} >Editar</Button>
                                                 <Button variant="danger" value={item.id} OnClick={event => excluir(event)} style={{ marginLeft : '40px'}}>Desativar</Button>
-                                            </td>
+                                            </div>
                                         </tr>
                                     )
                                 })

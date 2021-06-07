@@ -22,22 +22,25 @@ const CadastroEmpresa = () => {
     const cadastrar = (event) =>{
         event.preventDefault();
 
+        let formdata = new FormData();
+
+
+        formdata.append('arquivo', arquivo);
+        formdata.append('nome', nome);
+        formdata.append('email', email);
+        formdata.append('senha', senha);
+        formdata.append('telefone', telefone);
+        formdata.append('cnpj', cnpj);
+        formdata.append('cep', cep);
+        formdata.append('regiao', regiao);
+        formdata.append('descricao', descricao);
+        formdata.append('dominio', dominio);
+
         fetch(`${url}company/signup`,{
             method: 'POST',
-            body: JSON.stringify({
-                Nome: nome,
-                Email: email,
-                Senha: senha,
-                Telefone: telefone,
-                Arquivo: arquivo,
-                CNPJ: cnpj,
-                CEP: cep,
-                Regiao: regiao,
-                Descricao: descricao,
-                Dominio: dominio
-            }),
+            body: formdata,
             headers: {
-                'content-type': 'application/json'
+                'Content-Type': 'multipart/form-data'
             }
             })
             .then(response => {
@@ -48,29 +51,29 @@ const CadastroEmpresa = () => {
             })
     }
 
-    const uploadFile = (event) =>{
-        event.preventDefault();
+    // const uploadFile = (event) =>{
+    //     event.preventDefault();
 
-        let formdata = new FormData();
+    //     let formdata = new FormData();
 
-        formdata.append('arquivo', event.target.files[0]);
+    //     formdata.append('arquivo', event.target.files[0]);
 
-        fetch(url + 'company/signup', {
+    //     fetch(url + 'company/signup', {
 
-            method : 'POST',
-            body : formdata, 
-            headers : {
-                'authorization' : 'Bearer ' + localStorage.getItem('token-dolink')
-            }
+    //         method : 'POST',
+    //         body : formdata, 
+    //         headers : {
+    //             'authorization' : 'Bearer ' + localStorage.getItem('token-dolink')
+    //         }
 
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            setArquivo(data.url);
-        })
-        .catch(err => console.log(err));  
-    }
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log(data)
+    //         setArquivo(data.url);
+    //     })
+    //     .catch(err => console.log(err));  
+    // }
  
 
     // const uploadFile = (event) => {
@@ -185,7 +188,7 @@ const CadastroEmpresa = () => {
                                     
                                     {/* <input className="form-control" id="exampleInputPassword1" placeholder="Imagem" value={imagem} 
                                      onChange={(event) => setImagem(event.target.value)}/> */}
-                                    <Form.File id="fileCategoria" label="Logo da Empresa" onChange={event => uploadFile(event)} />
+                                    <Form.File id="fileCategoria" label="Logo da Empresa" />
                                         {arquivo && <img src={arquivo} style={{ widht: '120px' }} />} 
 
                                 </div>
