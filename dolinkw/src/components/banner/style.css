@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap%27');
+
+.fundoBanner_img{
+    width: 50vw;
+    height: 100vh;
+    border-radius: 0px 30px 30px 0px;
+    box-shadow: 5px 5px 2px #aaaaaa;
+
+    background-size: 90vw 100%;
+    background-repeat: no-repeat;
+    background-position: -450px;
+}
+
+.banner{
+    background-color: rgba(26, 130, 214, 0.8);
+
+    height: 100%;
+    border-radius: 0px 30px 30px 0px;
+}
+
+.banner img{
+    width: 4vw;
+    margin: 30px 0px 0px 30px;
+    position: relative;
+    cursor: pointer;
+}
+
+.textos{
+    font-family: 'Raleway', sans-serif;
+    margin: 4em 0em 0em 4em;
+    width: 35vw;
+    padding: 2em;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.textos img{
+    width: 10vw;
+    margin: 0;
+    margin-left: 5px;
+}
+
+.textos h1{
+    font-family: 'Raleway', sans-serif;;
+    font-weight: bold;
+    font-size: 64px;
+    color: white;
+    margin: 0.5em 0em;
+}
+
+.textos p{
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
+    width: 28vw;
+}
