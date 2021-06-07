@@ -7,6 +7,8 @@ import TextField from '@material-ui/core/TextField';
 import {  useToasts  } from 'react-toast-notifications';
 import {useHistory} from 'react-router-dom';
 import LinkedIn from '../../Pages/LinkedinReact';
+import { HistoryRounded } from '@material-ui/icons';
+import jwt_decode from 'jwt-decode';
 
 const Login = () => {
 
@@ -33,7 +35,17 @@ const Login = () => {
                         localStorage.setItem('token-dolink', resultado.data.token);
                         console.log(resultado);
                         //redireciona página admin
-                        history.push('/perfilEmpresa');
+                        const token = localStorage.getItem('token-dolink');
+                        if( jwt_decode(token).Role === "Empresa") {
+
+                            history.push('/perfilEmpresa');
+
+                        } else if (jwt_decode(token).Role === "Profissional") {
+
+                            history.push('/perfilProfissional')
+
+                        }
+
                     } else {
 
                         addToast(resultado.mensagem, { appearance: 'error', autoDismiss : true })
