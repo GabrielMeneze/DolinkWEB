@@ -9,32 +9,11 @@ import "./index.css";
 
 const CadastroDeVagas = () => {
 
-    const [images, setImages] = useState([]);
-
     const history = useHistory();
 
     const token = localStorage.getItem('token-dolink'); 
     
     const idEmpresa = jwtDecode(token).Id;
-
-    const onFileChange = (files) => {
-        setImages(f => [...f, ...files]);
-    };
-
-    const handleClick = (e) => {
-        e.preventDefault();
-
-        const formData = new FormData();
-        for (let i = 0; i < images.length; i++) {
-
-            formData.append(`images`, images[i]);
-        }
-
-        fetch('https://609a8adb0f5a13001721b68b.mockapi.io/api/v1/', {
-            body: formData,
-            method: "POST"
-        }).then(res => console.log(res));
-    };
 
     const [titulo, setTitulo] = useState("");
     const [faixasalarial, setFaixasalarial] = useState("");
@@ -47,7 +26,7 @@ const CadastroDeVagas = () => {
 
         //44348 (CASA - TOSHI)
         //44383 (SENAI - TOSHI)
-        fetch('https://localhost:44348/v1/vagancy/create', {
+        fetch('https://localhost:44338/v1/vagancy/create', {
             method: "POST",
             body: JSON.stringify({
                 idEmpresa: idEmpresa,
@@ -157,17 +136,6 @@ const CadastroDeVagas = () => {
                 </div>
 
                 <div className="utilss">
-                    <div className="logovaga">
-                        <form>
-
-                            <label For="arquivo">Escolha a logo da empresa</label>
-                            <input type="file" alt="escolha a logo da empresa" id="arquivo" multiple={true} onChange={e => onFileChange(e.target.files)} />
-
-                        </form>
-
-                        <button class="buttonUploadImgVaga" onClick={handleClick}>Upload</button>
-                    </div>
-
 
                     <input type="search" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Selecione as skills da vaga..." />
                     <datalist id="datalistOptions">

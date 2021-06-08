@@ -46,9 +46,23 @@ const Header = () => {
                     <a className="buttonCadastroVagasCompany" href="/ListagemVagas">Vagas</a>
                     <a className="buttonExitCompany"hreft="" onClick={event => sair(event)}>Sair</a>
                 </div>
-        </div>
+                </div>
+            )
+        } else if (jwt_decode(token).Role === "Profissional") {
+            return (
+                <div className="cabecalho">
+                <div className="logo">
+                    <img src={logo} alt="logo da empresa Dolink" />
+                </div>
+                <div className="botoes">
+                    <a className="buttonPerfilCompany" href="/perfilProfissional">Profissional</a>
+                    <a className="buttonCadastroVagasCompany" href="/matchProfissional">Match</a>
+                    <a className="buttonExitCompany"hreft="" onClick={event => sair(event)}>Sair</a>
+                </div>
+                </div>
             )
         } else {
+
             return (
                 <div className="cabecalho">
                 <div className="logo">
@@ -58,7 +72,7 @@ const Header = () => {
                     <a className="buttonIn" href="/login">Sign In</a>
                     <a className="buttonUp" href="/choosesignup"> Sign Up</a>
                 </div>
-        </div>
+            </div>
             )
         }
     }

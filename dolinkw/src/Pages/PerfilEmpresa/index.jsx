@@ -7,12 +7,16 @@ import { useToasts } from 'react-toast-notifications';
 import {  useFormik  } from 'formik';
 import {  url  } from '../../utils/constants';
 import jwtDecode from 'jwt-decode';
+import {  useHistory  } from 'react-router-dom';
 import empresaServico from '../../servicos/empresaServico';
 
 const PerfilEmpresa = () => {
 
     const {addToast} = useToasts();
 
+    const history = useHistory();
+
+    const [idEmpresa, setIdEmpresa] = useState(0);
     const [nome, setNome] = useState('');
     const [telefone, setTelefone] = useState('');
     const [cnpj, setCnpj] = useState('');
@@ -20,7 +24,7 @@ const PerfilEmpresa = () => {
     const [regiao, setRegiao] = useState('');
     const [empresas, setEmpresas] = useState([]);
 
-    const token = localStorage.getItem('token-dolink');  
+    const token = localStorage.getItem('token-dolink'); 
 
     const formik = useFormik({
         initialValues : {
@@ -107,10 +111,15 @@ const PerfilEmpresa = () => {
     const excluir = (event) => {
         event.preventDefault();
 
-        console.log(event.target.value)
+        console.log(idEmpresa)
 
-        fetch(url + 'company/Delete/' + event.target.value, {
+        fetch(url + 'company/Delete', {
             method: 'DELETE',
+            body: JSON.stringify({
+                
+                IdEmpresa: idEmpresa
+
+            }),
             headers: {
                 'authorization': 'Bearer ' + localStorage.getItem('token-dolink')
             }
@@ -118,7 +127,7 @@ const PerfilEmpresa = () => {
             .then(response => response.json())
             .then(dados => {
                 alert('Empresa Excluída!')
-                listarEmpresa();
+                history.push('/')
             })
     }
 
@@ -135,32 +144,33 @@ const PerfilEmpresa = () => {
 
                     <Table className="tabelaPerfilEmpresa">
 
-                        <thead>
-                            <tr>
-                                <th>Nome da Empresa</th>
-                                <th>CNPJ</th>
-                                <th>CEP</th>
-                                <th>Região</th>
-                                <th>Telefone</th>
+                        
 
-                            </tr>
-                        </thead>
                         <tbody>
                         {
                                empresas.filter(item => jwtDecode(token).Id === item.id).map((item, index) => {
                                 return (
                                         <tr key={index}>
-
-                                            <td>{item.nome}</td>
-                                            <td>{item.cnpj}</td>
-                                            <td>{item.cep}</td>
-                                            <td>{item.regiao}</td>
-                                            <td>{item.telefone}</td>
                                             
-                                            <td>
+                                            <div className="itensPerfilEmpresa">
+
+                                                
+                                                <div className="sectionItensEmpresa">
+
+                                                    <input type="text" className="itemPerfilEmpresa" placeholder={item.nome}  />
+                                                    <input type="text" className="itemPerfilEmpresa" placeholder={item.cnpj}  />
+                                                    <input type="text" className="itemPerfilEmpresa" placeholder={item.cep}  />
+                                                    <input type="text" className="itemPerfilEmpresa" placeholder={item.regiao}  />
+                                                    <input type="text" className="itemPerfilEmpresa" placeholder={item.telefone}  />
+
+                                                </div>
+                                            
+                                            </div>
+
+                                            <div className="botoesPerfilEmpresa">
                                                 <Button variant="warning" value={item.id} onClick={event => alterar(event)} >Editar</Button>
-                                                <Button variant="danger" value={item.id} OnClick={event => excluir(event)} style={{ marginLeft : '40px'}}>Desativar</Button>
-                                            </td>
+                                                <Button variant="danger" value={item.idEmpresa} OnClick={event => excluir(event)} style={{ marginLeft : '40px'}}>Excluir</Button>
+                                            </div>
                                         </tr>
                                     )
                                 })

@@ -1,0 +1,94 @@
+import React, { useState } from 'react';
+import Header from "../../components/header";
+import Footer from "../../components/footer"
+import "./index.css";
+
+const AlterarSenha = () => {
+
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+    const [conf, setConf] = useState("");
+
+    const alterar = (event) => {
+        event.preventDefault();
+
+        fetch('https://localhost:44338/v1/account/update/password', {
+            method: "PUT",
+            body: JSON.stringify({
+                senha: senha,
+                email: email,
+                conf: conf,
+
+            }),
+            headers: {
+                "content-type": "application/json",
+            },
+        })
+            .then((response) => {
+                // Verifica se a validação for OK e caso seja, informa a resposta
+                if (response.ok) {
+                    console.log(response.json());
+                    alert('senha alterada')
+                }
+            })
+            .catch((err) => console.error(err));
+    };
+
+    return (
+
+        <div className="mainn">
+            <Header />
+            <div className="controlee">
+                <form className="form-cupom" onSubmit={alterar}>
+                    <div className="form-group">
+                        <div className="barra"></div>
+                        <div className="textarea">
+                            <input
+                                type="text"
+                                name="email"
+                                value={email}
+                                className="form-control"
+                                placeholder="coloque seu email"
+                                onChange={(event) => setEmail(event.target.value)}
+                            >
+                            </input>
+                        </div>
+                        <div className="textarea">
+                            <input
+                                type="text"
+                                name="senha"
+                                value={senha}
+                                className="form-control"
+                                placeholder="Coloque sua nova senha"
+                                onChange={(event) => setSenha(event.target.value)}
+                            >
+                            </input>
+                        </div>
+                        <div className="textarea">
+                            <input
+                                type="text"
+                                name="conf"
+                                value={conf}
+                                className="form-control"
+                                placeholder="Confirme sua nova senha"
+                                onChange={(event) => setConf(event.target.value)}
+                            >
+                            </input>
+                        </div>
+                        <div className="btn">
+                            <button
+                                type="submit"
+                                value="vcupom"
+                                className="input-btn-vagas"
+                            >alterar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <Footer />
+        </div>
+    )
+
+}
+
+export default AlterarSenha;

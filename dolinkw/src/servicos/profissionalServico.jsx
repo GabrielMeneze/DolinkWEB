@@ -1,3 +1,5 @@
+import http from '../utils/http-axious';
+
 const cadastrarProfissional = dados =>{
 
     return fetch('https://609a8adb0f5a13001721b68b.mockapi.io/api/v1/profissional', {
@@ -10,8 +12,17 @@ const cadastrarProfissional = dados =>{
 
 }
 
+const listar = dados =>{
+
+    return http.get(`professional`, JSON.stringify(dados), {
+
+    });
+
+}
+
 export default {
 
-    cadastrarProfissional
+    cadastrarProfissional,
+    listar
 
 }

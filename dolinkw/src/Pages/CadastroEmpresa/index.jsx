@@ -14,7 +14,7 @@ const CadastroEmpresa = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [telefone, setTelefone] = useState('');
-    const [imagem, setImagem] = useState([]);
+    const [arquivo, setArquivo] = useState([]);
     const [cnpj, setCnpj] = useState('');
     const [cep, setCep] = useState('');
     const [regiao, setRegiao] = useState('');
@@ -23,24 +23,26 @@ const CadastroEmpresa = () => {
 
     const cadastrar = (event) =>{
         event.preventDefault();
+        
+        let formdata = new FormData();
+
+        formdata.set('nome', nome);
+        formdata.set('email', email);
+        formdata.set('senha', senha);
+        formdata.set('telefone', telefone);
+        formdata.set('cnpj', cnpj);
+        formdata.set('cep', cep);
+        formdata.set('regiao', regiao);
+        formdata.set('descricao', descricao);
+        formdata.set('dominio', dominio);
+        formdata.append('arquivo', arquivo);
+
+        console.log(formdata);
+
 
         fetch(`${url}company/signup`,{
             method: 'POST',
-            body: JSON.stringify({
-                Nome: nome,
-                Email: email,
-                Senha: senha,
-                Telefone: telefone,
-                Imagem: imagem,
-                CNPJ: cnpj,
-                CEP: cep,
-                Regiao: regiao,
-                Descricao: descricao,
-                Dominio: dominio
-            }),
-            headers: {
-                'content-type': 'application/json'
-            }
+            body: formdata,
             })
             .then(response => {
                 if(response.ok) {
@@ -48,30 +50,9 @@ const CadastroEmpresa = () => {
                     history.push('/login');
                 }
             })
-    }
-
-    const uploadFile = (event) =>{
-        event.preventDefault();
-
-        let formdata = new FormData();
-
-        formdata.append('imagem', event.target.files[0]);
-
-        fetch(url + 'company/signup', {
-
-            method : 'POST',
-            body : formdata, 
-            headers : {
-                'authorization' : 'Bearer ' + localStorage.getItem('token-dolink')
-            }
-
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            setImagem(data.url);
-        })
-        .catch(err => console.log(err));  
+            .then(data => {
+                console.log(data)
+            })
     }
  
 
@@ -187,8 +168,8 @@ const CadastroEmpresa = () => {
                                     
                                     {/* <input className="form-control" id="exampleInputPassword1" placeholder="Imagem" value={imagem} 
                                      onChange={(event) => setImagem(event.target.value)}/> */}
-                                    <Form.File id="fileCategoria" label="Logo da Empresa" onChange={event => uploadFile(event)} />
-                                        {imagem && <img src={imagem} style={{ widht: '120px' }} />} 
+                                    <Form.File id="fileCategoria" label="Logo da Empresa" onChange={event => setArquivo(event.target.files[0])} />
+                                        {arquivo && <img src={arquivo} style={{ widht: '120px' }} />} 
 
                                 </div>
 

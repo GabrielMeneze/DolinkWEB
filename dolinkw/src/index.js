@@ -17,6 +17,9 @@ import ListagemVagas from './Pages/ListagemVagas';
 import ListagemVagaEspecifica from './Pages/ListagemVagaEspecifica';
 import PerfilEmpresa from './Pages/PerfilEmpresa';
 import Login from './Pages/Login';
+import EsqueciMinhaSenha from './Pages/EsqueciMinhaSenha';
+import PerfilProfissional from './Pages/PerfilProfissional';
+import MatchProfissional from './Pages/MatchProfissional';
 
 const routing = (
   <Router>
@@ -32,6 +35,9 @@ const routing = (
       <Route path="/ListagemVagas" component={ListagemVagas}/>
       <Route path="/ListagemVagaEspecifica" component={ListagemVagaEspecifica}/>
       <Route path="/perfilEmpresa" component={PerfilEmpresa}/>
+      <Route path="/perfilProfissional" component={PerfilProfissional}/>
+      <Route path="/matchProfissional" component={MatchProfissional}/>
+      <Route path="/esqueciminhasenha" component={EsqueciMinhaSenha}/>
       <Route path="/login" component={Login}/>
     </Switch>
   </Router>
