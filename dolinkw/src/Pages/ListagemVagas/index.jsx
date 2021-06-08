@@ -1,37 +1,83 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import './index.css'
 import Header from '../../components/header';
 import Rodape from '../../components/footer';
+import { Table, Button, Card } from 'react-bootstrap';
+import {  Link  } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
+import empresaServico from '../../servicos/empresaServico';
+import {  useFormik  } from 'formik';
 
 const ListagemVagas = () => {
 
-    const cadastrar = (event) => {
-        event.preventDefault();
+    const [titulo, setTitulo] = useState('');
+    const [faixaSalarial, setFaixaSalarial] = useState('');
+    const [local, setLocal] = useState('');
+    const [empresa, setEmpresa] = useState('');
+    const [vagas, setVagas] = useState([]);
 
-        fetch('https://localhost:44348/v1/vagancy/create', {
-            method: "LIST",
-            body: JSON.stringify({
+    const token = localStorage.getItem('token-dolink');  
 
-            }),
-            headers: {
-                "content-type": "application/json",
-            },
+    useEffect(() => {
+
+        listarVagas();
+
+    }, []);
+
+    const listarVagas = () => {
+        empresaServico
+        .listarvagas()
+        .then(resultado =>{
+            setVagas(resultado.data.data);
         })
-            .then((response) => {
-                // Verifica se a validação for OK e caso seja, informa a resposta
-                if (response.ok) {
-                    console.log(response.json());
-                    alert('Vaga Cadastrada!');
-                }
-                // Caso validação não seja OK informa um alert
-                alert("Dado inválido");
-            })
-            .catch((err) => console.error(err));
-    };
+        .catch(erro =>{
+            console.error(`erro ${erro}`);
+        })
+    }
+
 
     return(
-        <div className="main">
-            <h1>teste</h1>
+
+        <div>
+            <Header />
+                <div className="sectionPerfilEmpresaAltura">
+
+                    <div className="sectionPerfilEmpresaLargura">
+
+                    <Table className="tabelaVagasEmpresa">
+
+                            <tr className="topicosVagas">
+                                
+                                <th>Título</th>
+                                <th>Faixa Salarial</th>
+                                <th>Local</th>
+
+                            </tr>
+
+                        <tbody>
+                        {
+                            vagas.filter(item => jwtDecode(token).Id === item.empresa).map((item, index) => {
+                                return (
+                                        <tr key={index}>
+
+                                            <td>{item.titulo}</td>
+                                            <td>{item.faixaSalarial}</td>
+                                            <td>{item.local}</td>
+                                            
+                                            <td>
+                                                <Button className="botaoDetalhesVaga" ><Link to={{ pathname : '/ListagemVagaEspecifica', state : {IdVaga : item.id} }}>Detalhes</Link></Button>                                               
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </Table>
+                    </div>
+                </div>
+            <Rodape />
         </div>
+
     )
 
 }

@@ -19,7 +19,8 @@ import ListagemVagaEspecifica from './Pages/ListagemVagaEspecifica';
 import PerfilEmpresa from './Pages/PerfilEmpresa';
 import Login from './Pages/Login';
 import EsqueciMinhaSenha from './Pages/EsqueciMinhaSenha';
-import AlterarSenha from './Pages/AlterarSenha';
+import PerfilProfissional from './Pages/PerfilProfissional';
+import MatchProfissional from './Pages/MatchProfissional';
 
 const routing = (
   <Router>
@@ -33,10 +34,11 @@ const routing = (
       <Route path="/CadastroEmpresa" component={CadastroEmpresa}/>
       <Route path="/EditarVagas" component={EditarVagas}/>
       <Route path="/ListagemVagas" component={ListagemVagas}/>
-      <Route path="/ListagemVagas" component={ListagemVagas}/>
       <Route path="/ListagemVagaEspecifica" component={ListagemVagaEspecifica}/>
       <Route path="/perfilEmpresa" component={PerfilEmpresa}/>
-      <Route path="/AlterarSenha" component={AlterarSenha}/>
+      <Route path="/perfilProfissional" component={PerfilProfissional}/>
+      <Route path="/matchProfissional" component={MatchProfissional}/>
+      <Route path="/esqueciminhasenha" component={EsqueciMinhaSenha}/>
       <Route path="/login" component={Login}/>
     </Switch>
   </Router>

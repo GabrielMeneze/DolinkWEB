@@ -1,24 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import '../../Pages/PerfilEmpresa/index.css';
 import Header from '../../components/header';
 import Rodape from '../../components/footer';
-import {  Table, Button } from 'react-bootstrap';
-import { useToasts } from 'react-toast-notifications';
 import {  useFormik  } from 'formik';
 import {  url  } from '../../utils/constants';
+import {  Table, Button } from 'react-bootstrap';
 import jwtDecode from 'jwt-decode';
-import empresaServico from '../../servicos/empresaServico';
+import profissionalServico from '../../servicos/profissionalServico';
+import './index.css';
 
-const PerfilEmpresa = () => {
-
-    const {addToast} = useToasts();
+const PerfilProfissional = () => {
 
     const [nome, setNome] = useState('');
+    const [email, setEmail] = useState('');
     const [telefone, setTelefone] = useState('');
-    const [cnpj, setCnpj] = useState('');
-    const [cep, setCep] = useState('');
-    const [regiao, setRegiao] = useState('');
-    const [empresas, setEmpresas] = useState([]);
+    const [profissionais, setProfissionais] = useState([]);
 
     const token = localStorage.getItem('token-dolink');  
 
@@ -27,63 +22,59 @@ const PerfilEmpresa = () => {
             
             id : 0,
             nome: '',
-            cnpj : '',
-            cep : '',
-            regiao : '',
-            telefone : ''
+            email : '',
+            telefone : '',
 
         }
     })
 
     useEffect(() => {
 
-        listarEmpresa();
+        listarProfissional();
 
     }, []);
 
-    const listarEmpresa = () => {
-        empresaServico
+    const listarProfissional = () => {
+        profissionalServico
         .listar()
         .then(resultado =>{
-            setEmpresas(resultado.data.data);
+            setProfissionais(resultado.data.data);
         })
         .catch(erro =>{
             console.error(`erro ${erro}`);
         })
     }
 
-    const editar = (event) =>{
-        event.preventDefault();
+    // const editar = (event) =>{
+    //     event.preventDefault();
 
-        const empresa = empresas.filter(x => {
+    //     const empresa = empresas.filter(x => {
 
-            return x.id === event.target.value;
+    //         return x.id === event.target.value;
 
-        })
+    //     })
 
-        formik.setValues({
+    //     formik.setValues({
             
-            id : empresa[0].id,
-            nome : empresa[0].nome,
-            cnpj : empresa[0].cnpj,
-            cep : empresa[0].cep,
-            regiao : empresa[0].regiao,
-            telefone : empresa[0].telefone
+    //         id : empresa[0].id,
+    //         nome : empresa[0].nome,
+    //         cnpj : empresa[0].cnpj,
+    //         cep : empresa[0].cep,
+    //         regiao : empresa[0].regiao,
+    //         telefone : empresa[0].telefone
 
-        })
-    }
+    //     })
+    // }
 
     const alterar = (event) => {
         event.preventDefault();
 
-        fetch(`${url}company/update`, {
+        fetch(`${url}professional/update`, {
             method: "PUT",
             body: JSON.stringify({
                 Nome: nome,
-                CNPJ: cnpj,
-                CEP: cep,
-                Regiao: regiao,
-                Telefone: telefone,
+                Email: email,
+                Telefone: telefone
 
             }),
             headers: {
@@ -118,7 +109,7 @@ const PerfilEmpresa = () => {
             .then(response => response.json())
             .then(dados => {
                 alert('Empresa Excluída!')
-                listarEmpresa();
+                listarProfissional();
             })
     }
 
@@ -135,30 +126,26 @@ const PerfilEmpresa = () => {
 
                     <Table className="tabelaPerfilEmpresa">
 
-                        
-
                         <tbody>
                         {
-                               empresas.filter(item => jwtDecode(token).Id === item.id).map((item, index) => {
+                               profissionais.filter(item => jwtDecode(token).Id === item.id).map((item, index) => {
                                 return (
                                         <tr key={index}>
-                                            
-                                            <div className="itensPerfilEmpresa">
 
-                                                
-                                                <div className="sectionItensEmpresa">
+                                            <div className="itensPerfilProfissional">
 
-                                                    <input type="text" className="itemPerfilEmpresa" placeholder={item.nome}  />
-                                                    <input type="text" className="itemPerfilEmpresa" placeholder={item.cnpj}  />
-                                                    <input type="text" className="itemPerfilEmpresa" placeholder={item.cep}  />
-                                                    <input type="text" className="itemPerfilEmpresa" placeholder={item.regiao}  />
-                                                    <input type="text" className="itemPerfilEmpresa" placeholder={item.telefone}  />
+                                                                                            
+                                                <div className="sectionItensProfissional">
+
+                                                    <input type="text" className="itemPerfilProfissional" placeholder={item.nome}  />
+                                                    <input type="text" className="itemPerfilProfissional" placeholder={item.email}  />
+                                                    <input type="text" className="itemPerfilProfissional" placeholder={item.telefone}  />
 
                                                 </div>
-                                            
+
                                             </div>
 
-                                            <div className="botoesPerfilEmpresa">
+                                            <div className="botoesPerfilProfissional">
                                                 <Button variant="warning" value={item.id} onClick={event => alterar(event)} >Editar</Button>
                                                 <Button variant="danger" value={item.id} OnClick={event => excluir(event)} style={{ marginLeft : '40px'}}>Desativar</Button>
                                             </div>
@@ -173,5 +160,7 @@ const PerfilEmpresa = () => {
             <Rodape className="rodapePerfilEmpresa"/>
         </div>
     )
+
 }
-export default PerfilEmpresa;
+
+export default PerfilProfissional;
