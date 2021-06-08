@@ -7,12 +7,16 @@ import { useToasts } from 'react-toast-notifications';
 import {  useFormik  } from 'formik';
 import {  url  } from '../../utils/constants';
 import jwtDecode from 'jwt-decode';
+import {  useHistory  } from 'react-router-dom';
 import empresaServico from '../../servicos/empresaServico';
 
 const PerfilEmpresa = () => {
 
     const {addToast} = useToasts();
 
+    const history = useHistory();
+
+    const [idEmpresa, setIdEmpresa] = useState(0);
     const [nome, setNome] = useState('');
     const [telefone, setTelefone] = useState('');
     const [cnpj, setCnpj] = useState('');
@@ -20,7 +24,7 @@ const PerfilEmpresa = () => {
     const [regiao, setRegiao] = useState('');
     const [empresas, setEmpresas] = useState([]);
 
-    const token = localStorage.getItem('token-dolink');  
+    const token = localStorage.getItem('token-dolink'); 
 
     const formik = useFormik({
         initialValues : {
@@ -107,10 +111,15 @@ const PerfilEmpresa = () => {
     const excluir = (event) => {
         event.preventDefault();
 
-        console.log(event.target.value)
+        console.log(idEmpresa)
 
-        fetch(url + 'company/Delete/' + event.target.value, {
+        fetch(url + 'company/Delete', {
             method: 'DELETE',
+            body: JSON.stringify({
+                
+                IdEmpresa: idEmpresa
+
+            }),
             headers: {
                 'authorization': 'Bearer ' + localStorage.getItem('token-dolink')
             }
@@ -118,7 +127,7 @@ const PerfilEmpresa = () => {
             .then(response => response.json())
             .then(dados => {
                 alert('Empresa Excluída!')
-                listarEmpresa();
+                history.push('/')
             })
     }
 
@@ -160,7 +169,7 @@ const PerfilEmpresa = () => {
 
                                             <div className="botoesPerfilEmpresa">
                                                 <Button variant="warning" value={item.id} onClick={event => alterar(event)} >Editar</Button>
-                                                <Button variant="danger" value={item.id} OnClick={event => excluir(event)} style={{ marginLeft : '40px'}}>Desativar</Button>
+                                                <Button variant="danger" value={item.idEmpresa} OnClick={event => excluir(event)} style={{ marginLeft : '40px'}}>Excluir</Button>
                                             </div>
                                         </tr>
                                     )

@@ -26,7 +26,7 @@ const CadastroDeVagas = () => {
 
         //44348 (CASA - TOSHI)
         //44383 (SENAI - TOSHI)
-        fetch('https://localhost:44376/v1/vagancy/create', {
+        fetch('https://localhost:44338/v1/vagancy/create', {
             method: "POST",
             body: JSON.stringify({
                 idEmpresa: idEmpresa,

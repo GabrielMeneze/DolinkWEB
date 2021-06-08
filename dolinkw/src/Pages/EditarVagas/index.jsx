@@ -43,7 +43,7 @@ const EditarVagas = () => {
     const alterar = (event) => {
         event.preventDefault();
 
-        fetch('https://localhost:44376/v1/vagancy/update', {
+        fetch('https://localhost:44338/v1/vagancy/update', {
             method: "PUT",
             body: JSON.stringify({
                 id: "60b6710ccd5b4b4cffea7453",
