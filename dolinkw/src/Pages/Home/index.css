@@ -232,20 +232,11 @@
 
 }
 
-.linha1 {
-
-    width: 50px;
+.thirdMain hr {
+    width: 80vw;
+    border: 1px solid black;
     margin-left: 10%;
-    opacity: 30%;
-
-}
-
-.linha2 {
-
-    width: 50px;
-    margin-left: 10%;
-    opacity: 30%;
-
+    margin-right: 10%;
 }
 
 /* CONTENT QUE TEM OS DOIS LOSANGOLO */
