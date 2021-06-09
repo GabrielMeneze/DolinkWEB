@@ -104,14 +104,14 @@ const Login = () => {
 
                             <div className="secondLinhaLogin">
 
-                                <TextField className="textFieldLogin"
+                                <TextField
                                     label="Informe seu e-mail"
                                     type="email"
                                     value={formik.values.email}
                                     onChange={formik.handleChange}
                                     name="email" required/>
 
-                                <TextField className="textFieldLogin"            
+                                <TextField            
                                     label="Informe sua senha"
                                     type="password"
                                     value={formik.values.senha}

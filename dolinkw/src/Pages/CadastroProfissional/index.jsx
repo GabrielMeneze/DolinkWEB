@@ -1,12 +1,13 @@
 import {useState, React} from 'react';
-// import MultiStep from '../../components/multiStepForm'
 import {  url  } from '../../utils/constants';
 import {useHistory} from 'react-router-dom';
+import {  useToasts  } from 'react-toast-notifications';
 import './index.css';
 
 const CadastroProfissional = () => {   
 
     const history = useHistory();
+    const { addToast } = useToasts();
 
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
@@ -30,10 +31,16 @@ const CadastroProfissional = () => {
                 'content-type': 'application/json'
             }
             })
-            .then(response => {
-                if(response.ok) {
-                    alert("Cadastro realizado com sucesso!");
+
+            .then(resultado => resultado.json())
+            .then(resultado=> {
+                if(resultado.sucesso) {
+                    addToast(resultado.mensagem, { appearance: 'success', autoDismiss : true })
                     history.push('/login');
+                } else {
+
+                    addToast(resultado.mensagem, { appearance: 'error', autoDismiss : true })
+
                 }
             })
     }
@@ -84,7 +91,7 @@ const CadastroProfissional = () => {
 
                                 <div className="infotextcompany">
 
-                                    <input type="password" className="form-control" placeholder="Senha" value={senha} 
+                                    <input type="password" autocomplete="off" className="form-control" placeholder="Senha" value={senha} 
                                      onChange={(event) => setSenha(event.target.value)}/>
 
                                 </div>

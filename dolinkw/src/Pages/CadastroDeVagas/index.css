@@ -5,15 +5,6 @@
 }
 
 
-.textarea input[type="text"],
-.textarea input[type="password"],
-.textarea input[type="tel"],
-.textarea textarea {
-  width: 100%;
-  color: black;
-  padding: 15px;
-}
-
 .input-btn-vagas[type="submit"] {
     height: 35px;
     width: 260px;
@@ -107,15 +98,6 @@ label {
     text-align: center;
     cursor: pointer;
     font-size: 15px;
-}
-
-
-input[type="text"] {
-    border-radius: 8px;
-    margin-top: 29px;
-    border: none;
-    margin-left: 350px;
-    height: 37px;
 }
 
 input[type="search"] {

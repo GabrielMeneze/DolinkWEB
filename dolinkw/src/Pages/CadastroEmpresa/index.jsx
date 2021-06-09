@@ -1,14 +1,14 @@
 import './index.css';
-
-
 import {  url  } from '../../utils/constants';
 import React, {useState} from "react"
 import { Form } from 'react-bootstrap';
 import {useHistory} from 'react-router-dom';
+import {  useToasts  } from 'react-toast-notifications';
 
 const CadastroEmpresa = () => {
 
     const history = useHistory();
+    const { addToast } = useToasts();
 
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
@@ -44,10 +44,17 @@ const CadastroEmpresa = () => {
             method: 'POST',
             body: formdata,
             })
-            .then(response => {
-                if(response.ok) {
-                    alert("Cadastro realizado com sucesso!");
+            .then(resultado => resultado.json())
+            .then(resultado => {
+                if(resultado.sucesso) {
+
+                    addToast(resultado.mensagem, { appearance: 'success', autoDismiss : true })
                     history.push('/login');
+
+                } else {
+
+                    addToast(resultado.mensagem, { appearance: 'error', autoDismiss : true })
+
                 }
             })
             .then(data => {
