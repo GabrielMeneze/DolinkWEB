@@ -141,7 +141,7 @@ const PerfilEmpresa = () => {
             <div className="titulo">
                 <hr className="linha" />
                 <div className="esp"></div>
-                <h1>Perfil - Empresa</h1>
+                    <h1 className="tituloPerfilEmpresa">Perfil - Empresa</h1>
                 <div className="esp"></div>
                 <hr className="linha" />
             </div>

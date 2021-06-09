@@ -53,7 +53,7 @@ const ListagemVagaEspecifica = (props) => {
                         <div className="sectionInfoVaga">
 
                             <h1 className="tituloVaga" >{titulo}</h1>
-                            <p className="salarioVaga" >Salário: {faixaSalarial}</p>
+                            <p className="salarioVaga" >Salário: R${faixaSalarial}</p>
                             <p className="descricaoVaga" >Descrição: {descricao}</p>
 
                         </div>
