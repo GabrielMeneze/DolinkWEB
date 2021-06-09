@@ -65,9 +65,7 @@ const Home = () => {
 
       <div className="thirdMain">
 
-        <div className="linha1">
-          <img src="https://media.discordapp.net/attachments/836953521751326720/840212628537475112/unknown.png?width=1440&height=4" alt="" />
-        </div>
+        <hr/>
 
         <div className="sectionLarguraThird">
 
@@ -88,9 +86,7 @@ const Home = () => {
 
         </div>
 
-        <div className="linha2">
-          <img src="https://media.discordapp.net/attachments/836953521751326720/840212628537475112/unknown.png?width=1440&height=4" alt="" />
-        </div>
+        <hr/>
 
       </div>
 
