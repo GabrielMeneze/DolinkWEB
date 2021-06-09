@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default axios.create({
 
-    baseURL : 'https://localhost:44328/v1/',
+    baseURL : 'https://localhost:5001/v1/',
     headers : {
 
         'content-type' : 'application/json'
@@ -14,4 +14,4 @@ export default axios.create({
 // https://localhost:44330/v1/
 
 //URL TOSHI - CASA
-//https://localhost:44348/v1/
+//https://localhost:44338/v1/

@@ -6,8 +6,84 @@
 
 }
 
-.topicosVagas th {
+.englobatudoNaPaginiaListagemDeVagas{
 
-    margin-left: 2vw;
-
+    background-color: #F8EFEF;
 }
+.estilizacaoDePaginaListagemVaga{
+
+display: flex;
+margin: 0 auto;
+margin-top: 5em;
+justify-content: space-around;
+}
+
+.LinkDeCardsDeVagaListagemdeVagas{
+    width: 35%;
+    height: 10em;
+    text-decoration: none;
+}
+
+.sectionDeCardsDasVagas{
+    display: flex;
+    justify-content: space-around;
+    flex-basis: 60%;
+    flex-wrap: wrap;
+}
+
+.cardsDeVagas{
+    
+    cursor: pointer;
+    color: #444;
+    background-color: #eaeaea ;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    font-family: Open Sans;
+    border-radius: 10px;
+    border: 1px solid #C1C1C1;
+    width: 25em;
+    height: 14em;
+    margin-top: 1.5em;
+}
+
+.cardsDeVagas :hover{
+    color: #222;
+    background-color: #cdcdcd;
+}
+
+
+.TituloCardaVagas{
+    color: black;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.cardiparaEstilizacaoDeListagemDeVaga{
+    min-width: 100%;
+    padding: 0 1em 1em 1em;
+    font-size: 1.1em;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    font-family: Open Sans;
+    border-radius: 10px;
+}
+
+.FiltoDeVagasListagem{
+background-color: #e5e5e5;
+box-sizing: border-box;
+border: 1px solid #C1C1C1;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 10px;
+width: 26%;
+height: 40em;
+}
+
+.localeFaixaSalarialCard{
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+}
+

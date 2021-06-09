@@ -21,27 +21,26 @@ const CadastroEmpresa = () => {
 
     const cadastrar = (event) =>{
         event.preventDefault();
-
+        
         let formdata = new FormData();
 
-
+        formdata.set('nome', nome);
+        formdata.set('email', email);
+        formdata.set('senha', senha);
+        formdata.set('telefone', telefone);
+        formdata.set('cnpj', cnpj);
+        formdata.set('cep', cep);
+        formdata.set('regiao', regiao);
+        formdata.set('descricao', descricao);
+        formdata.set('dominio', dominio);
         formdata.append('arquivo', arquivo);
-        formdata.append('nome', nome);
-        formdata.append('email', email);
-        formdata.append('senha', senha);
-        formdata.append('telefone', telefone);
-        formdata.append('cnpj', cnpj);
-        formdata.append('cep', cep);
-        formdata.append('regiao', regiao);
-        formdata.append('descricao', descricao);
-        formdata.append('dominio', dominio);
+
+        console.log(formdata);
+
 
         fetch(`${url}company/signup`,{
             method: 'POST',
             body: formdata,
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
             })
             .then(response => {
                 if(response.ok) {
@@ -49,31 +48,10 @@ const CadastroEmpresa = () => {
                     history.push('/login');
                 }
             })
+            .then(data => {
+                console.log(data)
+            })
     }
-
-    // const uploadFile = (event) =>{
-    //     event.preventDefault();
-
-    //     let formdata = new FormData();
-
-    //     formdata.append('arquivo', event.target.files[0]);
-
-    //     fetch(url + 'company/signup', {
-
-    //         method : 'POST',
-    //         body : formdata, 
-    //         headers : {
-    //             'authorization' : 'Bearer ' + localStorage.getItem('token-dolink')
-    //         }
-
-    //     })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log(data)
-    //         setArquivo(data.url);
-    //     })
-    //     .catch(err => console.log(err));  
-    // }
  
 
     // const uploadFile = (event) => {
@@ -188,7 +166,7 @@ const CadastroEmpresa = () => {
                                     
                                     {/* <input className="form-control" id="exampleInputPassword1" placeholder="Imagem" value={imagem} 
                                      onChange={(event) => setImagem(event.target.value)}/> */}
-                                    <Form.File id="fileCategoria" label="Logo da Empresa" />
+                                    <Form.File id="fileCategoria" label="Logo da Empresa" onChange={event => setArquivo(event.target.files[0])} />
                                         {arquivo && <img src={arquivo} style={{ widht: '120px' }} />} 
 
                                 </div>
