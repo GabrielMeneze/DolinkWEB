@@ -12,12 +12,12 @@ const AlterarSenha = () => {
     const alterar = (event) => {
         event.preventDefault();
 
-        fetch('https://localhost:44328/v1/account/update/password', {
+        fetch('https://localhost:44383/v1/account/update/password', {
             method: "PUT",
             body: JSON.stringify({
-                novaSenha: senha,
+                senha: senha,
                 email: email,
-                confirmacao: conf,
+                conf: conf,
 
             }),
             headers: {

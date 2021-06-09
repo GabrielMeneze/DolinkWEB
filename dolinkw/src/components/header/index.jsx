@@ -17,6 +17,7 @@ const Header = () => {
         history.push('/');
     }
 
+
     const renderMenu = () => {
         const token = localStorage.getItem('token-dolink')
     
@@ -41,9 +42,9 @@ const Header = () => {
                     <img src={logo} alt="logo da empresa Dolink" />
                 </div>
                 <div className="botoes">
-                    <a className="buttonPerfilCompany" href="/perfilEmpresa">Empresa</a>
-                    <a className="buttonCadastroVagasCompany" href="/cadastrodevagas">Cadastro - Vagas</a>
-                    <a className="buttonCadastroVagasCompany" href="/ListagemVagas">Vagas</a>
+                    <a className="buttonPerfilCompany" href="/perfilEmpresa" >Empresa</a>
+                    <a className="buttonCadastroVagasCompany" href="/cadastrodevagas" >Cadastro - Vagas</a>
+                    <a className="buttonCadastroVagasCompany" href="/ListagemVagas" >Vagas</a>
                     <a className="buttonExitCompany"hreft="" onClick={event => sair(event)}>Sair</a>
                 </div>
                 </div>

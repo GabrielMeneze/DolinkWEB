@@ -6,7 +6,6 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastProvider } from 'react-toast-notifications'
 import { LinkedInPopUp } from 'react-linkedin-login-oauth2';
-
 import LinkedInPage from './Pages/LinkedinReact';
 import Home from './Pages/Home';
 import EscolhaCadastro from './Pages/EscolhaCadastro';
