@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { url } from '../../utils/constants';
 import Header from "../../components/header";
 import Footer from "../../components/footer"
+import { useToasts } from 'react-toast-notifications';
 
 
 const EditarProfissional = () => {
 
+    const { addToast } = useToasts();
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [telefone, setTelefone] = useState('');
+    const [qtdImgs, setQntdItens] = useState([]);
 
     const alterar = (event) => {
         event.preventDefault();
@@ -25,13 +28,22 @@ const EditarProfissional = () => {
                 "content-type": "application/json",
             },
         })
-            .then((response) => {
-                // Verifica se a validação for OK e caso seja, informa a resposta
-                if (response.ok) {
-                    console.log(response.json());
-                    alert('Empresa alterada')
-                }else{
-                    alert('Dados invalidos')
+            .then(resultado => resultado.json())
+            .then(resultado => {
+                let a = resultado.mensagem + " " + JSON.stringify(resultado.data);
+                console.log(resultado.data)
+
+                setQntdItens(a);
+
+                console.log(resultado.mensagem + " " + JSON.stringify(resultado.data))
+                // var separadores = ['"', ':', ',', '}']
+                // const keys = a.split(new RegExp('(' + separadores.join('|') + ')'))
+                // const keys1 = qtdImgs.split(' ')
+
+                if (resultado.sucesso) {
+                    addToast(resultado.mensagem, { appearance: 'success', autoDismiss: true })
+                } else {
+                    addToast(a, { appearance: 'error', autoDismiss: true })
                 }
             })
             .catch((err) => console.error(err));
@@ -39,7 +51,7 @@ const EditarProfissional = () => {
 
     return (
         <div className="edit">
-            <Header/>
+            <Header />
             <div className="fields">
                 <form className="form-cupom" onSubmit={alterar}>
                     <div className="form-group">
@@ -84,7 +96,7 @@ const EditarProfissional = () => {
                     </div>
                 </form>
             </div>
-            <Footer/>
+            <Footer />
         </div>
     )
 }

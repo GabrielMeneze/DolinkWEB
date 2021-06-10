@@ -3,10 +3,11 @@ import Header from '../../components/header';
 import Rodape from '../../components/footer';
 import {  useFormik  } from 'formik';
 import {  url  } from '../../utils/constants';
-import {  Table, Button } from 'react-bootstrap';
+import {  Table, Button, ProgressBar, Form } from 'react-bootstrap';
 import {  useHistory  } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import profissionalServico from '../../servicos/profissionalServico';
+import http from '../../utils/http-axious';
 import './index.css';
 import { LinkedIn } from '@material-ui/icons';
 
@@ -31,6 +32,48 @@ const PerfilProfissional = () => {
     const [sobreMim, setSobreMim] = useState('');
 
     const [profissionais, setProfissionais] = useState([]);
+    const [skills, setSkills] = useState([])
+
+    const [skillItems, setSkillItems] = useState([{
+        id : "", nome : "", nivel : 0
+    }])
+
+    const setSkillValue = (position, campo, valor) => {
+        const atualizarSkillItems = skillItems.map((skillItem, index) => {
+            if(index === position){
+                return { ...skillItem, ['id'] : valor.split('|')[0], ['nome'] : valor.split('|')[1]}
+            }
+
+            return skillItem;
+        })
+
+        setSkillItems(atualizarSkillItems);
+    }
+
+    useEffect(() => {
+        listarSkills()
+    }, [])
+
+    const addNovaSkillItem = () => {
+        setSkillItems([
+            ...skillItems,
+            {
+                id : "", nome : "", nivel : 0
+            }
+        ])
+
+        skillItems.push()
+    }
+
+    const listarSkills = () => {
+        http.get('https://localhost:5001/v1/skills', {
+            method : 'GET'
+        })
+        .then(resultado =>{
+            setSkills(resultado.data.data);
+        })
+        .catch((err) => console.log(err))
+    }
 
     const formik = useFormik({
         initialValues : {
@@ -100,7 +143,9 @@ const PerfilProfissional = () => {
                 SobreMim: sobreMim,
                 UltimaEmpresa: ultimaEmpresa,
                 Cargo: cargo,
-                DescricaoFuncao: descricaoFuncao
+                DescricaoFuncao: descricaoFuncao,
+                SkillsProfissional : skillItems
+
 
             }),
             headers: {
@@ -205,6 +250,34 @@ const PerfilProfissional = () => {
                                                         <div className="skillsSection">
 
                                                             <h5>Skills</h5>
+                                                            <fieldset>
+                                                                <legend>Habilidades requeridas
+                                                                    <button type="button" onClick={addNovaSkillItem}>+ adicionar habilidade</button>
+                                                                </legend>
+                                                                    <div className="campos">
+                                                                    {
+                                                                        skillItems.map((skill, index) => {
+                                                                            return (
+                                                                                <div>
+                                                                                    <Form.Group controlId="formBasicSkill">
+                                                                                        <Form.Control className="select_skill" as="select" value={skill.id + "|" + skill.nome}
+                                                                                            onChange={e => setSkillValue(index, 'id', e.target.value)}>
+                                                                                                <option value="|" disabled hidden>Selecione uma opção</option>
+                                                                                        {
+                                                                                            skills.map((item, index) => {
+                                                                                                return (
+                                                                                                    <option key={item.id} value={item.id + "|" + item.nome}>{item.nome}</option>
+                                                                                                ) 
+                                                                                            })
+                                                                                        }
+                                                                                        </Form.Control>
+                                                                                    </Form.Group>
+                                                                                </div>
+                                                                            )
+                                                                        })
+                                                                    }
+                                                                </div>
+                                                            </fieldset>
 
                                                         </div>
 

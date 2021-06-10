@@ -42,19 +42,19 @@ const ListagemVagas = () => {
         <div className="englobatudoNaPaginiaListagemDeVagas">
             <Header />
 
-            <div className="titulo">
+            <div className="tituloMatch">
                 <hr className="linha" />
                 <div className="esp"></div>
-                <h1>Vagas Cadastradas</h1>
+                    <h1>Vagas Cadastradas</h1>
                 <div className="esp"></div>
                 <hr className="linha" />
             </div>
 
             <main>
                 <div className="estilizacaoDePaginaListagemVaga">
-
+{/* 
                     <div className="FiltoDeVagasListagem">
-                    </div>
+                    </div> */}
 
                     <div className="sectionDeCardsDasVagas">
 
@@ -69,10 +69,7 @@ const ListagemVagas = () => {
                                                     <p className="TituloCardaVagas">{item.titulo}</p>
                                                     <p style={{ 'margin-bottom': '0.6em', 'maxWidth' : '95%'  }}>Descrição: {item.descricao}</p>
                                                     <p style={{ 'margin-bottom': '0.6em' }}>Local: {item.local}</p>
-                                                    <div className="localeFaixaSalarialCard">
-                                                        <p style={{ 'margin-bottom': '0.6em' }}>Faixa Salarial: R${item.faixaSalarial}</p>
-                                                    </div>
-
+                                                    <p style={{ 'margin-bottom': '0.6em' }}>Faixa Salarial: R${item.faixaSalarial}</p>                                      
                                                 </div>
                                             </div>
                                         </Link>

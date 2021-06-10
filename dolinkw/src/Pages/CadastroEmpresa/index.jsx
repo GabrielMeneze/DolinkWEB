@@ -49,7 +49,7 @@ const CadastroEmpresa = () => {
                 let a = resultado.mensagem + " " + JSON.stringify(resultado.data);
                 if(resultado.sucesso) {
 
-                    addToast(a, { appearance: 'success', autoDismiss : true })
+                    addToast(resultado.mensagem, { appearance: 'success', autoDismiss : true })
                     history.push('/login');
 
                 } else {

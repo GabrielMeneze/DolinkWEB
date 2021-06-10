@@ -4,12 +4,15 @@ import Header from "../../components/header";
 import Footer from "../../components/footer"
 import LogoVaga from '../../imgs/Logovaga.png'
 import "./index.css";
+import { useToasts } from 'react-toast-notifications';
 
 
 
 
 const EditarVagas = () => {
 
+    
+    const { addToast } = useToasts();
     const [titulo, setTitulo] = useState("");
     const [faixasalarial, setFaixasalarial] = useState("");
     const [local, setLocal] = useState("");
@@ -60,13 +63,12 @@ const EditarVagas = () => {
         })
             .then((response) => {
                 // Verifica se a validação for OK e caso seja, informa a resposta
-                if (response.ok) {
-                    console.log(response.json());
-                    alert('Vaga alterada')
+                let a = response.mensagem + " " + JSON.stringify(response.data);
+                if(response.sucesso) {
+                    addToast(response.mensagem, { appearance: 'success', autoDismiss : true })
+                } else {
+                    addToast(a, { appearance: 'error', autoDismiss : true })
                 }
-
-                // Caso validação não seja OK informa um alert
-                alert("Dado inválido");
             })
             .catch((err) => console.error(err));
     };
