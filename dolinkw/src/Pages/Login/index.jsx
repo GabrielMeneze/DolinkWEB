@@ -38,7 +38,7 @@ const Login = () => {
                         const token = localStorage.getItem('token-dolink');
                         if( jwt_decode(token).Role === "Empresa") {
 
-                            history.push('/perfilEmpresa');
+                            history.push('/cadastrodevagas');
 
                         } else if (jwt_decode(token).Role === "Profissional") {
 
@@ -97,9 +97,9 @@ const Login = () => {
                         <div className="middleSectionLogin">
                             
                             <div className="firstLinhaLogin">
-                                <img src="https://cdn.discordapp.com/attachments/836953521751326720/840966116675420200/unknown.png" alt="" />
+                                <img className="linhasSignin" src="https://cdn.discordapp.com/attachments/836953521751326720/840966116675420200/unknown.png" alt="" />
                                     <h1>Sign In</h1>
-                                <img src="https://cdn.discordapp.com/attachments/836953521751326720/840966116675420200/unknown.png" alt="" />
+                                <img className="linhasSignin" src="https://cdn.discordapp.com/attachments/836953521751326720/840966116675420200/unknown.png" alt="" />
                             </div>
 
                             <div className="secondLinhaLogin">
@@ -122,10 +122,10 @@ const Login = () => {
 
                                     <Button className="botaoLogin" type="submit">Logar!</Button>
 
-                                    <a className="linkedinButtonSigninA" href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=987654321&scope=r_liteprofile%20r_emailaddress&client_id=78uhsx2xachf35&redirect_uri=http://localhost:3000/
+                                    {/* <a className="linkedinButtonSigninA" href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=987654321&scope=r_liteprofile%20r_emailaddress&client_id=78uhsx2xachf35&redirect_uri=http://localhost:3000/
 ">
                                         <img className="linkedinButtonSignin" src="https://media.discordapp.net/attachments/819577034530881567/849756557507428352/unknown.png?width=824&height=153" alt="" />
-                                    </a>
+                                    </a> */}
 
                                     {/* <LinkedIn /> */}
 
