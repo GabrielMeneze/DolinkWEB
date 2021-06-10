@@ -1,4 +1,5 @@
 import {  useEffect, useState,  React} from 'react';
+import './index.css';
 import empresaServico from '../../servicos/empresaServico';
 import jwtDecode from 'jwt-decode';
 import {  Button, Table  } from 'react-bootstrap';
@@ -45,33 +46,19 @@ const ListagemVagaEspecifica = (props) => {
 
         <div>
             <Header />
-            <div className="sectionPerfilEmpresaAltura">
+                <div className="sectionPerfilEmpresaAltura">
 
-                <div className="sectionPerfilEmpresaLargura">
+                    <div className="sectionPerfilEmpresaLargura">
 
-                <Table className="tabelaPerfilEmpresa">
+                        <div className="sectionInfoVaga">
 
-                    <thead>
-                        <tr>
-                            <th>Título</th>
-                            <th>Faixa Salarial</th>
-                            <th>Local</th>
-                            <th>Descrição</th>
-                            <th>Benefícios</th>
+                            <h1 className="tituloVaga" >{titulo}</h1>
+                            <p className="salarioVaga" >Salário: R${faixaSalarial}</p>
+                            <p className="descricaoVaga" >Descrição: {descricao}</p>
 
-                        </tr>
-                    </thead>
-                    <tbody>
+                        </div>
 
-                            <td>{titulo}</td>
-                            <td>{faixaSalarial}</td>
-                            <td>{local}</td>
-                            <td>{beneficios}</td>
-                            <td>{descricao}</td>
-
-                    </tbody>
-                </Table>
-                </div>
+                    </div>
                 </div>
             <Rodape />
         </div>

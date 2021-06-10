@@ -6,7 +6,6 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastProvider } from 'react-toast-notifications'
 import { LinkedInPopUp } from 'react-linkedin-login-oauth2';
-
 import LinkedInPage from './Pages/LinkedinReact';
 import Home from './Pages/Home';
 import EscolhaCadastro from './Pages/EscolhaCadastro';
@@ -20,7 +19,9 @@ import PerfilEmpresa from './Pages/PerfilEmpresa';
 import Login from './Pages/Login';
 import EsqueciMinhaSenha from './Pages/EsqueciMinhaSenha';
 import PerfilProfissional from './Pages/PerfilProfissional';
+import EditarProfissional from './Pages/EditarProfissional';
 import MatchProfissional from './Pages/MatchProfissional';
+import AlterarSenha from './Pages/AlterarSenha';
 
 const routing = (
   <Router>
@@ -39,6 +40,8 @@ const routing = (
       <Route path="/perfilProfissional" component={PerfilProfissional}/>
       <Route path="/matchProfissional" component={MatchProfissional}/>
       <Route path="/esqueciminhasenha" component={EsqueciMinhaSenha}/>
+      <Route path="/EditarProfissional" component={EditarProfissional}/>
+      <Route path="/AlterarSenha" component={AlterarSenha}/>
       <Route path="/login" component={Login}/>
     </Switch>
   </Router>

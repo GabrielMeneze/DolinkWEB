@@ -8,6 +8,7 @@ import { useToasts } from 'react-toast-notifications';
 const CadastroEmpresa = () => {
 
     const history = useHistory();
+    const { addToast } = useToasts();
 
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
@@ -19,8 +20,6 @@ const CadastroEmpresa = () => {
     const [regiao, setRegiao] = useState('');
     const [descricao, setDescricao] = useState('');
     const [dominio, setDominio] = useState('');
-
-    const { addToast } = useToasts();
 
     const cadastrar = (event) => {
         event.preventDefault();
@@ -43,14 +42,20 @@ const CadastroEmpresa = () => {
 
         fetch(`${url}company/signup`, {
             method: 'POST',
-            body: formdata
-        })
-            .then(response => response.json())
-            .then(response => {
-                if (response.ok) {
-                    console.log(response.data)
-                    addToast(response.mensagem, { appearance: 'success', autoDismiss: true })
+            body: formdata,
+            })
+            .then(resultado => resultado.json())
+            .then(resultado => {
+                let a = resultado.mensagem + " " + JSON.stringify(resultado.data);
+                if(resultado.sucesso) {
+
+                    addToast(a, { appearance: 'success', autoDismiss : true })
                     history.push('/login');
+
+                } else {
+
+                    addToast(a, { appearance: 'error', autoDismiss : true })
+
                 }
             })
             .catch(erro => {
@@ -207,4 +212,5 @@ const CadastroEmpresa = () => {
     )
 
 }
+
 export default CadastroEmpresa;

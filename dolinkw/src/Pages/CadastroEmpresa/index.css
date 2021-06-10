@@ -3,6 +3,7 @@
     left: 15%;
     padding-top: 40px;
 }
+
 .infotext input[type="text"]:focus,
 .infotext input[type="password"]:focus,
 .infotext input[type="tel"]:focus,
@@ -26,6 +27,7 @@
     height: 50px;
     padding-top: 10px;
     margin-top: 5px;
+
 }
 .h1Pessoal1 {
     font-size: 4.3vh;

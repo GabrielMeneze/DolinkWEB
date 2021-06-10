@@ -46,19 +46,17 @@ const CadastroDeVagas = () => {
         })
             .then(resultado => resultado.json())
             .then((response) => {
+                let a = response.mensagem + " " + JSON.stringify(response.data);
                 // Verifica se a validação for OK e caso seja, informa a resposta
-                if (response.ok) {
-                    console.log(response.json());
-                    alert('Vaga Cadastrada!');
-                    history.push('/ListagemVagas')
+                if(response.sucesso) {
+                    addToast(a, { appearance: 'success', autoDismiss : true })
+                    history.push('/ListagemVagas');
                 } else {
-                // Caso validação não seja OK informa um alert
-                alert("Dado inválido");
+                    addToast(a, { appearance: 'error', autoDismiss : true })
                 }
             })
             .catch((err) => console.error(err));
     };
-
 
     return (
         <div className="main">

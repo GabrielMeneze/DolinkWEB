@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './index.css'
 import Header from '../../components/header';
 import Rodape from '../../components/footer';
-import { Table, Button, Card } from 'react-bootstrap';
+import { Table, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import empresaServico from '../../servicos/empresaServico';
@@ -41,6 +41,15 @@ const ListagemVagas = () => {
 
         <div className="englobatudoNaPaginiaListagemDeVagas">
             <Header />
+
+            <div className="titulo">
+                <hr className="linha" />
+                <div className="esp"></div>
+                <h1>Vagas Cadastradas</h1>
+                <div className="esp"></div>
+                <hr className="linha" />
+            </div>
+
             <main>
                 <div className="estilizacaoDePaginaListagemVaga">
 
@@ -54,20 +63,19 @@ const ListagemVagas = () => {
                                 return (
                                     <div >
 
-                                        <a className="LinkDeCardsDeVagaListagemdeVagas" src="/ListagemVagaEspecifica" key={index}>
+                                        <Link className="LinkDeCardsDeVagaListagemdeVagas" src="/ListagemVagaEspecifica" to={{ pathname : '/ListagemVagaEspecifica', state : {IdVaga : item.id} }} key={index}>
                                             <div className="cardsDeVagas">
                                                 <div className="cardiparaEstilizacaoDeListagemDeVaga">
                                                     <p className="TituloCardaVagas">{item.titulo}</p>
-                                                    <p style={{ 'margin-bottom': '0.6em', 'maxWidth' : '95%'  }}>Descrição : {item.descricao}</p>
-                                                    <p style={{ 'margin-bottom': '0.6em' }}>Local : {item.local}</p>
+                                                    <p style={{ 'margin-bottom': '0.6em', 'maxWidth' : '95%'  }}>Descrição: {item.descricao}</p>
+                                                    <p style={{ 'margin-bottom': '0.6em' }}>Local: {item.local}</p>
                                                     <div className="localeFaixaSalarialCard">
-                                                        <p style={{ 'margin-bottom': '0.6em' }}>Faixa Salarial R$: {item.faixaSalarial}</p>
-                                                        <p style={{ 'margin-bottom': '0.6em', 'maxWidth' : '9em' }}>Data Validade : {item.dataVencimento}</p>
+                                                        <p style={{ 'margin-bottom': '0.6em' }}>Faixa Salarial: R${item.faixaSalarial}</p>
                                                     </div>
 
                                                 </div>
                                             </div>
-                                        </a>
+                                        </Link>
                                     </div>
                                 )
                             })

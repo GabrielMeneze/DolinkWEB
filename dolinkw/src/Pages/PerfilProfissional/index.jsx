@@ -4,18 +4,33 @@ import Rodape from '../../components/footer';
 import {  useFormik  } from 'formik';
 import {  url  } from '../../utils/constants';
 import {  Table, Button } from 'react-bootstrap';
+import {  useHistory  } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import profissionalServico from '../../servicos/profissionalServico';
 import './index.css';
+import { LinkedIn } from '@material-ui/icons';
 
 const PerfilProfissional = () => {
+    
+    const token = localStorage.getItem('token-dolink');  
+
+    const idProfissional = jwtDecode(token).Id;
+
+    const history = useHistory();
 
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [telefone, setTelefone] = useState('');
-    const [profissionais, setProfissionais] = useState([]);
 
-    const token = localStorage.getItem('token-dolink');  
+    const [ultimaEmpresa, setUltimaEmpresa] = useState('');
+    const [cargo, setCargo] = useState('');
+    const [descricaoFuncao, setDescricaoFuncao] = useState('');
+
+    const [repositorio, setRepositorio] = useState('');
+    const [linkedin, setLinkedin] = useState('');
+    const [sobreMim, setSobreMim] = useState('');
+
+    const [profissionais, setProfissionais] = useState([]);
 
     const formik = useFormik({
         initialValues : {
@@ -24,6 +39,12 @@ const PerfilProfissional = () => {
             nome: '',
             email : '',
             telefone : '',
+            ultimaEmpresa : '',
+            cargo : '',
+            descricaoFuncao : '',
+            repositorio : '',
+            linkedin : '',
+            sobreMim : ''
 
         }
     })
@@ -69,12 +90,17 @@ const PerfilProfissional = () => {
     const alterar = (event) => {
         event.preventDefault();
 
-        fetch(`${url}professional/update`, {
+        fetch(`${url}professional/update/general`, {
             method: "PUT",
             body: JSON.stringify({
-                Nome: nome,
-                Email: email,
-                Telefone: telefone
+                
+                Id: idProfissional,
+                Repositorio: repositorio,
+                Linkedin: linkedin,
+                SobreMim: sobreMim,
+                UltimaEmpresa: ultimaEmpresa,
+                Cargo: cargo,
+                DescricaoFuncao: descricaoFuncao
 
             }),
             headers: {
@@ -86,6 +112,7 @@ const PerfilProfissional = () => {
                 if (response.ok) {
                     console.log(response.json());
                     alert('Empresa alterada')
+                    history.push('/matchProfissional')
                 }
 
                 // Caso validação não seja OK informa um alert
@@ -94,35 +121,13 @@ const PerfilProfissional = () => {
             .catch((err) => console.error(err));
     };
 
-    
-    const excluir = (event) => {
-        event.preventDefault();
-
-        console.log(event.target.value)
-
-        fetch(url + 'company/Delete/' + event.target.value, {
-            method: 'DELETE',
-            headers: {
-                'authorization': 'Bearer ' + localStorage.getItem('token-dolink')
-            }
-        })
-            .then(response => response.json())
-            .then(dados => {
-                alert('Empresa Excluída!')
-                listarProfissional();
-            })
-    }
-
-   
-
-
     return(
         <div>
             <Header />
 
-                <div className="sectionPerfilEmpresaAltura">
+                <form className="sectionPerfilProfissionalAltura" onSubmit={alterar}>
 
-                    <div className="sectionPerfilEmpresaLargura">
+                    <div className="sectionPerfilProfissionalLargura">
 
                     <Table className="tabelaPerfilEmpresa">
 
@@ -137,18 +142,86 @@ const PerfilProfissional = () => {
                                                                                             
                                                 <div className="sectionItensProfissional">
 
-                                                    <input type="text" className="itemPerfilProfissional" placeholder={item.nome}  />
-                                                    <input type="text" className="itemPerfilProfissional" placeholder={item.email}  />
-                                                    <input type="text" className="itemPerfilProfissional" placeholder={item.telefone}  />
+                                                    <h2>Finalize seu cadastro com dados adicionais!</h2>
 
+                                                    <div className="sectionDadosAdicionais">
+
+                                                        <div className="portfolioSection">
+
+                                                            <h5>Seu Portfólio</h5>
+                                                            <input 
+                                                                type="text" 
+                                                                className="form-control" 
+                                                                value={repositorio} 
+                                                                placeholder="Link do GitHub"
+                                                                onChange={(event) => setRepositorio(event.target.value)} 
+                                                            />
+
+                                                            <input 
+                                                                type="text" 
+                                                                className="form-control" 
+                                                                value={linkedin} 
+                                                                placeholder="Link do Linkedin" 
+                                                                onChange={(event) => setLinkedin(event.target.value)}
+                                                            />
+
+                                                            <input 
+                                                                type="text" 
+                                                                className="form-control" 
+                                                                value={sobreMim} 
+                                                                placeholder="Sobre Mim!"
+                                                                onChange={(event) => setSobreMim(event.target.value)}  
+                                                            />
+
+                                                        </div>
+                                                        <div className="dadosProfissionaisSection">
+
+                                                            <h5>Dados Profissionais</h5>
+                                                            <input 
+                                                                type="text" 
+                                                                className="form-control"  
+                                                                value={ultimaEmpresa} 
+                                                                placeholder="Última Empresa"  
+                                                                onChange={(event) => setUltimaEmpresa(event.target.value)}
+                                                            />
+
+                                                            <input 
+                                                                type="text" 
+                                                                className="form-control" 
+                                                                value={cargo} 
+                                                                placeholder="Cargo"  
+                                                                onChange={(event) => setCargo(event.target.value)}
+                                                            />
+
+                                                            <input 
+                                                                type="text" 
+                                                                className="form-control" 
+                                                                value={descricaoFuncao} 
+                                                                placeholder="Função"  
+                                                                onChange={(event) => setDescricaoFuncao(event.target.value)}
+                                                            />
+
+                                                        </div>
+                                                        <div className="skillsSection">
+
+                                                            <h5>Skills</h5>
+
+                                                        </div>
+
+                                                        <button
+                                                            type="submit"
+                                                            className="botao-profissional"
+                                                        >Finalizar!</button>
+
+                                                    </div>
                                                 </div>
 
                                             </div>
 
-                                            <div className="botoesPerfilProfissional">
+                                            {/* <div className="botoesPerfilProfissional">
                                                 <Button variant="warning" value={item.id} onClick={event => alterar(event)} >Editar</Button>
                                                 <Button variant="danger" value={item.id} OnClick={event => excluir(event)} style={{ marginLeft : '40px'}}>Desativar</Button>
-                                            </div>
+                                            </div> */}
                                         </tr>
                                     )
                                 })
@@ -156,7 +229,7 @@ const PerfilProfissional = () => {
                         </tbody>
                     </Table>
                     </div>
-                </div>
+                </form>
             <Rodape className="rodapePerfilEmpresa"/>
         </div>
     )

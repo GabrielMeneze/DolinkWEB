@@ -139,6 +139,14 @@ const PerfilEmpresa = () => {
         <div>
             <Header />
 
+            <div className="titulo">
+                <hr className="linha" />
+                <div className="esp"></div>
+                    <h1 className="tituloPerfilEmpresa">Perfil - Empresa</h1>
+                <div className="esp"></div>
+                <hr className="linha" />
+            </div>
+
                 <div className="sectionPerfilEmpresaAltura">
 
                     <div className="sectionPerfilEmpresaLargura">

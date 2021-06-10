@@ -12,10 +12,11 @@
 }
 .estilizacaoDePaginaListagemVaga{
 
-display: flex;
-margin: 0 auto;
-margin-top: 5em;
-justify-content: space-around;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 5em;
+    justify-content: space-around;
+
 }
 
 .LinkDeCardsDeVagaListagemdeVagas{
@@ -39,7 +40,6 @@ justify-content: space-around;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     text-decoration: none;
-    font-family: Open Sans;
     border-radius: 10px;
     border: 1px solid #C1C1C1;
     width: 25em;
@@ -67,18 +67,18 @@ justify-content: space-around;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     text-decoration: none;
-    font-family: Open Sans;
     border-radius: 10px;
 }
 
 .FiltoDeVagasListagem{
-background-color: #e5e5e5;
-box-sizing: border-box;
-border: 1px solid #C1C1C1;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 10px;
-width: 26%;
-height: 40em;
+    background-color: #e5e5e5;
+    box-sizing: border-box;
+    border: 1px solid #C1C1C1;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: 26%;
+    height: 40em;
+    margin-top: 3vh;
 }
 
 .localeFaixaSalarialCard{
@@ -87,3 +87,14 @@ height: 40em;
     font-size: 0.9em;
 }
 
+.linkDetalhesVaga {
+
+    text-decoration: none;
+
+}
+
+.linkDetalhesVaga:hover {
+
+    color: blue;
+
+}
