@@ -16,7 +16,7 @@ const PerfilEmpresa = () => {
 
     const history = useHistory();
 
-    const [idEmpresa, setIdEmpresa] = useState(0);
+    const [idEmpresa, setIdEmpresa] = useState('');
     const [nome, setNome] = useState('');
     const [telefone, setTelefone] = useState('');
     const [cnpj, setCnpj] = useState('');
@@ -110,24 +110,25 @@ const PerfilEmpresa = () => {
     
     const excluir = (event) => {
         event.preventDefault();
-
-        console.log(idEmpresa)
+        
+        let idEmpresaExcluir = empresas[0].Id;
 
         fetch(url + 'company/Delete', {
-            method: 'DELETE',
+            method: 'POST',
+            headers: {
+                'authorization': 'Bearer ' + token
+            },
             body: JSON.stringify({
                 
-                IdEmpresa: idEmpresa
+                Id: idEmpresaExcluir
 
-            }),
-            headers: {
-                'authorization': 'Bearer ' + localStorage.getItem('token-dolink')
-            }
+            })
         })
             .then(response => response.json())
             .then(dados => {
                 alert('Empresa Excluída!')
                 history.push('/')
+                console.log(dados);
             })
     }
 

@@ -3,9 +3,11 @@ import {useState, React} from 'react';
 import {  url  } from '../../utils/constants';
 import {useHistory} from 'react-router-dom';
 import './index.css';
+import { useToasts } from 'react-toast-notifications';
 
 const CadastroProfissional = () => {   
 
+    const { addToast } = useToasts();
     const history = useHistory();
 
     const [nome, setNome] = useState('');
@@ -30,9 +32,10 @@ const CadastroProfissional = () => {
                 'content-type': 'application/json'
             }
             })
+            .then(response => response.json())
             .then(response => {
                 if(response.ok) {
-                    alert("Cadastro realizado com sucesso!");
+                    addToast(response.mensagem, { appearance: 'success', autoDismiss: true })
                     history.push('/login');
                 }
             })

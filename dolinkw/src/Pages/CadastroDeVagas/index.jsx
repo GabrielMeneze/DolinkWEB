@@ -4,10 +4,13 @@ import Header from "../../components/header";
 import Footer from "../../components/footer"
 import jwtDecode from 'jwt-decode';
 import "./index.css";
+import { useToasts } from 'react-toast-notifications';
 
 
 
 const CadastroDeVagas = () => {
+
+    const { addToast } = useToasts();
 
     const history = useHistory();
 
@@ -41,6 +44,7 @@ const CadastroDeVagas = () => {
                 "content-type": "application/json",
             },
         })
+            .then(resultado => resultado.json())
             .then((response) => {
                 // Verifica se a validação for OK e caso seja, informa a resposta
                 if (response.ok) {

@@ -1,8 +1,9 @@
 import './index.css';
-import {  url  } from '../../utils/constants';
-import React, {useState} from "react"
+import { url } from '../../utils/constants';
+import React, { useState } from "react"
 import { Form } from 'react-bootstrap';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { useToasts } from 'react-toast-notifications';
 
 const CadastroEmpresa = () => {
 
@@ -19,9 +20,11 @@ const CadastroEmpresa = () => {
     const [descricao, setDescricao] = useState('');
     const [dominio, setDominio] = useState('');
 
-    const cadastrar = (event) =>{
+    const { addToast } = useToasts();
+
+    const cadastrar = (event) => {
         event.preventDefault();
-        
+
         let formdata = new FormData();
 
         formdata.set('nome', nome);
@@ -38,21 +41,23 @@ const CadastroEmpresa = () => {
         console.log(formdata);
 
 
-        fetch(`${url}company/signup`,{
+        fetch(`${url}company/signup`, {
             method: 'POST',
-            body: formdata,
-            })
+            body: formdata
+        })
+            .then(response => response.json())
             .then(response => {
-                if(response.ok) {
-                    alert("Cadastro realizado com sucesso!");
+                if (response.ok) {
+                    console.log(response.data)
+                    addToast(response.mensagem, { appearance: 'success', autoDismiss: true })
                     history.push('/login');
                 }
             })
-            .then(data => {
-                console.log(data)
+            .catch(erro => {
+                console.error('erro na API ' + erro);
             })
     }
- 
+
 
     // const uploadFile = (event) => {
     //     event.preventDefault();
@@ -100,87 +105,87 @@ const CadastroEmpresa = () => {
 
                                 <div className="infotextcompany">
 
-                                    <input className="form-control" placeholder="Nome da Empresa" value={nome} 
-                                     onChange={(event) => setNome(event.target.value)}
+                                    <input className="form-control" placeholder="Nome da Empresa" value={nome}
+                                        onChange={(event) => setNome(event.target.value)}
                                     />
 
                                 </div>
 
                                 <div className="infotextcompany">
 
-                                    <input type="email" className="form-control" placeholder="Email" value={email} 
-                                     onChange={(event) => setEmail(event.target.value)}/>
+                                    <input type="email" className="form-control" placeholder="Email" value={email}
+                                        onChange={(event) => setEmail(event.target.value)} />
 
                                 </div>
 
                                 <div className="infotextcompany">
 
-                                    <input type="password" className="form-control" placeholder="Senha" value={senha} 
-                                     onChange={(event) => setSenha(event.target.value)}/>
+                                    <input type="password" className="form-control" placeholder="Senha" value={senha}
+                                        onChange={(event) => setSenha(event.target.value)} />
 
                                 </div>
 
                                 <div className="infotextcompany">
 
-                                    <input className="form-control" placeholder="Telefone com DDD (Ex: 11 99999-9999)" value={telefone} 
-                                     onChange={(event) => setTelefone(event.target.value)}/>
+                                    <input className="form-control" placeholder="Telefone com DDD (Ex: 11 99999-9999)" value={telefone}
+                                        onChange={(event) => setTelefone(event.target.value)} />
 
                                 </div>
 
                                 <div className="infotextcompany">
 
-                                    <input className="form-control" placeholder="Cnpj" value={cnpj} 
-                                     onChange={(event) => setCnpj(event.target.value)}/>
+                                    <input className="form-control" placeholder="Cnpj" value={cnpj}
+                                        onChange={(event) => setCnpj(event.target.value)} />
 
                                 </div>
 
                                 <div className="infotextcompany">
-                                    
-                                    <input className="form-control" id="exampleInputPassword1" placeholder="Cep" value={cep} 
-                                     onChange={(event) => setCep(event.target.value)}/>
+
+                                    <input className="form-control" id="exampleInputPassword1" placeholder="Cep" value={cep}
+                                        onChange={(event) => setCep(event.target.value)} />
 
                                 </div>
 
                                 <div className="infotextcompany">
-                                    
-                                    <input className="form-control" id="exampleInputPassword1" placeholder="Região" value={regiao} 
-                                     onChange={(event) => setRegiao(event.target.value)}/>
+
+                                    <input className="form-control" id="exampleInputPassword1" placeholder="Região" value={regiao}
+                                        onChange={(event) => setRegiao(event.target.value)} />
 
                                 </div>
 
                                 <div className="infotextcompany">
-                                    
-                                    <input className="form-control" id="exampleInputPassword1" placeholder="Descrição" value={descricao} 
-                                     onChange={(event) => setDescricao(event.target.value)}/>
+
+                                    <input className="form-control" id="exampleInputPassword1" placeholder="Descrição" value={descricao}
+                                        onChange={(event) => setDescricao(event.target.value)} />
 
                                 </div>
 
                                 <div className="infotextcompany">
-                                    
-                                    <input className="form-control" id="exampleInputPassword1" placeholder="Domínio" value={dominio} 
-                                     onChange={(event) => setDominio(event.target.value)}/>
+
+                                    <input className="form-control" id="exampleInputPassword1" placeholder="Domínio" value={dominio}
+                                        onChange={(event) => setDominio(event.target.value)} />
 
                                 </div>
 
                                 <div className="infotextcompany">
-                                    
+
                                     {/* <input className="form-control" id="exampleInputPassword1" placeholder="Imagem" value={imagem} 
                                      onChange={(event) => setImagem(event.target.value)}/> */}
                                     <Form.File id="fileCategoria" label="Logo da Empresa" onChange={event => setArquivo(event.target.files[0])} />
-                                        {arquivo && <img src={arquivo} style={{ widht: '120px' }} />} 
+                                    {arquivo && <img src={arquivo} style={{ widht: '120px' }} />}
 
                                 </div>
 
-                                
+
                                 <div className="cadastrar1">
 
-                                    <a className="linkCadastro">Já possui cadastro?</a> 
+                                    <a className="linkCadastro">Já possui cadastro?</a>
 
                                     <a className="loginLink1" href="/login">Login</a>
 
                                 </div>
 
-                                         
+
                                 <div className="btn1">
 
                                     <button onClick={cadastrar} type="submit" className="cadastroEmpresa">Cadastrar</button>
@@ -192,7 +197,7 @@ const CadastroEmpresa = () => {
                         </div>
 
                     </div>
-                
+
                 </div>
 
             </div>
