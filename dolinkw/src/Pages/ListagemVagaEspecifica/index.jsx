@@ -46,9 +46,18 @@ const ListagemVagaEspecifica = (props) => {
 
         <div>
             <Header />
+
+                <div className="tituloMatch">
+                    <hr className="linha" />
+                    <div className="esp"></div>
+                    <h1>Matchs na Vaga</h1>
+                    <div className="esp"></div>
+                    <hr className="linha" />
+                </div>
+
                 <div className="sectionPerfilEmpresaAltura">
 
-                    <div className="sectionPerfilEmpresaLargura">
+                    <div className="sectionVagaEspecificaLargura">
 
                         <div className="sectionInfoVaga">
 

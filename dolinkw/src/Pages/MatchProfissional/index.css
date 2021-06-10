@@ -65,3 +65,20 @@
     background-color: #1A82D6;
 
 }
+
+.tituloMatch{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 5vh;
+}
+.tituloMatch hr{
+    width: 300px;
+    height: 2px;
+    background-color: black;
+}
+
+.tituloMatch h1{
+    font-size: 30px;
+}

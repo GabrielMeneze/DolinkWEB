@@ -42,10 +42,10 @@ const ListagemVagas = () => {
         <div className="englobatudoNaPaginiaListagemDeVagas">
             <Header />
 
-            <div className="titulo">
+            <div className="tituloMatch">
                 <hr className="linha" />
                 <div className="esp"></div>
-                <h1>Vagas Cadastradas</h1>
+                    <h1>Vagas Cadastradas</h1>
                 <div className="esp"></div>
                 <hr className="linha" />
             </div>

@@ -104,6 +104,15 @@ const CadastroDeVagas = () => {
     return (
         <>
             <Header />
+
+            <div className="tituloMatch">
+                <hr className="linha" />
+                <div className="esp"></div>
+                    <h1>Cadastrar Vaga</h1>
+                <div className="esp"></div>
+                <hr className="linha" />
+            </div>
+
             <main className="container_principal_vaga">
                 <Form>
                     <fieldset>

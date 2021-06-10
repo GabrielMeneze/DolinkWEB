@@ -1,12 +1,14 @@
 .container_principal_vaga{
-    background: #ccc;
+    background: #eeeeee
+
+    ;
     width: 50vw;
     max-width: 74rem;
     border-radius: 0.8em;
     margin: -3.2rem auto 3.2rem;
     padding-top: 6.4rem; 
     overflow: hidden;
-    margin-top: 15vh;
+    margin-top: 10vh;
  }
 
  .container_principal_vaga fieldset{
