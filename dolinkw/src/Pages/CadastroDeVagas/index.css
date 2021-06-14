@@ -77,18 +77,19 @@
     border-bottom: 1px solid #1A82D6;
 }
 
-.container_principal_vaga fieldset legend button{
+.botaoAddVaga {
     background:  none;
     border: 0;
     font-size: 18px;
     font-weight: 500;
     color: #935af7;
+    margin-right: 3vw;
     font-family: 'Raleway', sans-serif;
     cursor: pointer;
     transition: color 0.2s;
 }
 
-.container_principal_vaga fieldset legend button:hover{
+.botaoAddSkill  button:hover{
     color: #7A44D6;
 }
 
@@ -156,4 +157,17 @@
     padding: 0.5em 1em;
     font-size: 16px;
     font-weight: 600;
+}
+
+.selects_style{
+    display: flex;
+}
+
+.selects_style #formBasicSkill{
+    width: 25vw;
+    margin-right: 1em;
+}
+
+.selects_style #formBasicSkillNivel{
+    width: 20vw;
 }

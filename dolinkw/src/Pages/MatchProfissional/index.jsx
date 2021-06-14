@@ -25,7 +25,7 @@ const MatchProfissional = () => {
 
 
     const listarPreMatch = () => {
-        http.get('https://localhost:5001/v1/vagancy/matchpre/' + idProfissional, {
+        http.get('https://localhost:44338/v1/vagancy/matchpre/' + idProfissional, {
             method : 'GET',
         })
         .then(resultado =>{

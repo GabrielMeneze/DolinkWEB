@@ -33,9 +33,10 @@ const CadastroDeVagas = () => {
     }])
 
     const setSkillValue = (position, campo, valor) => {
+        console.log(campo, valor)
         const atualizarSkillItems = skillItems.map((skillItem, index) => {
             if(index === position){
-                return { ...skillItem, ['id'] : valor.split('|')[0], ['nome'] : valor.split('|')[1]}
+                return { ...skillItem, [campo.split('|')[0]] : valor.split('|')[0], [campo.split('|')[1]] : valor.split('|')[1], ['nivel'] : valor}
             }
 
             return skillItem;
@@ -66,7 +67,7 @@ const CadastroDeVagas = () => {
     const cadastrar = (event) => {
         event.preventDefault();
 
-        fetch('https://localhost:5001/v1/vagancy/create', {
+        fetch('https://localhost:44338/v1/vagancy/create', {
             method: "POST",
             body: JSON.stringify({
                 idEmpresa: idEmpresa,
@@ -96,7 +97,7 @@ const CadastroDeVagas = () => {
     };
 
     const listarSkills = () => {
-        http.get('https://localhost:5001/v1/skills', {
+        http.get('https://localhost:44338/v1/skills', {
             method : 'GET'
         })
         .then(resultado =>{
@@ -158,25 +159,34 @@ const CadastroDeVagas = () => {
                             </div>
                     </fieldset>
                     <fieldset>
-                        <legend>Habilidades requeridas
-                            <button type="button" onClick={addNovaSkillItem}>+ adicionar habilidade</button>
+                        <legend>Skills
+                            <button className="botaoAddVaga" type="button" onClick={addNovaSkillItem}>+ adicionar habilidade</button>
                         </legend>
                             <div className="campos">
                             {
                                 skillItems.map((skill, index) => {
                                     return (
-                                        <div>
+                                        <div className="selects_style">
                                             <Form.Group controlId="formBasicSkill">
                                                 <Form.Control className="select_skill" as="select" value={skill.id + "|" + skill.nome}
-                                                    onChange={e => setSkillValue(index, 'id', e.target.value)}>
+                                                    onChange={e => setSkillValue(index, 'id' + '|' + 'nome', e.target.value)}>
                                                         <option value="|" disabled hidden>Selecione uma opção</option>
                                                 {
                                                     skills.map((item, index) => {
                                                         return (
                                                             <option key={item.id} value={item.id + "|" + item.nome}>{item.nome}</option>
-                                                        ) 
+                                                            ) 
                                                     })
                                                 }
+                                                </Form.Control>
+                                            </Form.Group>
+                                            <Form.Group controlId="formBasicSkillNivel">
+                                                <Form.Control className="select_skill_nivel" as="select" value={skill.nivel}
+                                                    onChange={e => setSkillValue(index, 'nivel', e.target.value)}>
+                                                        <option value="0" hidden>Selecione um nível</option>
+                                                        <option value="1">Basico</option>
+                                                        <option value="2">Intermediario</option>
+                                                        <option value="3">Avançado</option>
                                                 </Form.Control>
                                             </Form.Group>
                                         </div>

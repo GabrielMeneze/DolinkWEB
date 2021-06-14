@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './index.css'
 import Header from '../../components/header';
 import Rodape from '../../components/footer';
-import { Table, Card } from 'react-bootstrap';
+import { Table, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import empresaServico from '../../servicos/empresaServico';
@@ -63,16 +63,20 @@ const ListagemVagas = () => {
                                 return (
                                     <div >
 
-                                        <Link className="LinkDeCardsDeVagaListagemdeVagas" src="/ListagemVagaEspecifica" to={{ pathname : '/ListagemVagaEspecifica', state : {IdVaga : item.id} }} key={index}>
+                                        <div className="LinkDeCardsDeVagaListagemdeVagas" src="/ListagemVagaEspecifica" key={index}>
                                             <div className="cardsDeVagas">
                                                 <div className="cardiparaEstilizacaoDeListagemDeVaga">
                                                     <p className="TituloCardaVagas">{item.titulo}</p>
                                                     <p style={{ 'margin-bottom': '0.6em', 'maxWidth' : '95%'  }}>Descrição: {item.descricao}</p>
                                                     <p style={{ 'margin-bottom': '0.6em' }}>Local: {item.local}</p>
                                                     <p style={{ 'margin-bottom': '0.6em' }}>Faixa Salarial: R${item.faixaSalarial}</p>                                      
+                                                <button className="botaoVerVaga"><Link to={{ pathname : '/ListagemVagaEspecifica', state : {IdVaga : item.id} }}>Ver Matchs</Link></button>
                                                 </div>
+
+
+
                                             </div>
-                                        </Link>
+                                        </div>
                                     </div>
                                 )
                             })

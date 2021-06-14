@@ -39,9 +39,10 @@ const PerfilProfissional = () => {
     }])
 
     const setSkillValue = (position, campo, valor) => {
+        console.log(campo, valor)
         const atualizarSkillItems = skillItems.map((skillItem, index) => {
             if(index === position){
-                return { ...skillItem, ['id'] : valor.split('|')[0], ['nome'] : valor.split('|')[1]}
+                return { ...skillItem, [campo.split('|')[0]] : valor.split('|')[0], [campo.split('|')[1]] : valor.split('|')[1], ['nivel'] : valor}
             }
 
             return skillItem;
@@ -66,7 +67,7 @@ const PerfilProfissional = () => {
     }
 
     const listarSkills = () => {
-        http.get('https://localhost:5001/v1/skills', {
+        http.get('https://localhost:44338/v1/skills', {
             method : 'GET'
         })
         .then(resultado =>{
@@ -156,12 +157,9 @@ const PerfilProfissional = () => {
                 // Verifica se a validação for OK e caso seja, informa a resposta
                 if (response.ok) {
                     console.log(response.json());
-                    alert('Empresa alterada')
+                    alert('Cadastro Finalizado!')
                     history.push('/matchProfissional')
                 }
-
-                // Caso validação não seja OK informa um alert
-                alert("Dado inválido");
             })
             .catch((err) => console.error(err));
     };
@@ -193,7 +191,7 @@ const PerfilProfissional = () => {
 
                                                         <div className="portfolioSection">
 
-                                                            <h5>Seu Portfólio</h5>
+                                                            <legend>Seu Portfólio</legend>
                                                             <input 
                                                                 type="text" 
                                                                 className="form-control" 
@@ -221,12 +219,12 @@ const PerfilProfissional = () => {
                                                         </div>
                                                         <div className="dadosProfissionaisSection">
 
-                                                            <h5>Dados Profissionais</h5>
+                                                            <legend>Dados Profissionais</legend>
                                                             <input 
                                                                 type="text" 
                                                                 className="form-control"  
                                                                 value={ultimaEmpresa} 
-                                                                placeholder="Última Empresa"  
+                                                                placeholder="Última Empresa (Não é obrigatório)"  
                                                                 onChange={(event) => setUltimaEmpresa(event.target.value)}
                                                             />
 
@@ -234,7 +232,7 @@ const PerfilProfissional = () => {
                                                                 type="text" 
                                                                 className="form-control" 
                                                                 value={cargo} 
-                                                                placeholder="Cargo"  
+                                                                placeholder="Cargo (Não é obrigatório)"  
                                                                 onChange={(event) => setCargo(event.target.value)}
                                                             />
 
@@ -242,42 +240,52 @@ const PerfilProfissional = () => {
                                                                 type="text" 
                                                                 className="form-control" 
                                                                 value={descricaoFuncao} 
-                                                                placeholder="Função"  
+                                                                placeholder="Função (Não é obrigatório)"  
                                                                 onChange={(event) => setDescricaoFuncao(event.target.value)}
                                                             />
 
                                                         </div>
                                                         <div className="skillsSection">
 
-                                                            <h5>Skills</h5>
-                                                            <fieldset>
-                                                                <legend>Habilidades requeridas
-                                                                    <button type="button" onClick={addNovaSkillItem}>+ adicionar habilidade</button>
+                                                            <fieldset >
+                                                                <legend>Skills
+                                                                    <button type="button" className="botaoAddSkill" onClick={addNovaSkillItem}>+ adicionar habilidade</button>
                                                                 </legend>
                                                                     <div className="campos">
                                                                     {
                                                                         skillItems.map((skill, index) => {
                                                                             return (
-                                                                                <div>
-                                                                                    <Form.Group controlId="formBasicSkill">
-                                                                                        <Form.Control className="select_skill" as="select" value={skill.id + "|" + skill.nome}
-                                                                                            onChange={e => setSkillValue(index, 'id', e.target.value)}>
-                                                                                                <option value="|" disabled hidden>Selecione uma opção</option>
-                                                                                        {
-                                                                                            skills.map((item, index) => {
-                                                                                                return (
-                                                                                                    <option key={item.id} value={item.id + "|" + item.nome}>{item.nome}</option>
-                                                                                                ) 
-                                                                                            })
-                                                                                        }
-                                                                                        </Form.Control>
-                                                                                    </Form.Group>
-                                                                                </div>
+                                                                                <div className="selects_style">
+                                                                                <Form.Group controlId="formBasicSkill">
+                                                                                    <Form.Control className="select_skill" as="select" value={skill.id + "|" + skill.nome}
+                                                                                        onChange={e => setSkillValue(index, 'id' + '|' + 'nome', e.target.value)}>
+                                                                                            <option value="|" disabled hidden>Selecione uma opção</option>
+                                                                                    {
+                                                                                        skills.map((item, index) => {
+                                                                                            return (
+                                                                                                <option key={item.id} value={item.id + "|" + item.nome}>{item.nome}</option>
+                                                                                            ) 
+                                                                                        })
+                                                                                    }
+                                                                                    </Form.Control>
+                                                                                </Form.Group>
+                                                                                <Form.Group controlId="formBasicSkillNivel">
+                                                                                    <Form.Control className="select_skill_nivel" as="select" value={skill.nivel}
+                                                                                        onChange={e => setSkillValue(index, 'nivel', e.target.value)}>
+                                                                                            <option value="0" hidden>Selecione um nível</option>
+                                                                                            <option value="1">Basico</option>
+                                                                                            <option value="2">Intermediario</option>
+                                                                                            <option value="3">Avançado</option>
+                                                                                    </Form.Control>
+                                                                                </Form.Group>
+                                                                            </div>
                                                                             )
                                                                         })
                                                                     }
                                                                 </div>
                                                             </fieldset>
+
+
 
                                                         </div>
 

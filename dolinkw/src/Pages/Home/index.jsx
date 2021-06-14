@@ -78,7 +78,7 @@ const Home = () => {
 
             <div className="textoDireito">
 
-              <a href="/cadastrodevagas" class="botaoVaga">
+              <a class="botaoVaga">
                 Divulgar Vaga
               </a>
 
