@@ -55,7 +55,7 @@ const AlterarSenha = () => {
                         </div>
                         <div className="textarea">
                             <input
-                                type="text"
+                                type="password"
                                 name="senha"
                                 value={senha}
                                 className="form-control"
@@ -66,7 +66,7 @@ const AlterarSenha = () => {
                         </div>
                         <div className="textarea">
                             <input
-                                type="text"
+                                type="password"
                                 name="conf"
                                 value={conf}
                                 className="form-control"
@@ -77,6 +77,7 @@ const AlterarSenha = () => {
                         </div>
                         <div className="btn">
                             <button
+                                name="alterar"
                                 type="submit"
                                 value="vcupom"
                                 className="input-btn-vagas"
