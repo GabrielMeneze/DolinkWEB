@@ -11,6 +11,7 @@ const ListagemVagaEspecifica = (props) => {
     
     const token = localStorage.getItem('token-dolink');  
 
+    //Definindo valores da vaga que a empresa cadastrou.
     const [IdVaga, setIdVaga] = useState(props.location.state.IdVaga);
     const [titulo, setTitulo] = useState('');
     const [faixaSalarial, setFaixaSalarial] = useState('');
@@ -20,9 +21,18 @@ const ListagemVagaEspecifica = (props) => {
     const [beneficios, setBeneficios] = useState('');
     const [vagas, setVagas] = useState([]);
 
+    //Definindo valores do profissional que deu match na vaga.
+    const [profissionais, setProfissionais] = useState([]);
+    const [nome, setNome] = useState('');
+    const [email, setEmail] = useState('');
+    const [telefone, setTelefone] = useState('');
+
+
+
     useEffect(() => {
 
-        listarVaga();
+        listarVaga()
+        listarMatch();
 
     }, []);
 
@@ -36,6 +46,24 @@ const ListagemVagaEspecifica = (props) => {
             setDescricao(resultado.data.data.descricao)
             setBeneficios(resultado.data.data.beneficios)
             console.log(resultado.data.data)
+        })
+        .catch(erro =>{
+            console.error(`erro ${erro}`);
+        })
+    }
+
+    const listarMatch = () => {
+
+        empresaServico
+        .listarmatch(IdVaga)
+        .then(resultado => {
+
+            setNome(resultado.data.data.nome)
+            setEmail(resultado.data.data.email)
+            setTelefone(resultado.data.data.telefone)
+            setProfissionais(resultado.data.data)
+            console.log(resultado)
+
         })
         .catch(erro =>{
             console.error(`erro ${erro}`);
@@ -66,6 +94,24 @@ const ListagemVagaEspecifica = (props) => {
                             <p className="descricaoVaga" >Descrição: {descricao}</p>
 
                         </div>
+
+                        {
+                            profissionais.map((item, index) => {
+
+                                return(
+
+                                    <div className="sectionMatchProf">
+
+                                        <p>{item.dadosProfissional.nome}</p>
+                                        <p>{item.dadosProfissional.email}</p>
+                                        <p>{item.dadosProfissional.telefone}</p>
+
+                                    </div>
+
+                                )
+
+                            })
+                        }
 
                     </div>
                 </div>

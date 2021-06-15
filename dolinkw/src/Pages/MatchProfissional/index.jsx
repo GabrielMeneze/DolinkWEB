@@ -104,7 +104,7 @@ const MatchProfissional = () => {
                                                     <p style={{ 'margin-bottom': '0.6em' }}>Faixa Salarial:</p>
                                                     <p style={{ 'margin-bottom': '0.6em' }}>R${item.faixaSalarial}</p>
 
-                                                    <button onClick={e => darMatch(e, item.id)} className="botaoDarMatch" type="submit" >Dar Match!</button>
+                                                    <button onClick={e => darMatch(e, item.id)} className="botaoDarMatch"  type="submit">Dar Match!</button>
                                                     {/* <button onClick={console.log(item.id)} className="botaoDarMatch" type="button" >Dar Match!</button> */}
 
                                                 </div>
