@@ -6,7 +6,7 @@
 .textarea-edit input[type="text"],
 .textarea-edit input[type="password"],
 .textarea-edit input[type="tel"],
-.textarea-edit textarea {
+.textarea-edit textarea {   
   width: 25vw;
   color: black;
   padding: 15px;
@@ -44,6 +44,7 @@ input[name="beneficios novo"]{
     background-color: white;
     border: none;
     width: 600px;
+   
     
 }
 input[name="local novo"]{
@@ -84,7 +85,7 @@ input[name="descricao nova"]{
     display: inline-block;
     border-radius: 6px;
     position: relative;
-    margin-left: 715px;
+    margin-left: 780px;
     margin-top: 40px;
     font-size: 25px;
 }
