@@ -17,3 +17,39 @@
     margin-left: 85px;
     margin-top: 50px;
 }
+input[name="senha"]{
+    margin-left: 450px;
+    background-color: white;
+    border: none;
+    width: 600px;
+}
+input[name="email"]{
+    margin-left: 450px;
+    background-color: white;
+    border: none;
+    width: 600px;
+    
+}
+input[name="conf"]{
+    margin-left: 450px;
+    background-color: white;
+    border: none;
+    width: 600px;
+    
+
+}
+button[type="submit"]{
+    width: 600px;
+    height: 40px;
+    background-color: #FF9313;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 6px;
+    position: relative;
+    margin-left: 350px;
+    margin-top: 40px;
+    font-size: 25px;
+}
