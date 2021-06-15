@@ -17,14 +17,14 @@
     margin-left: 85px;
     margin-top: 50px;
 }
-input[name="senha"]{
+input[name="senha1"]{
     margin-left: 450px;
     background-color: white;
     border: none;
     width: 600px;
     margin-top: 20px;
 }
-input[name="email"]{
+input[name="email1"]{
     margin-left: 450px;
     background-color: white;
     border: none;
@@ -32,7 +32,7 @@ input[name="email"]{
     margin-top: 20px;
     
 }
-input[name="conf"]{
+input[name="conf1"]{
     margin-left: 450px;
     background-color: white;
     border: none;
