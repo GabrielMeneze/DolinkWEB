@@ -45,7 +45,7 @@ const AlterarSenha = () => {
                         <div className="textarea">
                             <input
                                 type="text"
-                                name="email"
+                                name="email1"
                                 value={email}
                                 className="form-control"
                                 placeholder="coloque seu email"
@@ -56,7 +56,7 @@ const AlterarSenha = () => {
                         <div className="textarea">
                             <input
                                 type="password"
-                                name="senha"
+                                name="senha1"
                                 value={senha}
                                 className="form-control"
                                 placeholder="Coloque sua nova senha"
@@ -67,7 +67,7 @@ const AlterarSenha = () => {
                         <div className="textarea">
                             <input
                                 type="password"
-                                name="conf"
+                                name="conf1"
                                 value={conf}
                                 className="form-control"
                                 placeholder="Confirme sua nova senha"
