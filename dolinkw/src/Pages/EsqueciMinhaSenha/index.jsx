@@ -5,7 +5,6 @@ import './style.css'
 
 const EsqueciMinhaSenha = () => {
     return (
-        <>
             <div class="container_principal">
                 <Banner titulo="Recupere sua senha"
                         texto="Bacon ipsum dolor amet kielbasa picanha jerky, flank swine frankfurter  pork loin pig spare ribs."
@@ -36,7 +35,6 @@ const EsqueciMinhaSenha = () => {
                     </Form>
                 </div>
             </div>
-        </>
     );
 }
 
