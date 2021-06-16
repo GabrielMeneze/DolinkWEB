@@ -24,6 +24,14 @@ const listarvaga = dados => {
 
 }
 
+const listarmatch = dados => {
+
+    return http.get(`match/search/${dados}`, {
+
+    });
+
+}
+
 const alterar = dados => {
     return http.put(`company/${dados.id}`, JSON.stringify(dados), {
         headers : {
@@ -44,6 +52,7 @@ export default {
 
     listar,
     listarvagas,
-    listarvaga
+    listarvaga,
+    listarmatch
 
 }
