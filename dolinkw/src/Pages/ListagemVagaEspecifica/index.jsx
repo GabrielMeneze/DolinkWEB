@@ -93,25 +93,35 @@ const ListagemVagaEspecifica = (props) => {
                             <p className="salarioVaga" >Salário: R${faixaSalarial}</p>
                             <p className="descricaoVaga" >Descrição: {descricao}</p>
 
+                            <div className="sectionMatchAltura">
+
+                                {
+                                    profissionais.map((item, index) => {
+
+                                        return(
+
+                                                <div className="sectionMatchProf">
+
+                                                    <div className="sectionMatchProfLargura">
+
+                                                        <p className="dadosProfMatch" >{item.dadosProfissional.nome}</p>
+                                                        <p className="dadosProfMatch">{item.dadosProfissional.email}</p>
+                                                        <p className="dadosProfMatch">{item.dadosProfissional.telefone}</p>
+
+                                                        <button className="chatMatch">Chat</button>
+                                                    </div>
+
+                                                    
+                                                </div>      
+                                                                                                                
+                                        )
+                                    })
+                                }
+                            </div>
+
                         </div>
 
-                        {
-                            profissionais.map((item, index) => {
-
-                                return(
-
-                                    <div className="sectionMatchProf">
-
-                                        <p>{item.dadosProfissional.nome}</p>
-                                        <p>{item.dadosProfissional.email}</p>
-                                        <p>{item.dadosProfissional.telefone}</p>
-
-                                    </div>
-
-                                )
-
-                            })
-                        }
+            
 
                     </div>
                 </div>
