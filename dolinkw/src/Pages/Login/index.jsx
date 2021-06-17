@@ -8,6 +8,7 @@ import {  useToasts  } from 'react-toast-notifications';
 import {useHistory} from 'react-router-dom';
 import LinkedIn from '../../Pages/LinkedinReact';
 import { HistoryRounded } from '@material-ui/icons';
+import { url } from '../../utils/constants';
 import jwt_decode from 'jwt-decode';
 
 const Login = () => {
@@ -16,47 +17,98 @@ const Login = () => {
 
     const history = useHistory();
 
-    const formik = useFormik({
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
 
-        initialValues :{
-            email : '',
-            senha : ''
+    const logar = (event) => {
+        event.preventDefault();
 
-        },
-        onSubmit : values => { 
-            contaServico
-                .logar(values)
-                .then(resultado => resultado.json())
-                .then(resultado =>{
-                    if(resultado.sucesso){
-                        //apresenta a notificação
-                        addToast(resultado.mensagem, { appearance: 'success', autoDismiss : true })
-                        //salva token no localstorage
-                        localStorage.setItem('token-dolink', resultado.data.token);
-                        console.log(resultado);
-                        //redireciona página admin
-                        const token = localStorage.getItem('token-dolink');
-                        if( jwt_decode(token).Role === "Empresa") {
+        fetch(url + 'account/signin' ,{
 
-                            history.push('/cadastrodevagas');
+            method : 'POST',
+            body: JSON.stringify({
 
-                        } else if (jwt_decode(token).Role === "Profissional") {
+                Email: email,
+                Senha: senha,
+            }),
+            headers: {
 
-                            history.push('/perfilProfissional')
+                'content-type' : 'application/json'
 
-                        }
+            }
+            })
+            .then(resultado => resultado.json())
+            .then(resultado => {
+
+                if(resultado.sucesso) {
+
+                    addToast(resultado.mensagem, { appearance: 'success', autoDismiss : true })
+                    localStorage.setItem('token-dolink', resultado.data.token);
+                    console.log(resultado);
+                    const token = localStorage.getItem('token-dolink');
+
+                    if(jwt_decode(token).Role === "Empresa") {
+
+                        history.push('/cadastrodevagas')
+
+                    } else if (jwt_decode(token).Role === "Profissional") {
+
+                        history.push('/perfilProfissional')
 
                     } else {
 
                         addToast(resultado.mensagem, { appearance: 'error', autoDismiss : true })
 
                     }
-                })
-                .catch(erro => {
-                    console.error('erro na API ' + erro);
-                })
-        }
-    });
+                }
+            })
+            .catch(erro => {
+                console.error('erro na API ' + erro);
+            })
+    }
+
+
+    // const formik = useFormik({
+
+    //     initialValues :{
+    //         email : '',
+    //         senha : ''
+
+    //     },
+    //     onSubmit : values => { 
+    //         contaServico
+    //             .logar(values)
+    //             .then(resultado => resultado.json())
+    //             .then(resultado =>{
+    //                 if(resultado.sucesso){
+    //                     //apresenta a notificação
+    //                     addToast(resultado.mensagem, { appearance: 'success', autoDismiss : true })
+    //                     //salva token no localstorage
+    //                     localStorage.setItem('token-dolink', resultado.data.token);
+    //                     console.log(resultado);
+    //                     //redireciona página admin
+    //                     const token = localStorage.getItem('token-dolink');
+    //                     if( jwt_decode(token).Role === "Empresa") {
+
+    //                         history.push('/cadastrodevagas');
+
+    //                     } else if (jwt_decode(token).Role === "Profissional") {
+
+    //                         history.push('/perfilProfissional')
+
+    //                     }
+
+    //                 } else {
+
+    //                     addToast(resultado.mensagem, { appearance: 'error', autoDismiss : true })
+
+    //                 }
+    //             })
+    //             .catch(erro => {
+    //                 console.error('erro na API ' + erro);
+    //             })
+    //     }
+    // });
 
     // const [email, setEmail] = useState('');
     // const [senha, setSenha] = useState('');
@@ -82,7 +134,7 @@ const Login = () => {
 
         <div>
             
-            <Form onSubmit={formik.handleSubmit}>
+            <Form >
 
                 <div className="bodyLogin">
 
@@ -104,23 +156,27 @@ const Login = () => {
 
                             <div className="secondLinhaLogin">
 
-                                <TextField
-                                    label="Informe seu e-mail"
-                                    type="email"
-                                    value={formik.values.email}
-                                    onChange={formik.handleChange}
-                                    name="email" required/>
+                                <div className="infotextprofissional">
 
-                                <TextField            
-                                    label="Informe sua senha"
-                                    type="password"
-                                    value={formik.values.senha}
-                                    onChange={formik.handleChange}
-                                    name="senha" required/>
+                                    <input type="email" className="inputProfissionalSign" placeholder="Informe seu Email" value={email} 
+                                    onChange={(event) => setEmail(event.target.value)}/>
 
-                                <div className="botoesSigninEmpresa">
+                                </div>
 
-                                    <Button className="botaoLogin" type="submit">Logar!</Button>
+                                <div className="infotextprofissional">
+
+                                    <input type="password" autocomplete="off" className="inputProfissionalSign" placeholder="Informe sua Senha" value={senha} 
+                                    onChange={(event) => setSenha(event.target.value)}/>
+
+                                </div>
+
+                                <div className="botoesSigninLogin">
+
+                                    <a className="esqueciMinhaSenhaLink" href="/esqueciminhasenha">Esqueceu Sua Senha?</a>
+
+                                    <button type="submit" onClick={logar} className="botaoLoginAccount">Sign In</button>
+
+                                    <p className="cadastrarContaLink" >Não possue uma conta? <a href="/choosesignup">Cadastre-se!</a></p>
 
                                     {/* <a className="linkedinButtonSigninA" href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=987654321&scope=r_liteprofile%20r_emailaddress&client_id=78uhsx2xachf35&redirect_uri=http://localhost:3000/
 ">

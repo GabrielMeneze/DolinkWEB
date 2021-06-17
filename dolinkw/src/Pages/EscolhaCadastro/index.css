@@ -101,7 +101,7 @@
 
 }
 
-.botaoCadastroProfissional {
+.botaoCadastroContaProfissional {
 
     width: 100%;
     height: 59px;
@@ -119,7 +119,7 @@
 
 }
 
-.botaoCadastroProfissional:hover {
+.botaoCadastroContaProfissional:hover {
 
     color: white;
     background-color: #e08516;
