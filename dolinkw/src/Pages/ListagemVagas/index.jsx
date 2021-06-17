@@ -6,6 +6,7 @@ import { Table, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import empresaServico from '../../servicos/empresaServico';
+import {url} from '../../utils/constants';
 import { useFormik } from 'formik';
 
 const ListagemVagas = () => {
@@ -20,9 +21,13 @@ const ListagemVagas = () => {
 
     useEffect(() => {
 
-        listarVagas();
+        listarVagas()
 
-    }, []);
+        if (titulo) {            
+            buscarTitulo()
+        }
+
+    }, [titulo]);
 
     
 
@@ -34,6 +39,24 @@ const ListagemVagas = () => {
             })
             .catch(erro => {
                 console.error(`erro ${erro}`);
+            })
+    }
+
+    const buscarTitulo = () => {
+
+        fetch(url + 'vagancy/search/title/' + titulo, {
+            method: 'GET',
+            headers: {
+
+                'content-type' : 'application-json'
+
+            }
+            })
+            .then((resultado) => resultado.json())
+            .then((resultado) => {
+
+                console.log(resultado);
+
             })
 
     }
@@ -53,13 +76,41 @@ const ListagemVagas = () => {
             </div>
 
             <div className="sectionCampoBuscaVagas">
-                <input className="campoBuscaVagas" placeholder="Digite o título da vaga..." type="text" name="" id="" />
+                <input className="campoBuscaVagas" 
+                    placeholder="Digite o título da vaga..." 
+                    type="search" 
+                    value={titulo}
+                    onChange={(search) => setTitulo(search)}
+                    />
+
+                <button><img src="https://media.discordapp.net/attachments/819577034530881567/855104124848177172/unknown.png" alt="" /></button>
             </div>
 
             <main>
                 <div className="estilizacaoDePaginaListagemVaga">
 
                     <div className="FiltoDeVagasListagem">
+
+                        <div className="sectionFiltroPrincipal">
+                            <div className="filtroBuscaVaga">
+                                <h3>Filtro de Busca</h3>
+                            </div>
+
+                            <div className="sectionFiltroRegiao">
+                                <h4>Região</h4>
+                                <input type="text" placeholder="Informe a região da vaga"/>
+                            </div>
+
+                            <div className="sectionFiltroBeneficios">
+                                <h4>Faixa Salarial</h4>
+                                <input type="text" placeholder="Informe o salário da vaga" />
+                            </div>
+
+                            <div className="sectionBotaoFiltro">
+                                <button type="submit">Aplicar!</button>
+                            </div>
+                        </div>
+
                     </div> 
                 
                     
