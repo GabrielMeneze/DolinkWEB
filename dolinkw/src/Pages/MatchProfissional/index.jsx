@@ -4,12 +4,15 @@ import Rodape from '../../components/footer';
 import { Link } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import http from '../../utils/http-axious';
+import { useToasts } from 'react-toast-notifications';
 import './index.css';
 
 const MatchProfissional = () => {
 
+    const { addToast } = useToasts();
 
     const [vagas, setVagas] = useState([]);
+    const [idVaga, setIdVaga] = useState();
     const [titulo, setTitulo] = useState('');
     const [descricao, setDescricao] = useState('');
     const [local, setLocal] = useState('');
@@ -23,16 +26,52 @@ const MatchProfissional = () => {
         listarPreMatch()
     }, [])
 
+    
 
     const listarPreMatch = () => {
-        http.get('https://localhost:44338/v1/vagancy/matchpre/' + idProfissional, {
+        http.get('https://localhost:44338/v1/vagancy/prematch/' + idProfissional, {
             method : 'GET',
+            
+            body: JSON.stringify ({
+
+                idVaga : idVaga
+                
+            })
+
         })
         .then(resultado =>{
             setVagas(resultado.data.data);
             console.log(resultado.data.data)
         })
         .catch((err) => console.log(err))
+    }
+
+    const darMatch = (event, id) => {
+        event.preventDefault();
+
+        fetch('https://localhost:44338/v1/match' , {
+            method : 'POST',
+            body : JSON.stringify({
+
+                idProfissional : idProfissional,
+                idVaga : id
+
+            }),
+            headers: {
+                'content-type' : 'application/json'
+            },
+        })
+            .then(resultado => resultado.json())
+            .then((resultado) => {
+
+                if(resultado.sucesso) {
+                    addToast(resultado.mensagem, { appearance: 'success', autoDismiss : true })
+                } else {
+                    addToast(resultado.mensagem, { appearance: 'error', autoDismiss : true })
+                }
+
+            })
+                .catch((err) => console.error(err));
     }
 
 
@@ -65,7 +104,8 @@ const MatchProfissional = () => {
                                                     <p style={{ 'margin-bottom': '0.6em' }}>Faixa Salarial:</p>
                                                     <p style={{ 'margin-bottom': '0.6em' }}>R${item.faixaSalarial}</p>
 
-                                                    <button className="botaoDarMatch" type="submit" >Dar Match!</button>
+                                                    <button onClick={e => darMatch(e, item.id)} className="botaoDarMatch"  type="submit">Dar Match!</button>
+                                                    {/* <button onClick={console.log(item.id)} className="botaoDarMatch" type="button" >Dar Match!</button> */}
 
                                                 </div>
                                             </div>

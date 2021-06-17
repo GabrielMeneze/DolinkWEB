@@ -24,6 +24,8 @@ const ListagemVagas = () => {
 
     }, []);
 
+    
+
     const listarVagas = () => {
         empresaServico
             .listarvagas()
