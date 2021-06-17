@@ -29,7 +29,15 @@ const listarmatch = dados => {
     return http.get(`match/search/${dados}`, {
 
     });
+}
 
+const excluirmatch = dados => {
+    
+    console.log(dados)
+
+    return http.delete(`match/remove/${dados}`, {
+
+    });
 }
 
 const alterar = dados => {
@@ -53,6 +61,7 @@ export default {
     listar,
     listarvagas,
     listarvaga,
-    listarmatch
+    listarmatch,
+    excluirmatch
 
 }
