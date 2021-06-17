@@ -38,7 +38,7 @@ const EscolhaCadastro = () => {
 
                             <div className="sectionBotaoEscolha">
 
-                                <a href="/cadastroProfissional" class="botaoCadastroProfissional">
+                                <a href="/cadastroProfissional" class="botaoCadastroContaProfissional">
                                     Profissional
                                 </a>
 

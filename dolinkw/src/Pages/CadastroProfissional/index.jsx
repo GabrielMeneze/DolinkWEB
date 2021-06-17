@@ -69,44 +69,50 @@ const CadastroProfissional = () => {
 
                             <div className="infos">
 
-                                <div className="h1Pessoal1">
+                                <div className="h1ProfissionalCadastro">
 
-                                    <h1 className="h1Pessoal1">Sign Up!</h1>
+                                    <hr className="linhaCadastro" />
+                                    <div className="esp"></div>
+                                        <h1>Sign up</h1>
+                                    <div className="esp"></div>
+                                    <hr className="linhaCadastro" />
 
                                 </div>
 
-                                <div className="infotextcompany">
+                                <div className="infotextprofissional">
 
-                                    <input className="form-control" placeholder="Nome do Profissional" value={nome} 
+                                    <input className="inputProfissionalSign" placeholder="Nome do Profissional" value={nome} 
                                      onChange={(event) => setNome(event.target.value)}
                                     />
 
                                 </div>
 
-                                <div className="infotextcompany">
+                                <div className="infotextprofissional">
 
-                                    <input type="email" className="form-control" placeholder="Email" value={email} 
+                                    <input type="email" className="inputProfissionalSign" placeholder="Email" value={email} 
                                      onChange={(event) => setEmail(event.target.value)}/>
 
                                 </div>
 
-                                <div className="infotextcompany">
+                                <div className="infotextprofissional">
 
-                                    <input type="password" autocomplete="off" className="form-control" placeholder="Senha" value={senha} 
+                                    <input type="password" autocomplete="off" className="inputProfissionalSign" placeholder="Senha" value={senha} 
                                      onChange={(event) => setSenha(event.target.value)}/>
 
                                 </div>
 
-                                <div className="infotextcompany">
+                                <div className="infotextprofissional">
 
-                                    <input className="form-control" placeholder="Telefone com DDD (Ex: 11 99999-9999)" value={telefone} 
+                                    <input className="inputProfissionalSign" placeholder="Telefone com DDD (Ex: 11 99999-9999)" value={telefone} 
                                      onChange={(event) => setTelefone(event.target.value)}/>
 
                                 </div>
 
-                                <div className="btn1">
+                                <div className="btnProfissionalSign">
 
-                                    <button onClick={cadastrar} type="submit" className="cadastroEmpresa">Cadastrar</button>
+                                    <p>Já possui cadastro?<a href="/login"> Faça Login!</a></p>
+
+                                    <button onClick={cadastrar} type="submit" className="botaoCadastroProfissional">Cadastrar</button>
 
                                 </div>
 
