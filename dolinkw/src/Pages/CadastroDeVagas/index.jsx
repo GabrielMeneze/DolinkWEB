@@ -67,7 +67,7 @@ const CadastroDeVagas = () => {
     const cadastrar = (event) => {
         event.preventDefault();
 
-        fetch('https://localhost:5001/v1/vagancy/create', {
+        fetch('https://localhost:44338/v1/vagancy/create', {
             method: "POST",
             body: JSON.stringify({
                 idEmpresa: idEmpresa,
@@ -97,7 +97,7 @@ const CadastroDeVagas = () => {
     };
 
     const listarSkills = () => {
-        http.get('https://localhost:5001/v1/skills', {
+        http.get('https://localhost:44338/v1/skills', {
             method : 'GET'
         })
         .then(resultado =>{

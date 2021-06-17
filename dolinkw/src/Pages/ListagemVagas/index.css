@@ -12,9 +12,9 @@
 }
 .estilizacaoDePaginaListagemVaga{
 
+    min-height: 58vh;
     display: flex;
     margin: 0 auto;
-    margin-top: 5em;
     justify-content: space-around;
 
 }
@@ -26,9 +26,11 @@
 }
 
 .sectionDeCardsDasVagas{
+    width: 40vw;
+    min-width: 40vw;
+    margin-right: 15vw;
     display: flex;
-    justify-content: space-around;
-    flex-basis: 60%;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 
@@ -45,15 +47,17 @@
     border: 1px solid #C1C1C1;
     width: 25em;
     height: 18em;
-    margin-top: 1.5em;
+    margin-top: 4em;
 }
 
 
 .TituloCardaVagas{
-    color: black;
+    width: 100%;
+    color: white;
     font-size: 1.5em;
     font-weight: bold;
 }
+
 .cardiparaEstilizacaoDeListagemDeVaga{
     min-width: 100%;
     padding: 0 1em 1em 1em;
@@ -74,7 +78,8 @@
     border-radius: 10px;
     width: 26%;
     height: 40em;
-    margin-top: 3vh;
+    margin-left: 5vw;
+    margin-top: 4vh;
 }
 
 .localeFaixaSalarialCard{
@@ -113,5 +118,25 @@
 
     text-decoration: none;
     color: white;
+
+}
+
+.sectionCampoBuscaVagas {
+
+    width: 25vw;
+    margin-top: 5vh;
+    margin-left: 41vw;
+
+}
+
+.sectionCampoBuscaVagas input {
+
+    width: 100%;
+    height: 6vh;
+    padding-left: 1vw;
+    border-radius: 10px;
+    outline: none;
+    border: #C1C1C1;
+    box-shadow: 1px 3px 5px 0px #C1C1C1;
 
 }

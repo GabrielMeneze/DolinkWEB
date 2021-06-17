@@ -52,20 +52,26 @@ const ListagemVagas = () => {
                 <hr className="linha" />
             </div>
 
+            <div className="sectionCampoBuscaVagas">
+                <input className="campoBuscaVagas" placeholder="Digite o título da vaga..." type="text" name="" id="" />
+            </div>
+
             <main>
                 <div className="estilizacaoDePaginaListagemVaga">
-{/* 
-                    <div className="FiltoDeVagasListagem">
-                    </div> */}
 
+                    <div className="FiltoDeVagasListagem">
+                    </div> 
+                
+                    
                     <div className="sectionDeCardsDasVagas">
+
 
                         {
                             vagas.filter(item => jwtDecode(token).Id === item.empresa).map((item, index) => {
-                                return (
-                                    <div >
 
-                                        <div className="LinkDeCardsDeVagaListagemdeVagas" src="/ListagemVagaEspecifica" key={index}>
+                                return (
+                                
+                                        <div className="LinkDeCardsDeVagaListagemdeVagas" key={index}>
                                             <div className="cardsDeVagas">
                                                 <div className="cardiparaEstilizacaoDeListagemDeVaga">
                                                     <p className="TituloCardaVagas">{item.titulo}</p>
@@ -74,12 +80,8 @@ const ListagemVagas = () => {
                                                     <p style={{ 'margin-bottom': '0.6em' }}>Faixa Salarial: R${item.faixaSalarial}</p>                                      
                                                 <button className="botaoVerVaga"><Link to={{ pathname : '/ListagemVagaEspecifica', state : {IdVaga : item.id} }}>Ver Matchs</Link></button>
                                                 </div>
-
-
-
                                             </div>
                                         </div>
-                                    </div>
                                 )
                             })
                         }

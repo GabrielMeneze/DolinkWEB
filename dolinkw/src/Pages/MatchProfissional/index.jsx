@@ -31,7 +31,7 @@ const MatchProfissional = () => {
     
 
     const listarPreMatch = () => {
-        http.get('https://localhost:5001/v1/vagancy/prematch/' + idProfissional, {
+        http.get('https://localhost:44338/v1/vagancy/prematch/' + idProfissional, {
             method : 'GET',
             
             body: JSON.stringify ({
@@ -51,7 +51,7 @@ const MatchProfissional = () => {
     const darMatch = (event, id) => {
         event.preventDefault();
 
-        fetch('https://localhost:5001/v1/match' , {
+        fetch('https://localhost:44338/v1/match' , {
             method : 'POST',
             body : JSON.stringify({
 
