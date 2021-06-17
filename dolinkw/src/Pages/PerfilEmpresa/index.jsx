@@ -111,16 +111,17 @@ const PerfilEmpresa = () => {
     const excluir = (event) => {
         event.preventDefault();
         
-        let idEmpresaExcluir = empresas[0].Id;
+        const idEmpresa = jwtDecode(token).Id;
 
-        fetch(url + 'company/Delete', {
-            method: 'POST',
+        fetch(url + 'company/remove', {
+            method: 'DELETE',
             headers: {
+                "content-type": "application/json",
                 'authorization': 'Bearer ' + token
             },
             body: JSON.stringify({
                 
-                Id: idEmpresaExcluir
+                Id: idEmpresa
 
             })
         })
@@ -178,7 +179,7 @@ const PerfilEmpresa = () => {
 
                                             <div className="botoesPerfilEmpresa">
                                                 <Button variant="warning" value={item.id} onClick={event => alterar(event)} >Editar</Button>
-                                                <Button variant="danger" value={item.idEmpresa} OnClick={event => excluir(event)} style={{ marginLeft : '40px'}}>Excluir</Button>
+                                                <Button variant="danger" onClick={event => excluir(event)} style={{ marginLeft : '40px'}}>Excluir</Button>
                                             </div>
                                         </tr>
                                     )
