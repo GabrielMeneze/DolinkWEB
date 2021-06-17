@@ -2,6 +2,7 @@ import { React, useState, useEffect } from 'react';
 import Header from '../../components/header';
 import Rodape from '../../components/footer';
 import { Link } from 'react-router-dom';
+import empresaServico from '../../servicos/empresaServico';
 import jwtDecode from 'jwt-decode';
 import http from '../../utils/http-axious';
 import { useToasts } from 'react-toast-notifications';
@@ -13,6 +14,7 @@ const MatchProfissional = () => {
 
     const [vagas, setVagas] = useState([]);
     const [idVaga, setIdVaga] = useState();
+    const [idMatch, setIdMatch] = useState();
     const [titulo, setTitulo] = useState('');
     const [descricao, setDescricao] = useState('');
     const [local, setLocal] = useState('');
@@ -74,7 +76,6 @@ const MatchProfissional = () => {
                 .catch((err) => console.error(err));
     }
 
-
     return(
 
         <div>
@@ -87,6 +88,8 @@ const MatchProfissional = () => {
                     <div className="esp"></div>
                     <hr className="linha" />
                 </div>
+
+                <a href="/matchConfirmadoProfissional">Ver Matchs Confirmados</a>
 
                 <main>
                 <div className="estilizacaoDePaginaListagemVaga">
@@ -103,8 +106,9 @@ const MatchProfissional = () => {
                                                     <p style={{ 'margin-bottom': '0.6em', 'maxWidth' : '95%'  }}>{item.descricao}</p>
                                                     <p style={{ 'margin-bottom': '0.6em' }}>Faixa Salarial:</p>
                                                     <p style={{ 'margin-bottom': '0.6em' }}>R${item.faixaSalarial}</p>
-
+                                                    
                                                     <button onClick={e => darMatch(e, item.id)} className="botaoDarMatch"  type="submit">Dar Match!</button>
+                                                    
                                                     {/* <button onClick={console.log(item.id)} className="botaoDarMatch" type="button" >Dar Match!</button> */}
 
                                                 </div>
