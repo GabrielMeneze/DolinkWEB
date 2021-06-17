@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    margin: 0;
+}
+
+.bloco{
+    position: relative;
+    margin-top: 50px;
+    margin-left: 50px;
+    padding: 25px 30px;
+    width: 350px;
+    height: 490px;
+    background-color: #F8EFEF;
+    object-fit: cover;
+    border-radius: 6px;
+}
+.main img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    padding: 10px;
+}
+.details{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.chatBox{
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px 30px 20px 30px;
+    background-color: white;
+}
+.chatBox .chat p{
+    padding: 8px 16px;
+    word-wrap: break-word;
+}
+.chatBox .chat{
+    padding: 15px 0px;
+}
+.chatBox .out{
+    display: flex;
+}
+.out .detalhes{
+    margin-left: auto;
+    max-width: calc(100% - 130px);
+}
+.out .detalhes p{
+    background-color: #333;
+    color: #fff;
+    border-radius: 18px 18px 0px 18px;
+}
+.chatBox .in{
+    display: flex;
+    align-items: flex-end;
+}
+.in .detalhes{
+    margin-left: 10px;
+    margin-right: auto;
+    max-width: calc(100% - 130px);
+}
+.in .detalhes p{
+    background-color: rgb(182, 173, 173);
+    color: #000;
+    border-radius: 18px 18px 18px 0px ;
+}
+.chatBox .typing-area{
+    padding: 18px 30px;
+    display: flex;
+    justify-content: space-between;
+}
+.typing-area input{
+    height: 45px;
+    max-width: calc(100% - 58px);
+    font-size: 17px;
+    border: 1px solid #ccc;
+    padding: 0px 13px;
+    border-radius: 5px;
+    outline: none;
+
+}
