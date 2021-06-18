@@ -22,12 +22,10 @@ const ListagemVagas = () => {
     useEffect(() => {
 
         listarVagas()
+        // buscarTitulo()
 
-        if (titulo) {            
-            buscarTitulo()
-        }
 
-    }, [titulo]);
+    }, []);
 
     
 
@@ -42,24 +40,25 @@ const ListagemVagas = () => {
             })
     }
 
-    const buscarTitulo = () => {
+    // const buscarTitulo = (event, titulo) => {
+    //     event.preventDefault();
 
-        fetch(url + 'vagancy/search/title/' + titulo, {
-            method: 'GET',
-            headers: {
+    //     fetch(url + 'vagancy/search/title/' + titulo, {
+    //         method: 'GET',
+    //         headers: {
 
-                'content-type' : 'application-json'
+    //             'content-type' : 'application-json'
 
-            }
-            })
-            .then((resultado) => resultado.json())
-            .then((resultado) => {
+    //         }
+    //         })
+    //         .then((resultado) => resultado.json())
+    //         .then((resultado) => {
 
-                console.log(resultado);
+    //             console.log(resultado);
 
-            })
+    //         })
 
-    }
+    // }
 
 
     return (
@@ -76,14 +75,15 @@ const ListagemVagas = () => {
             </div>
 
             <div className="sectionCampoBuscaVagas">
+
                 <input className="campoBuscaVagas" 
                     placeholder="Digite o título da vaga..." 
-                    type="search" 
-                    value={titulo}
-                    onChange={(search) => setTitulo(search)}
-                    />
+                    type="text" 
+                    // value={titulo}
+                    // onChange={(event) => setTitulo(event.target.value)}
+                />
 
-                <button><img src="https://media.discordapp.net/attachments/819577034530881567/855104124848177172/unknown.png" alt="" /></button>
+                <button type="submit"><img src="https://media.discordapp.net/attachments/819577034530881567/855104124848177172/unknown.png" alt="" /></button>
             </div>
 
             <main>

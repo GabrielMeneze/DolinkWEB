@@ -177,7 +177,7 @@ const CadastroEmpresa = () => {
                                     {/* <input className="form-control" id="exampleInputPassword1" placeholder="Imagem" value={imagem} 
                                      onChange={(event) => setImagem(event.target.value)}/> */}
                                     <Form.File id="fileCategoria" onChange={event => setArquivo(event.target.files[0])} />
-                                    {arquivo && <img src={arquivo} style={{ widht: '120px' }} />}
+                                    {arquivo && <img src={arquivo} />}
 
                                 </div>
 
@@ -186,7 +186,7 @@ const CadastroEmpresa = () => {
 
                                     <p>Já tem conta? <a href="/login">Logue!</a></p>
 
-                                    <button onClick={cadastrar} type="submit">SignUp</button>
+                                    <button onClick={cadastrar}  type="submit">SignUp</button>
 
                                 </div>
 

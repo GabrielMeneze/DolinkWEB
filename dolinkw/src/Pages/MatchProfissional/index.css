@@ -82,3 +82,26 @@
 .tituloMatch h1{
     font-size: 30px;
 }
+
+.linkMatchsConfirmados {
+
+    color: black;
+    font-weight: 600;
+    text-decoration: none;
+
+}
+
+.linkMatchsConfirmados {
+
+    color: #ca9636;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 44.7vw;
+
+}
+
+.linkMatchsConfirmados:hover {
+
+    color: #ac7d28;
+
+}

@@ -89,7 +89,7 @@ const MatchProfissional = () => {
                     <hr className="linha" />
                 </div>
 
-                <a href="/matchConfirmadoProfissional">Ver Matchs Confirmados</a>
+                <a className="linkMatchsConfirmados" href="/matchConfirmadoProfissional">Ver Matchs Confirmados</a>
 
                 <main>
                 <div className="estilizacaoDePaginaListagemVaga">
