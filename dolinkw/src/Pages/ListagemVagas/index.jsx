@@ -40,25 +40,25 @@ const ListagemVagas = () => {
             })
     }
 
-    // const buscarTitulo = (event, titulo) => {
-    //     event.preventDefault();
+    const buscarTitulo = (event, titulo) => {
+        event.preventDefault();
 
-    //     fetch(url + 'vagancy/search/title/' + titulo, {
-    //         method: 'GET',
-    //         headers: {
+        fetch(url + 'vagancy/search/title/' + titulo, {
+            method: 'GET',
+            headers: {
 
-    //             'content-type' : 'application-json'
+                'content-type' : 'application-json'
 
-    //         }
-    //         })
-    //         .then((resultado) => resultado.json())
-    //         .then((resultado) => {
+            }
+            })
+            .then((resultado) => resultado.json())
+            .then((resultado) => {
 
-    //             console.log(resultado);
+                console.log(resultado);
 
-    //         })
+            })
 
-    // }
+    }
 
 
     return (

@@ -29,14 +29,14 @@ const CadastroDeVagas = () => {
     const [beneficios, setBeneficios] = useState("");
 
     const [skillItems, setSkillItems] = useState([{
-        id : "", nome : "", nivel : 0
+        id : "", nome : "", nivel : 0, hash : "", tipo : 1
     }])
 
     const setSkillValue = (position, campo, valor) => {
         console.log(campo, valor)
         const atualizarSkillItems = skillItems.map((skillItem, index) => {
             if(index === position){
-                return { ...skillItem, [campo.split('|')[0]] : valor.split('|')[0], [campo.split('|')[1]] : valor.split('|')[1], ['nivel'] : valor}
+                return { ...skillItem, [campo.split('|')[0]] : valor.split('|')[0], [campo.split('|')[1]] : valor.split('|')[1], [campo.split('|')[2]] : valor.split('|')[2], ['nivel'] : valor}
             }
 
             return skillItem;
@@ -44,21 +44,16 @@ const CadastroDeVagas = () => {
 
         setSkillItems(atualizarSkillItems);
     }
-
-    const mostrarSkills = () => {
-        console.log(skillItems)
-    }
-
     const addNovaSkillItem = () => {
-        setSkillItems([
-            ...skillItems,
-            {
-                id : "", nome : "", nivel : 0
-            }
-        ])
+            setSkillItems([
+                ...skillItems,
+                {
+                    id : "", nome : "", nivel : 0, hash : "", tipo : 1
+                }
+            ])
 
-        skillItems.push()
-    }
+            skillItems.push()
+        }
 
     useEffect(() => {
         listarSkills()
@@ -168,14 +163,14 @@ const CadastroDeVagas = () => {
                                     return (
                                         <div className="selects_style">
                                             <Form.Group controlId="formBasicSkill">
-                                                <Form.Control className="select_skill" as="select" value={skill.id + "|" + skill.nome}
-                                                    onChange={e => setSkillValue(index, 'id' + '|' + 'nome', e.target.value)}>
-                                                        <option value="|" disabled hidden>Selecione uma opção</option>
+                                                <Form.Control className="select_skill" as="select" value={`${skill.id}|${skill.nome}|${skill.hash}`}
+                                                    onChange={e => setSkillValue(index, 'id|nome|hash', e.target.value)}>
+                                                        <option value="||"  hidden>Selecione uma opção</option>
                                                 {
                                                     skills.map((item, index) => {
                                                         return (
-                                                            <option key={item.id} value={item.id + "|" + item.nome}>{item.nome}</option>
-                                                            ) 
+                                                            <option key={item.id} value={`${item.id}|${item.nome}|${item.hash}`}>{item.nome}</option>
+                                                        ) 
                                                     })
                                                 }
                                                 </Form.Control>

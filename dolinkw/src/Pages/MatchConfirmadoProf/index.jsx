@@ -3,6 +3,7 @@ import Header from '../../components/header';
 import Rodape from '../../components/footer';
 import jwtDecode from 'jwt-decode';
 import {  url  } from '../../utils/constants';
+import {  useHistory  } from 'react-router-dom';
 import './index.css'
 import empresaServico from '../../servicos/empresaServico';
 
@@ -16,11 +17,13 @@ const MatchConfirmadoProf = () => {
 
     const [idMatch, setIdMatch] = useState('');
 
+    const history = useHistory();
+
     useEffect(() => {
 
         listarMatch()
 
-    }, [])
+    }, [matchs])
 
     const token = localStorage.getItem('token-dolink');  
     const idProfissional = jwtDecode(token).Id;
@@ -32,7 +35,6 @@ const MatchConfirmadoProf = () => {
         .then(resultado => {
 
             setMatchs(resultado.data.data)
-            console.log(resultado.data.data)
 
         })
         .catch(erro =>{
@@ -49,15 +51,17 @@ const MatchConfirmadoProf = () => {
                 'authorization': 'Bearer ' + token,
                 'content-type': 'application/json'
             },
-            body: {
+            body: JSON.stringify({
 
                 id : id
 
-            }
+            }),
         })
             .then(response => response.json())
-            .then(dados => {
-                alert('Empresa Excluída!')
+            .then(response => {
+                alert('Match excluído!')
+                // history.push("/matchProfissional");
+
             })
     }
 
@@ -94,7 +98,12 @@ const MatchConfirmadoProf = () => {
                 <main>
                 <div className="estilizacaoDePaginaListagemVaga">
 
-                {
+                    {
+                        matchs.length === 0
+                        ? (
+                            <p>opa</p>
+                        )
+                        : (
                             matchs.map((item, index) => {
                                 return (
                                     <div >
@@ -116,9 +125,9 @@ const MatchConfirmadoProf = () => {
                                     </div>
                                 )
                             })
-                        }
+                        )
+                    }
 
-                    
                 </div>
             </main>
 
