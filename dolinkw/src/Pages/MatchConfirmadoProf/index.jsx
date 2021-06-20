@@ -59,8 +59,7 @@ const MatchConfirmadoProf = () => {
         })
             .then(response => response.json())
             .then(response => {
-                alert('Match excluído!')
-                // history.push("/matchProfissional");
+                alert('Match excluído!');
 
             })
     }
@@ -87,11 +86,11 @@ const MatchConfirmadoProf = () => {
         <div>
             <Header />
 
-            <div className="titulo">
-                    <hr className="linha" />
-                    <div className="esp"></div>
-                    <h1>Matchs Confirmados</h1>
-                    <div className="esp"></div>
+                <div className="title">
+                    <hr className="line" />
+                        <div className="espm"></div>
+                            <h1>Matchs Confirmados</h1>
+                        <div className="espm"></div>
                     <hr className="linha" />
                 </div>
 
@@ -101,7 +100,7 @@ const MatchConfirmadoProf = () => {
                     {
                         matchs.length === 0
                         ? (
-                            <p>opa</p>
+                            <h2 className="sadlyNothing">Nenhum match confirmado foi encontrado :(</h2>
                         )
                         : (
                             matchs.map((item, index) => {

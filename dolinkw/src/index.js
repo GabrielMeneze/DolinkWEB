@@ -23,6 +23,7 @@ import EditarProfissional from './Pages/EditarProfissional';
 import MatchProfissional from './Pages/MatchProfissional';
 import AlterarSenha from './Pages/AlterarSenha';
 import MatchConfirmadoProf from './Pages/MatchConfirmadoProf';
+import DadosProfissional from './Pages/dadosProfissional';
 
 const routing = (
   <Router>
@@ -41,6 +42,7 @@ const routing = (
       <Route path="/perfilProfissional" component={PerfilProfissional}/>
       <Route path="/matchProfissional" component={MatchProfissional}/>
       <Route path="/matchConfirmadoProfissional" component={MatchConfirmadoProf}/>
+      <Route path="/dadosProfissional" component={DadosProfissional}/>
       <Route path="/esqueciminhasenha" component={EsqueciMinhaSenha}/>
       <Route path="/EditarProfissional" component={EditarProfissional}/>
       <Route path="/AlterarSenha" component={AlterarSenha}/>
