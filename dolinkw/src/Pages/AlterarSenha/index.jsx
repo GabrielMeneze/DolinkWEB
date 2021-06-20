@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Header from "../../components/header";
-import Footer from "../../components/footer"
 import "./index.css";
 
 const AlterarSenha = () => {
@@ -36,58 +34,57 @@ const AlterarSenha = () => {
 
     return (
 
-        <div className="mainn">
-            <Header />
-            <div className="controlee">
-                <form className="form-cupom" onSubmit={alterar}>
-                    <div className="form-group">
-                        <div className="barra"></div>
-                        <div className="textarea">
-                            <input
-                                type="text"
-                                name="email1"
-                                value={email}
-                                className="form-control"
-                                placeholder="coloque seu email"
-                                onChange={(event) => setEmail(event.target.value)}
-                            >
-                            </input>
-                        </div>
-                        <div className="textarea">
-                            <input
-                                type="password"
-                                name="senha1"
-                                value={senha}
-                                className="form-control"
-                                placeholder="Coloque sua nova senha"
-                                onChange={(event) => setSenha(event.target.value)}
-                            >
-                            </input>
-                        </div>
-                        <div className="textarea">
-                            <input
-                                type="password"
-                                name="conf1"
-                                value={conf}
-                                className="form-control"
-                                placeholder="Confirme sua nova senha"
-                                onChange={(event) => setConf(event.target.value)}
-                            >
-                            </input>
-                        </div>
-                        <div className="btn">
-                            <button
-                                name="alterar"
-                                type="submit"
-                                value="vcupom"
-                                className="input-btn-vagas"
-                            >alterar</button>
+        <div>
+            <form className="form-cupom" onSubmit={alterar}>
+                <div className="bodyAlterar">
+                    <div className="sectionImageAlterar">
+                        <img className="alterarImage" src="https://cdn.discordapp.com/attachments/753442698257498163/855977945825673226/unknown.png" alt="" />
+                    </div>
+                    <div className="sectionContentAlterar">
+                        <div className="middleSectionAlterar">
+                            <div className="firstLinhaAlterar">
+                                <img className="linhasSignin" src="https://cdn.discordapp.com/attachments/836953521751326720/840966116675420200/unknown.png" alt="" />
+                                <h1>Recupere sua senha aqui!</h1>
+                                <img className="linhasSignin" src="https://cdn.discordapp.com/attachments/836953521751326720/840966116675420200/unknown.png" alt="" />
+                            </div>
+                            <p>Informe os dados para que possamos atualizá-los!</p>
+                            <div className="secondLinhaAlterar">                              
+                                <div className="textarea">
+                                    <input
+                                        type="password"
+                                        name="senha1"
+                                        value={senha}
+                                        className="form-control"
+                                        placeholder="Informe sua senha"
+                                        onChange={(event) => setSenha(event.target.value)}>
+                                    </input>
+                                </div>
+                                <div className="textarea">
+                                    <input
+                                        type="password"
+                                        name="conf1"
+                                        value={conf}
+                                        className="form-control"
+                                        placeholder="Confirme sua nova senha"
+                                        onChange={(event) => setConf(event.target.value)}>
+                                    </input>
+                                </div>
+                                <div className="btn">
+                                    <button
+                                        name="alterar"
+                                        type="submit"
+                                        value="vcupom"
+                                        className="input-btn-vagas"
+                                    >Atualizar!
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <Footer />
+                </div>
+            </form>
         </div>
+
     )
 
 }
