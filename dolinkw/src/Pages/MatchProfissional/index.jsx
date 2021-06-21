@@ -92,7 +92,7 @@ const MatchProfissional = () => {
                 <a className="linkMatchsConfirmados" href="/matchConfirmadoProfissional">Ver Matchs Confirmados</a>
 
                 <main>
-                <div className="estilizacaoDePaginaListagemVaga">
+                <div className="estilizacaoDePaginaListagemMatch">
 
                 {
                             vagas.map((item, index) => {

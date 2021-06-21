@@ -57,7 +57,7 @@ const Header = () => {
                 </div>
                 <div className="botoes">
                     {/* Alterar para /dadosProfissional após fazer cadastro com login incluso */}
-                    <a className="buttonPerfilCompany" href="/perfilProfissional">Profissional</a>
+                    <a className="buttonPerfilCompany" href="/dadosProfissional">Profissional</a>
                     <a className="buttonCadastroVagasCompany" href="/matchProfissional">Match</a>
                     <a className="buttonExitCompany"hreft="" onClick={event => sair(event)}>Sair</a>
                 </div>
