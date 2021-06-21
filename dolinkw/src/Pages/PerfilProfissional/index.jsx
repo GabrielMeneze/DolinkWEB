@@ -164,7 +164,7 @@ const PerfilProfissional = () => {
         if (response.ok) {
           console.log(response.json());
           alert("Cadastro Finalizado!");
-          // history.push("/matchProfissional");
+          history.push("/matchProfissional");
         }
       })
       .catch((err) => console.error(err));

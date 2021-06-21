@@ -4,11 +4,18 @@
     text-decoration: none;
 }
 
-.sectionDeCardsDosMatchs{
+.estilizacaoDePaginaListagemMatch{
+
     display: flex;
-    justify-content: space-evenly;
-    flex-basis: 60%;
+    margin: 0 auto;
+    margin-top: 5vh;
+    width: 60vw;
+    max-width: 60vw;
+    height: 110vh;
+    display: flex;
+    justify-content: space-around;
     flex-wrap: wrap;
+
 }
 
 .cardsDeMatch{

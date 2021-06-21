@@ -28,6 +28,7 @@
 .sectionDeCardsDasVagas{
     width: 40vw;
     min-width: 40vw;
+    height: 110vh;
     margin-right: 15vw;
     display: flex;
     justify-content: space-between;

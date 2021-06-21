@@ -16,24 +16,13 @@ const DadosProfissional = () => {
 
     const history = useHistory();
 
-    const [idEmpresa, setIdEmpresa] = useState('');
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('')
     const [telefone, setTelefone] = useState('');
-    const [profissionals, setProfissionals] = useState([]);
 
     const token = localStorage.getItem('token-dolink');
 
-    const formik = useFormik({
-        initialValues: {
-
-            id: 0,
-            nome: '',
-            email: '',
-            telefone: ''
-
-        }
-    })
+    const idProfissional = jwtDecode(token).Id;
 
     useEffect(() => {
 
@@ -42,15 +31,34 @@ const DadosProfissional = () => {
     }, []);
 
     const listarProfissional = () => {
-        profissionalServico
-            .listar()
+        
+        fetch(`${url}professional/search/id/${idProfissional}`, {
+            method: 'GET',
+            headers: {
+
+                'content-type' : 'application/json'
+
+            },
+            })
+            .then(resultado => resultado.json())
             .then(resultado => {
-                setProfissionals(resultado.data.data);
-                console.log(JSON.stringify(profissionals));
+
+                if(resultado.sucesso) {
+                    
+                    console.log(resultado);
+                    setNome(resultado.data.nome)
+                    setEmail(resultado.data.email)
+                    setTelefone(resultado.data.telefone)
+                    addToast(resultado.mensagem, { appearance: 'success', autoDismiss: true })
+
+                } else {
+                    addToast(resultado.mensagem, { appearance: 'error', autoDismiss: true })
+                }
+
             })
-            .catch(erro => {
-                console.error(`erro ${erro}`);
-            })
+
+
+
     }
 
 
@@ -101,27 +109,25 @@ const DadosProfissional = () => {
                 <div className="esp"></div>
                 <hr className="linha" />
             </div>
-            {
-                profissionals.filter(item => jwtDecode(token).Id === item.id).map((item, index) => {
-                    return (
-                        <div key={index}>
+        
+                        <div>
                             <div className="SectionItensEmpresas">
-                                <input type="text" className="itemPerfilEmpresa" placeholder={item.nome} />
-                                <input type="text" className="itemPerfilEmpresa" placeholder={item.email} />
-                                <input type="text" className="itemPerfilEmpresa" placeholder={item.telefone} />
+                                <input type="text" className="itemPerfilEmpresa" placeholder={nome} />
+                                <input type="text" className="itemPerfilEmpresa" placeholder={email} />
+                                <input type="text" className="itemPerfilEmpresa" placeholder={telefone} />
                             </div>
                             <div className="sectionDeBotoes">
                                 <div>
                                 </div>
                                 <div className="botoesPerfilEmpresa">
-                                    <Button variant="warning" value={item.id} href="/perfilProfissional" >Editar</Button>
+                                    <Button variant="warning" value={idProfissional} href="/perfilProfissional" >Editar</Button>
                                     <Button variant="danger" onClick={event => excluir(event)} style={{ marginLeft: '40px' }}>Excluir</Button>
                                 </div>
                             </div>
                         </div>
                     )
-                })
-            }
+                )
+            
             <Rodape className="rodapePerfilEmpresa" />
         </div>
     )

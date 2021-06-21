@@ -59,7 +59,6 @@ const MatchConfirmadoProf = () => {
         })
             .then(response => response.json())
             .then(response => {
-                alert('Match excluído!');
 
             })
     }
@@ -95,7 +94,7 @@ const MatchConfirmadoProf = () => {
                 </div>
 
                 <main>
-                <div className="estilizacaoDePaginaListagemVaga">
+                <div className="estilizacaoDePaginaListagemMatch">
 
                     {
                         matchs.length === 0
@@ -106,7 +105,6 @@ const MatchConfirmadoProf = () => {
                             matchs.map((item, index) => {
                                 return (
                                     <div >
-
                                         <div className="LinkDeCardListagemdeMatch" >
                                             <div className="cardsDeMatch">
                                                 <div className="cardiparaEstilizacaoDeListagemDeMatch">

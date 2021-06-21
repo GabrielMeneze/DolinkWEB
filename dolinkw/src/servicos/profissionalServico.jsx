@@ -9,6 +9,14 @@ const listar = dados =>{
 
 }
 
+const listarId = dados =>{
+
+    return http.get(`professional/search/id${dados}`, {
+
+    });
+
+}
+
 export default {
 
     listar
