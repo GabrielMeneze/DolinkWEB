@@ -10,7 +10,7 @@ const listar = dados =>{
 
 const listarvagas = dados =>{
 
-    return http.get(`vagancy`, JSON.stringify(dados), {
+    return http.get(`company/vagancy/${dados}`, {
 
     });
 

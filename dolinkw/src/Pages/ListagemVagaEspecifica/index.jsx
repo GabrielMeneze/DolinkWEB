@@ -96,26 +96,25 @@ const ListagemVagaEspecifica = (props) => {
                             <div className="sectionMatchAltura">
 
                                 {
-                                    profissionais.map((item, index) => {
+                                    profissionais.count === 0
+                                    ? (
+                                        <h3>Nenhum match foi encontrado :(</h3>
+                                    )
+                                    : (
+                                        profissionais.map((item, index) => {
 
-                                        return(
-
-                                                <div className="sectionMatchProf">
-
-                                                    <div className="sectionMatchProfLargura">
-
-                                                        <p className="dadosProfMatch" >{item.dadosProfissional.nome}</p>
-                                                        <p className="dadosProfMatch">{item.dadosProfissional.email}</p>
-                                                        <p className="dadosProfMatch">{item.dadosProfissional.telefone}</p>
-
-                                                        <button className="chatMatch">Chat</button>
-                                                    </div>
-
-                                                    
-                                                </div>      
-                                                                                                                
-                                        )
-                                    })
+                                            return(
+                                                    <div className="sectionMatchProf">
+                                                        <div className="sectionMatchProfLargura">
+                                                            <p className="dadosProfMatch" >{item.dadosProfissional.nome}</p>
+                                                            <p className="dadosProfMatch">{item.dadosProfissional.email}</p>
+                                                            <p className="dadosProfMatch">{item.dadosProfissional.telefone}</p>
+                                                            <button className="chatMatch">Chat</button>
+                                                        </div>
+                                                    </div>                                                                    
+                                            )
+                                        })
+                                    )
                                 }
                             </div>
 

@@ -12,7 +12,7 @@
 }
 .estilizacaoDePaginaListagemVaga{
 
-    min-height: 58vh;
+    min-height: 48vh;
     display: flex;
     margin: 0 auto;
     justify-content: space-around;
@@ -28,7 +28,7 @@
 .sectionDeCardsDasVagas{
     width: 40vw;
     min-width: 40vw;
-    height: 110vh;
+    height: 85vh;
     margin-right: 15vw;
     display: flex;
     justify-content: space-between;
