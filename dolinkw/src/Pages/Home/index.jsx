@@ -14,9 +14,8 @@ const Home = () => {
           <div className="content">
             <h1>Dê um up em sua carreira!!</h1>
             <p>
-              Bacon ipsum dolor amet kielbasa picanha jerky, flank swine
-              frankfurter pork loin pig spare ribs. Corned beef tenderloin
-              drumstick bresaola chicken chislic landjaeger ground round
+              Somos uma empresa que visa a facilitação do encontro entre uma empresa em busca de um profissional e 
+              um profissional em busca de uma empresa, ou seja, automatizamos esse match!!
             </p>
             <a href="/choosesignup" class="botaoCadastro">
               Cadastrar
@@ -50,11 +49,9 @@ const Home = () => {
                 <div className="textoslide1">
                   <h1>Quem somos?</h1>
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Iste optio esse quia ipsum labore eligendi magnam
-                    exercitationem minima eveniet provident consequuntur
-                    aspernatur quasi, laudantium ipsam fugit nisi, asperiores,
-                    deserunt nulla?
+                    Formados durante a pandemia, a DoLink foi um projeto inicialmente criado para fins acadêmicos, mas que, depois
+                    de todo o esforço e motivação dos membros nessa jornada, tornou-se um projeto open-source que 
+                    visa ajudar toda a comunidade de dev!
                   </p>
                 </div>
               </div>
@@ -72,7 +69,7 @@ const Home = () => {
             <div className="textoEsquerdo">
 
               <h1>Recrute os melhores profissionais</h1>
-              <p>Bacon ipsum dolor amet kielbasa picanha jerky, flank swine frankfurter pork loin pig spare ribs. Corned beef tenderloin drumstick bresaola chicken chislic landjaeger ground round</p>
+              <p>Cadastre uma vaga com as skills necessárias para ela, e espere um profissional perfeitamente apropriado dar match!</p>
 
             </div>
 

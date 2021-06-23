@@ -14,7 +14,7 @@
 
 .sectionLargura1 {
 
-    width: 100vw;
+    width: 100%;
     margin: 0 auto;
     background-color: #f5f5f5;
 
@@ -194,4 +194,9 @@
     margin-left: 30px;
     margin-top: 100px;
 
+}
+
+.sectionImage img {
+    width: 845px;
+    height: 939;
 }

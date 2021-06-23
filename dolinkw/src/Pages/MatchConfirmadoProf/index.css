@@ -20,3 +20,29 @@
     background-color: #e4193b;
 
 }
+
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 20px;
+}
+.title hr{
+    width: 280px;
+    height: 4px;
+    background-color: black;
+}
+.espm{
+    width: 48px;
+    height: 90px;
+}
+.title h1{
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.sadlyNothing {
+    margin-top: 5rem;
+    opacity: 70%;
+}

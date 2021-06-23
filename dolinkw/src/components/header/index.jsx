@@ -56,7 +56,8 @@ const Header = () => {
                     <img src={logo} alt="logo da empresa Dolink" />
                 </div>
                 <div className="botoes">
-                    <a className="buttonPerfilCompany" href="/perfilProfissional">Profissional</a>
+                    {/* Alterar para /dadosProfissional após fazer cadastro com login incluso */}
+                    <a className="buttonPerfilCompany" href="/dadosProfissional">Profissional</a>
                     <a className="buttonCadastroVagasCompany" href="/matchProfissional">Match</a>
                     <a className="buttonExitCompany"hreft="" onClick={event => sair(event)}>Sair</a>
                 </div>

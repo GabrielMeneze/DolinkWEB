@@ -10,7 +10,7 @@ const AlterarSenha = () => {
     const alterar = (event) => {
         event.preventDefault();
 
-        fetch('https://localhost:44338/v1/account/update/password', {
+        fetch('https://localhost:5001/v1/account/update/password', {
             method: "PUT",
             body: JSON.stringify({
                 senha: senha,

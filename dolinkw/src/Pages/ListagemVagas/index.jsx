@@ -17,7 +17,10 @@ const ListagemVagas = () => {
     const [empresa, setEmpresa] = useState('');
     const [vagas, setVagas] = useState([]);
 
+    const [termo, setTermo] = useState('')
+
     const token = localStorage.getItem('token-dolink');
+    const idEmpresa = jwtDecode(token).Id;
 
     useEffect(() => {
 
@@ -31,7 +34,7 @@ const ListagemVagas = () => {
 
     const listarVagas = () => {
         empresaServico
-            .listarvagas()
+            .listarvagas(idEmpresa)
             .then(resultado => {
                 setVagas(resultado.data.data);
             })
@@ -39,27 +42,6 @@ const ListagemVagas = () => {
                 console.error(`erro ${erro}`);
             })
     }
-
-    // const buscarTitulo = (event, titulo) => {
-    //     event.preventDefault();
-
-    //     fetch(url + 'vagancy/search/title/' + titulo, {
-    //         method: 'GET',
-    //         headers: {
-
-    //             'content-type' : 'application-json'
-
-    //         }
-    //         })
-    //         .then((resultado) => resultado.json())
-    //         .then((resultado) => {
-
-    //             console.log(resultado);
-
-    //         })
-
-    // }
-
 
     return (
 
@@ -78,9 +60,7 @@ const ListagemVagas = () => {
 
                 <input className="campoBuscaVagas" 
                     placeholder="Digite o título da vaga..." 
-                    type="text" 
-                    // value={titulo}
-                    // onChange={(event) => setTitulo(event.target.value)}
+                    onChange={event => { setTermo(event.target.value) }}
                 />
 
                 <button type="submit"><img src="https://media.discordapp.net/attachments/819577034530881567/855104124848177172/unknown.png" alt="" /></button>
@@ -115,9 +95,34 @@ const ListagemVagas = () => {
                 
                     
                     <div className="sectionDeCardsDasVagas">
-
-
                         {
+                            vagas.filter((item) => {
+                                if (termo == "") {
+                                    return item
+                                } else if (item.titulo.toLowerCase().includes(termo.toLowerCase())) {
+                                    return item
+                                }
+                                }).map((item) => {
+                                    return (
+                                        <div className="LinkDeCardsDeVagaListagemdeVagas" >
+                                            <div className="cardsDeVagas">
+                                                <div className="cardiparaEstilizacaoDeListagemDeVaga">
+                                                    <p className="TituloCardaVagas">{item.titulo}</p>
+                                                    <p style={{ 'margin-bottom': '0.6em', 'maxWidth' : '95%'  }}>Descrição: {item.descricao}</p>
+                                                    <p style={{ 'margin-bottom': '0.6em' }}>Local: {item.local}</p>
+                                                    <p style={{ 'margin-bottom': '0.6em' }}>Faixa Salarial: R${item.faixaSalarial}</p>                                      
+                                                <button className="botaoVerVaga"><Link to={{ pathname : '/ListagemVagaEspecifica', state : {IdVaga : item.id} }}>Ver Matchs</Link></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
+            
+                            
+
+
+                        {/* {
                             vagas.filter(item => jwtDecode(token).Id === item.empresa).map((item, index) => {
 
                                 return (
@@ -135,7 +140,7 @@ const ListagemVagas = () => {
                                         </div>
                                 )
                             })
-                        }
+                        } */}
                     </div>
                 </div>
             </main>

@@ -3,6 +3,7 @@ import Header from '../../components/header';
 import Rodape from '../../components/footer';
 import jwtDecode from 'jwt-decode';
 import {  url  } from '../../utils/constants';
+import {  useHistory  } from 'react-router-dom';
 import './index.css'
 import empresaServico from '../../servicos/empresaServico';
 
@@ -16,11 +17,13 @@ const MatchConfirmadoProf = () => {
 
     const [idMatch, setIdMatch] = useState('');
 
+    const history = useHistory();
+
     useEffect(() => {
 
         listarMatch()
 
-    }, [])
+    }, [matchs])
 
     const token = localStorage.getItem('token-dolink');  
     const idProfissional = jwtDecode(token).Id;
@@ -32,7 +35,6 @@ const MatchConfirmadoProf = () => {
         .then(resultado => {
 
             setMatchs(resultado.data.data)
-            console.log(resultado.data.data)
 
         })
         .catch(erro =>{
@@ -49,15 +51,15 @@ const MatchConfirmadoProf = () => {
                 'authorization': 'Bearer ' + token,
                 'content-type': 'application/json'
             },
-            body: {
+            body: JSON.stringify({
 
                 id : id
 
-            }
+            }),
         })
             .then(response => response.json())
-            .then(dados => {
-                alert('Empresa Excluída!')
+            .then(response => {
+                alert('Match cancelado!')
             })
     }
 
@@ -83,22 +85,26 @@ const MatchConfirmadoProf = () => {
         <div>
             <Header />
 
-            <div className="titulo">
-                    <hr className="linha" />
-                    <div className="esp"></div>
-                    <h1>Matchs Confirmados</h1>
-                    <div className="esp"></div>
+                <div className="title">
+                    <hr className="line" />
+                        <div className="espm"></div>
+                            <h1>Matchs Confirmados</h1>
+                        <div className="espm"></div>
                     <hr className="linha" />
                 </div>
 
                 <main>
-                <div className="estilizacaoDePaginaListagemVaga">
+                <div className="estilizacaoDePaginaListagemMatch">
 
-                {
+                    {
+                        matchs.length === 0
+                        ? (
+                            <h2 className="sadlyNothing">Nenhum match confirmado foi encontrado :(</h2>
+                        )
+                        : (
                             matchs.map((item, index) => {
                                 return (
                                     <div >
-
                                         <div className="LinkDeCardListagemdeMatch" >
                                             <div className="cardsDeMatch">
                                                 <div className="cardiparaEstilizacaoDeListagemDeMatch">
@@ -116,9 +122,9 @@ const MatchConfirmadoProf = () => {
                                     </div>
                                 )
                             })
-                        }
+                        )
+                    }
 
-                    
                 </div>
             </main>
 

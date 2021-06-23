@@ -53,7 +53,8 @@ const Login = () => {
 
                     } else if (jwt_decode(token).Role === "Profissional") {
 
-                        history.push('/perfilProfissional')
+                        //Alterar para /matchProfissional após fazer cadastro com login incluso
+                        history.push('/matchProfissional')
 
                     } else {
 

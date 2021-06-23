@@ -2,6 +2,7 @@ import {useState, React} from 'react';
 import {  url  } from '../../utils/constants';
 import {useHistory} from 'react-router-dom';
 import {  useToasts  } from 'react-toast-notifications';
+import jwtDecode from 'jwt-decode';
 import './index.css';
 
 const CadastroProfissional = () => {   
@@ -12,6 +13,35 @@ const CadastroProfissional = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [telefone, setTelefone] = useState('');
+
+    const login = (email, senha) => {
+
+        fetch(`${url}account/signin`, {
+            method: 'POST',
+            body: JSON.stringify({
+
+                Email: email,
+                Senha: senha
+
+            }),
+            headers: {
+
+                'content-type' : 'application/json'
+
+            },
+            })
+            .then(resultado => resultado.json())
+            .then(resultado => {
+                if(resultado.sucesso) {
+                    console.log(resultado)
+                    addToast(resultado.mensagem, { appearance: 'success', autoDismiss : true })
+                    localStorage.setItem('token-dolink', resultado.data.token);
+                    history.push('/perfilProfissional');
+                } else {
+                    addToast(resultado.mensagem, { appearance: 'error', autoDismiss : true })
+                }
+            })
+    }
 
     const cadastrar = (event) =>{
         event.preventDefault();
@@ -35,9 +65,9 @@ const CadastroProfissional = () => {
             .then(resultado=> {
                 let a = resultado.mensagem + " " + JSON.stringify(resultado.data);
                 if(resultado.sucesso) {
-                    console.log(resultado)
-                    addToast(resultado.mensagem, { appearance: 'success', autoDismiss : true })
-                    history.push('/login');
+                    
+                    login(email, senha);
+
                 } else {
 
                     addToast(a, { appearance: 'error', autoDismiss : true })
