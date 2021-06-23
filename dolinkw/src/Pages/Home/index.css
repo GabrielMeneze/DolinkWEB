@@ -9,7 +9,6 @@
 
     width: 100%;
     height: 500px;
-    display: block;
     background-color: white;
 
 
@@ -96,7 +95,6 @@
 
     width: 100%;
     height: 380px;
-    display: block;
     background-color: #EDE4E4;
 
 }
@@ -244,7 +242,6 @@
 
     width: 100%;
     height: 540px;
-    display: block;
 
 }
 
@@ -304,5 +301,58 @@
     display: flex;
     align-items: ceter;
 
+}
+
+@media (max-width: 1280px) {
+    .section_firstmain {
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+
+    }
+    .sectionLargura {
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+    
+    }
+    .sectionSlide {
+
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    
+    }
+    .sectionLarguraThird {
+
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    
+    }
+    .sectionLarguraFourth {
+
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    
+    }
 }
 

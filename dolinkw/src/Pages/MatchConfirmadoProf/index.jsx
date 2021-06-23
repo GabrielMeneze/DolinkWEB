@@ -59,7 +59,7 @@ const MatchConfirmadoProf = () => {
         })
             .then(response => response.json())
             .then(response => {
-
+                alert('Match cancelado!')
             })
     }
 

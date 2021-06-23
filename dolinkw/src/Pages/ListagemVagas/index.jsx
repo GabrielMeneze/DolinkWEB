@@ -20,6 +20,7 @@ const ListagemVagas = () => {
     const [termo, setTermo] = useState('')
 
     const token = localStorage.getItem('token-dolink');
+    const idEmpresa = jwtDecode(token).Id;
 
     useEffect(() => {
 
@@ -33,7 +34,7 @@ const ListagemVagas = () => {
 
     const listarVagas = () => {
         empresaServico
-            .listarvagas()
+            .listarvagas(idEmpresa)
             .then(resultado => {
                 setVagas(resultado.data.data);
             })
