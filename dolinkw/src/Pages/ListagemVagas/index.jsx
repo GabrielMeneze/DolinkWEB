@@ -56,10 +56,10 @@ const ListagemVagas = () => {
 
             <div className="sectionCampoBuscaVagas">
 
-                <input className="campoBuscaVagas" 
-                    placeholder="Digite o título da vaga..." 
-                    onChange={event => { setTermo(event.target.value) }}
-                />
+                    <input className="campoBuscaVagas" 
+                        placeholder="Digite o título da vaga..." 
+                        onChange={event => { setTermo(event.target.value) }}
+                    />
 
                 <button type="submit"><img src="https://media.discordapp.net/attachments/819577034530881567/855104124848177172/unknown.png" alt="" /></button>
             </div>
