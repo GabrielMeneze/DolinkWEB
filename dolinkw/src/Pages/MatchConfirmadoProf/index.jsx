@@ -76,8 +76,14 @@ const MatchConfirmadoProf = () => {
                     <hr className="linha" />
                 </div>
 
+                
+
                 <main>
-                <div className="estilizacaoDePaginaListagemMatch">
+
+               
+
+                <div className="estilizacaoDePaginaConfirmarMatch">
+                
 
                     {
                         matchs.length === 0

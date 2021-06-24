@@ -38,6 +38,7 @@
 }
 
 .sectionDeCardsDasVagas::-webkit-scrollbar{
+    height: 1vh;
     width: 0;
 }
 
