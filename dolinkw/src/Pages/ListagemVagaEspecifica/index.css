@@ -51,11 +51,16 @@
 }
 
 .sectionMatchAltura {
-
+    max-height: 400px;
+    overflow-y: auto;
     width: 100%;
     min-height: 100%;
     margin-top: 10vh;
 
+}
+
+.sectionMatchAltura::-webkit-scrollbar{
+    width: 0;
 }
 
 .sectionMatchProfLargura {

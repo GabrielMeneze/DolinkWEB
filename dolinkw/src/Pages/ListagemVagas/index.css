@@ -26,6 +26,8 @@
 }
 
 .sectionDeCardsDasVagas{
+    max-height: 400px;
+    overflow-y: auto;
     width: 40vw;
     min-width: 40vw;
     height: 85vh;
@@ -33,6 +35,10 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+
+.sectionDeCardsDasVagas::-webkit-scrollbar{
+    width: 0;
 }
 
 .cardsDeVagas{
