@@ -28,8 +28,6 @@ const MatchProfissional = () => {
         listarPreMatch()
     }, [])
 
-
-
     const listarPreMatch = () => {
         http.get('https://localhost:44338/v1/vagancy/prematch/' + idProfissional, {
             method: 'GET',
@@ -43,7 +41,7 @@ const MatchProfissional = () => {
         })
             .then(resultado => {
                 setVagas(resultado.data.data);
-                console.log(resultado.data.data)
+                console.log(vagas)
             })
             .catch((err) => console.log(err))
     }
@@ -95,28 +93,34 @@ const MatchProfissional = () => {
                 <div className="estilizacaoDePaginaListagemMatch">
 
                     {
-                        vagas.map((item, index) => {
-                            return (
-                                <div >
-
-                                    <div className="LinkDeCardListagemdeMatch" >
-                                        <div className="cardsDeMatch">
-                                            <div className="cardiparaEstilizacaoDeListagemDeMatch">
-                                                <p className="TituloCardaMatch">{item.titulo}</p>
-                                                <p style={{ 'margin-bottom': '0.6em', 'maxWidth': '95%' }}>{item.descricao}</p>
-                                                <p style={{ 'margin-bottom': '0.6em' }}>Faixa Salarial:</p>
-                                                <p style={{ 'margin-bottom': '0.6em' }}>R${item.faixaSalarial}</p>
-
-                                                <button onClick={e => darMatch(e, item.id)} className="botaoDarMatch" type="submit">Dar Match!</button>
-
-                                                {/* <button onClick={console.log(item.id)} className="botaoDarMatch" type="button" >Dar Match!</button> */}
-
+                        vagas.length === 0
+                        ? (
+                            <h2 className="sadlyNothingPreMatch">Nenhum match foi encontrado :(</h2>
+                        )
+                        : (
+                            vagas.map((item, index) => {
+                                return (
+                                    <div >
+    
+                                        <div className="LinkDeCardListagemdeMatch" >
+                                            <div className="cardsDeMatch">
+                                                <div className="cardiparaEstilizacaoDeListagemDeMatch">
+                                                    <p className="TituloCardaMatch">{item.titulo}</p>
+                                                    <p style={{ 'margin-bottom': '0.6em', 'maxWidth': '95%' }}>{item.descricao}</p>
+                                                    <p style={{ 'margin-bottom': '0.6em' }}>Faixa Salarial:</p>
+                                                    <p style={{ 'margin-bottom': '0.6em' }}>R${item.faixaSalarial}</p>
+    
+                                                    <button onClick={e => darMatch(e, item.id)} className="botaoDarMatch" type="submit">Dar Match!</button>
+    
+                                                    {/* <button onClick={console.log(item.id)} className="botaoDarMatch" type="button" >Dar Match!</button> */}
+    
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            )
-                        })
+                                )
+                            })
+                        )
                     }
 
 

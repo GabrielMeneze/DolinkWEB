@@ -60,12 +60,10 @@
 }
 .sectionMatchProfLargura {
 
-
-    width: 80%;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-left: 1vw;
     margin-top: 3vh;
 
