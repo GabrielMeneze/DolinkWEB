@@ -35,8 +35,6 @@ const Home = () => {
 
       <div className="second_main">
         <div className="sectionLargura">
-          <Carousel>
-            <Carousel.Item interval={1000}>
               <div className="sectionSlide">
                 <div className="slideimg1">
                   <img
@@ -55,8 +53,6 @@ const Home = () => {
                   </p>
                 </div>
               </div>
-            </Carousel.Item>
-          </Carousel>
         </div>
       </div>
 
@@ -110,7 +106,7 @@ const Home = () => {
 
       </div>
       
-      <Footer />
+      {/* <Footer /> */}
 
     </div>
   );
