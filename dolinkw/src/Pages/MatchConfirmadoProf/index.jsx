@@ -63,23 +63,6 @@ const MatchConfirmadoProf = () => {
             })
     }
 
-    // const excluirMatch = (event, id) => {
-    //     event.preventDefault();
-
-    //     empresaServico
-    //     .excluirmatch(id)
-
-    //     .then(resultado => {
-
-    //         alert('Match Excluído!');
-
-    //     })
-    //     .catch(erro =>{
-    //         console.error(`erro ${erro}`);
-    //     })
-
-    // }
-
     return(
 
         <div>

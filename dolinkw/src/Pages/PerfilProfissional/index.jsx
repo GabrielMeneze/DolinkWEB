@@ -80,7 +80,7 @@ const PerfilProfissional = () => {
 
   const listarSkills = () => {
     http
-      .get("https://localhost:5001/v1/skills", {
+      .get("https://localhost:44338/v1/skills", {
         method: "GET",
       })
       .then((resultado) => {

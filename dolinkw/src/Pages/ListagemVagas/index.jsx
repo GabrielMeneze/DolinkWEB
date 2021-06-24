@@ -25,8 +25,6 @@ const ListagemVagas = () => {
     useEffect(() => {
 
         listarVagas()
-        // buscarTitulo()
-
 
     }, []);
 
@@ -73,22 +71,30 @@ const ListagemVagas = () => {
 
                         <div className="sectionFiltroPrincipal">
                             <div className="filtroBuscaVaga">
-                                <h3>Filtro de Busca</h3>
+                                <h3>Filtros de Busca</h3>
                             </div>
 
                             <div className="sectionFiltroRegiao">
                                 <h4>Região</h4>
-                                <input type="text" placeholder="Informe a região da vaga"/>
+                                <input 
+                                    type="text" 
+                                    placeholder="Informe a região da vaga"
+                                    onChange={event => { setTermo(event.target.value) }}
+                                />
                             </div>
 
                             <div className="sectionFiltroBeneficios">
                                 <h4>Faixa Salarial</h4>
-                                <input type="text" placeholder="Informe o salário da vaga" />
+                                <input 
+                                    type="text" 
+                                    placeholder="Informe o salário da vaga" 
+                                    onChange={event => { setTermo(event.target.value) }}    
+                                />
                             </div>
 
-                            <div className="sectionBotaoFiltro">
+                            {/* <div className="sectionBotaoFiltro">
                                 <button type="submit">Aplicar!</button>
-                            </div>
+                            </div> */}
                         </div>
 
                     </div> 
@@ -100,6 +106,12 @@ const ListagemVagas = () => {
                                 if (termo == "") {
                                     return item
                                 } else if (item.titulo.toLowerCase().includes(termo.toLowerCase())) {
+                                    return item
+                                }
+                                else if (item.local.toLowerCase().includes(termo.toLowerCase())) {
+                                    return item
+                                }
+                                else if (item.faixaSalarial.toLowerCase().includes(termo.toLowerCase())) {
                                     return item
                                 }
                                 }).map((item) => {
@@ -117,30 +129,7 @@ const ListagemVagas = () => {
                                         </div>
                                     )
                                 })
-                            }
-            
-                            
-
-
-                        {/* {
-                            vagas.filter(item => jwtDecode(token).Id === item.empresa).map((item, index) => {
-
-                                return (
-                                
-                                        <div className="LinkDeCardsDeVagaListagemdeVagas" key={index}>
-                                            <div className="cardsDeVagas">
-                                                <div className="cardiparaEstilizacaoDeListagemDeVaga">
-                                                    <p className="TituloCardaVagas">{item.titulo}</p>
-                                                    <p style={{ 'margin-bottom': '0.6em', 'maxWidth' : '95%'  }}>Descrição: {item.descricao}</p>
-                                                    <p style={{ 'margin-bottom': '0.6em' }}>Local: {item.local}</p>
-                                                    <p style={{ 'margin-bottom': '0.6em' }}>Faixa Salarial: R${item.faixaSalarial}</p>                                      
-                                                <button className="botaoVerVaga"><Link to={{ pathname : '/ListagemVagaEspecifica', state : {IdVaga : item.id} }}>Ver Matchs</Link></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                )
-                            })
-                        } */}
+                        }
                     </div>
                 </div>
             </main>

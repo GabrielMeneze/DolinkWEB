@@ -6,20 +6,19 @@
 
 .estilizacaoDePaginaListagemMatch{
 
-    display: flex;
     margin: 0 auto;
-    margin-top: 5vh;
-    width: 60vw;
-    max-width: 60vw;
+    width: 30vw;
+    max-width: 30vw;
     max-height: 400px;
-    overflow-y: auto;
+    margin-top: 2.5vh;
+    overflow: auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
 
 }
 
-.estilizacaoDePaginaListagemMatch::-webkit-scrollbar{
+.estilizacaoDePaginaListagemMatch::-webkit-scrollbar {
     width: 0;
 }
 
@@ -36,7 +35,7 @@
     border: 1px solid #C1C1C1;
     width: 25em;
     height: 15em;
-    margin-top: 1.5em;
+    margin-top: 3em;
 }
 
 .TituloCardaMatch{
@@ -116,4 +115,10 @@
 
     color: #ac7d28;
 
+}
+
+.sadlyNothingPreMatch {
+    opacity: 70%;
+    margin-top: 5rem;
+    font-size: 27px;
 }
