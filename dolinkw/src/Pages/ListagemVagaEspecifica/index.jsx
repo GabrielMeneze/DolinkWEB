@@ -70,6 +70,10 @@ const ListagemVagaEspecifica = (props) => {
         })
     }
 
+    // function copyRoomCode() {
+    //     navigator.clipboard.writeText(email);
+    // }
+
     return(
 
         <div>
