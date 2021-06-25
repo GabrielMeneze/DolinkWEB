@@ -24,6 +24,7 @@ import MatchProfissional from './Pages/MatchProfissional';
 import AlterarSenha from './Pages/AlterarSenha';
 import MatchConfirmadoProf from './Pages/MatchConfirmadoProf';
 import DadosProfissional from './Pages/dadosProfissional';
+import Chatt from './App'
 
 const routing = (
   <Router>
@@ -46,6 +47,7 @@ const routing = (
       <Route path="/esqueciminhasenha" component={EsqueciMinhaSenha}/>
       <Route path="/EditarProfissional" component={EditarProfissional}/>
       <Route path="/AlterarSenha" component={AlterarSenha}/>
+      <Route path="/Chat" component={Chatt}/>
       <Route path="/login" component={Login}/>
     </Switch>
   </Router>
@@ -53,6 +55,7 @@ const routing = (
 
 ReactDOM.render(
   <ToastProvider>
+    
     {routing}
   </ToastProvider>,
   document.getElementById('root')
