@@ -23,6 +23,7 @@ import EditarProfissional from './Pages/EditarProfissional';
 import MatchProfissional from './Pages/MatchProfissional';
 import AlterarSenha from './Pages/AlterarSenha';
 import MatchConfirmadoProf from './Pages/MatchConfirmadoProf';
+import EditarEmpresa from './Pages/EditarEmpresa'
 import DadosProfissional from './Pages/dadosProfissional';
 
 const routing = (
@@ -36,6 +37,7 @@ const routing = (
       <Route path="/cadastrodevagas" component={CadastroDeVagas}/>
       <Route path="/CadastroEmpresa" component={CadastroEmpresa}/>
       <Route path="/EditarVagas" component={EditarVagas}/>
+      <Route path="/empresa/editar" component={EditarEmpresa}/>
       <Route path="/ListagemVagas" component={ListagemVagas}/>
       <Route path="/ListagemVagaEspecifica" component={ListagemVagaEspecifica}/>
       <Route path="/perfilEmpresa" component={PerfilEmpresa}/>
