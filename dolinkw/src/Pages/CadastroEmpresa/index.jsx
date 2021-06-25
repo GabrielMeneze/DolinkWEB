@@ -1,209 +1,130 @@
-import './index.css';
-import { url } from '../../utils/constants';
 import React, { useState } from "react"
-import { Form } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
-import { useToasts } from 'react-toast-notifications';
+import Banner from '../../components/banner'
+import { Form, Button } from 'react-bootstrap'
+import { url, urlLucas } from '../../utils/constants'
+import { useHistory } from 'react-router-dom'
+import { useToasts } from 'react-toast-notifications'
+import './index.css';
 
 const CadastroEmpresa = () => {
-
     const history = useHistory();
     const { addToast } = useToasts();
-
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [telefone, setTelefone] = useState('');
-    const [arquivo, setArquivo] = useState([]);
-    const [cnpj, setCnpj] = useState('');
-    const [cep, setCep] = useState('');
-    const [regiao, setRegiao] = useState('');
-    const [descricao, setDescricao] = useState('');
-    const [dominio, setDominio] = useState('');
+
+    const Login = (email, senha) => {
+        fetch(`${urlLucas}account/signin`, {
+            method: 'POST',
+            headers: {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify({
+                Email: email,
+                Senha: senha
+            })
+        })
+        .then(resultado => resultado.json())
+        .then(resultado => {
+
+            if(resultado.sucesso) {
+
+                addToast(resultado.mensagem, { appearance: 'success', autoDismiss : true })
+                localStorage.setItem('token-dolink', resultado.data.token);
+                history.push('/empresa/editar');
+            } else {
+                addToast(resultado.mensagem, { appearance: 'error', autoDismiss : true })
+            }
+        })
+    }
 
     const cadastrar = (event) => {
         event.preventDefault();
 
-        let formdata = new FormData();
-
-        formdata.set('nome', nome);
-        formdata.set('email', email);
-        formdata.set('senha', senha);
-        formdata.set('telefone', telefone);
-        formdata.set('cnpj', cnpj);
-        formdata.set('cep', cep);
-        formdata.set('regiao', regiao);
-        formdata.set('descricao', descricao);
-        formdata.set('dominio', dominio);
-        formdata.append('arquivo', arquivo);
-
-        console.log(formdata);
-
-
-        fetch(`${url}company/signup`, {
+        fetch(`${urlLucas}company/signup`, {
             method: 'POST',
-            body: formdata,
+            headers : {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify({
+                nome : nome,
+                senha : senha,
+                email : email,
+                telefone : telefone
             })
-            .then(resultado => resultado.json())
-            .then(resultado => {
-                let a = resultado.mensagem + " " + JSON.stringify(resultado.data);
-                if(resultado.sucesso) {
+        })
+        .then(resultado => resultado.json())
+        .then(resultado => {
+            let a = resultado.mensagem + " " + JSON.stringify(resultado.data);
 
-                    addToast(resultado.mensagem, { appearance: 'success', autoDismiss : true })
-                    history.push('/login');
+            if(resultado.sucesso) {
+                addToast(resultado.mensagem, { appearance: 'success', autoDismiss : true })
+                Login(email, senha)
 
-                } else {
-
-                    addToast(a, { appearance: 'error', autoDismiss : true })
-
-                }
-            })
-            .catch(erro => {
-                console.error('erro na API ' + erro);
-            })
+            } else {
+                addToast(a, { appearance: 'error', autoDismiss : true })
+            }
+        })
+        .catch(erro => {
+            console.error('erro na API ' + erro);
+        })
     }
 
-
-    // const uploadFile = (event) => {
-    //     event.preventDefault();
-
-    //     let formdata = new FormData();
-
-    //     formdata.append('arquivo', event.target.files[0]);
-
-    //     fetch(`${url}company/signup`, {
-    //         method: 'POST',
-    //         body: formdata
-    //     })
-    //         .then(response => response.json)
-    //         .then(data => {
-    //             setImagem(data.url)
-    //         })
-    //         .catch(err => console.error(err))
-    // }
-
     return (
-
-        <div>
-
-            <div className="body2">
-
-                <div className="sectionLargura2">
-
-                    <div className="sectionImagePessoal">
-
-                        <img src="https://media.discordapp.net/attachments/819577034530881567/841297659721678848/unknown.png?width=845&height=939" alt="" />
-
-                    </div>
-
-                    <div className="sectionDadosPessoais" onSubmit={event => cadastrar(event)}>
-
-                        <div className="middleSectionPessoal">
-
-                            <div className="infos">
-
-                                <div className="h1Pessoal1">
-
-                                    <h1 className="h1Pessoal1">Sign Up!</h1>
-
-                                </div>
-
-                                <div className="infotextcompany">
-
-                                    <input className="inputCompanySignup" placeholder="Nome da Empresa" value={nome}
-                                        onChange={(event) => setNome(event.target.value)}
-                                    />
-
-                                </div>
-
-                                <div className="infotextcompany">
-
-                                    <input type="email" className="inputCompanySignup" placeholder="Email" value={email}
-                                        onChange={(event) => setEmail(event.target.value)} />
-
-                                </div>
-
-                                <div className="infotextcompany">
-
-                                    <input type="password" className="inputCompanySignup" placeholder="Senha" value={senha}
-                                        onChange={(event) => setSenha(event.target.value)} />
-
-                                </div>
-
-                                <div className="infotextcompany">
-
-                                    <input className="inputCompanySignup" placeholder="Telefone com DDD (Ex: 11 99999-9999)" value={telefone}
-                                        onChange={(event) => setTelefone(event.target.value)} />
-
-                                </div>
-
-                                <div className="infotextcompany">
-
-                                    <input className="inputCompanySignup" placeholder="Cnpj" value={cnpj}
-                                        onChange={(event) => setCnpj(event.target.value)} />
-
-                                </div>
-
-                                <div className="infotextcompany">
-
-                                    <input className="inputCompanySignup" id="exampleInputPassword1" placeholder="Cep" value={cep}
-                                        onChange={(event) => setCep(event.target.value)} />
-
-                                </div>
-
-                                <div className="infotextcompany">
-
-                                    <input className="inputCompanySignup" id="exampleInputPassword1" placeholder="Região" value={regiao}
-                                        onChange={(event) => setRegiao(event.target.value)} />
-
-                                </div>
-
-                                <div className="infotextcompany">
-
-                                    <input className="inputCompanySignup" id="exampleInputPassword1" placeholder="Descrição" value={descricao}
-                                        onChange={(event) => setDescricao(event.target.value)} />
-
-                                </div>
-
-                                <div className="infotextcompany">
-
-                                    <input className="inputCompanySignup" id="exampleInputPassword1" placeholder="Domínio" value={dominio}
-                                        onChange={(event) => setDominio(event.target.value)} />
-
-                                </div>
-
-                                <div className="infotextcompany">
-
-                                    {/* <input className="form-control" id="exampleInputPassword1" placeholder="Imagem" value={imagem} 
-                                     onChange={(event) => setImagem(event.target.value)}/> */}
-                                    <Form.File id="fileCategoria" onChange={event => setArquivo(event.target.files[0])} />
-                                    {arquivo && <img src={arquivo} />}
-
-                                </div>
-
-
-                                <div className="sectionBotaoCadastrarEmpresa">
-
-                                    <p>Já tem conta? <a href="/login">Logue!</a></p>
-
-                                    <button onClick={cadastrar}  type="submit">SignUp</button>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
+        <div className="container_empresa_principal">
+            <Banner titulo="Preencha seus dados empresariais"
+                        texto="Informe seus dados para que possamos te ajudar a encontrar os melhores profissionais!"
+                        img="https://blog.ipog.edu.br/wp-content/uploads/2018/02/Profissional-de-TI.jpg"
+                    />
+            <div className="container_empresa_form">
+                <div className="titulo_profissional">
+                    <hr/>
+                    <h1>Sign Up</h1>
+                    <hr/>
                 </div>
 
+                <Form className="formulario_empresa">
+                    <Form.Group controlId="formBasicNomeCompanhia">
+                        <Form.Control type="text" placeholder="Informe o nome da companhia ..."
+                                    value={nome} onChange={e => setNome(e.target.value)}/>
+                        <Form.Text className="text-muted"/>
+                    </Form.Group>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Control type="email" placeholder="Informe seu email ..."
+                                    value={email} onChange={e => setEmail(e.target.value)}/>
+                        <Form.Text className="text-muted"/>
+                    </Form.Group>
+                    <Form.Group controlId="formBasicSenha">
+                        <Form.Control type="password" placeholder="Informe sua senha ..."
+                                        value={senha} onChange={e => setSenha(e.target.value)}/>
+                        <Form.Text className="text-muted"/>
+                    </Form.Group>
+                    <Form.Group controlId="formBasicTelefone">
+                        <Form.Control type="tel" placeholder="Informe seu telefone com DDD ..."
+                                        value={telefone} onChange={e => setTelefone(e.target.value)}/>
+                        <Form.Text className="text-muted"/>
+                    </Form.Group>
+                    <div className="buttons_empresa">
+                        <p>Já possui uma conta? <a href="/">Login</a></p>
+                        {
+                            email === '' || senha === '' || nome === '' || telefone === '' ?
+                                <Button variant="success" type="submit" className="confirm" disabled>Cadastrar-se
+                                </Button>
+                                :
+                                <Button variant="success" type="submit" className="confirm" onClick={e => cadastrar(e)}>
+                                    Cadastrar-se
+                                </Button>
+                        }
+                    </div>
+                </Form>
             </div>
-
         </div>
-
     )
 
 }
 
 export default CadastroEmpresa;
+
+{/* <Form.File id="fileCategoria" onChange={event => setArquivo(event.target.files[0])} />
+                                    {arquivo && <img src={arquivo} />} */}
