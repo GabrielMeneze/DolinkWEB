@@ -10,7 +10,13 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 firebase.initializeApp({
-  // your config
+  apiKey: "AIzaSyCaZ3ari4g9Laew_-16oyOCFYOwIc0GpFA",
+  authDomain: "cchat-3619d.firebaseapp.com",
+  projectId: "cchat-3619d",
+  storageBucket: "cchat-3619d.appspot.com",
+  messagingSenderId: "46436172642",
+  appId: "1:46436172642:web:13df48e65861bc7fb9e23b",
+  measurementId: "G-N4ZTHWHHKF"
 })
 
 const auth = firebase.auth();
@@ -119,4 +125,4 @@ function ChatMessage(props) {
   </>)
 }
 
-    export default Chat;
+export default Chat;
