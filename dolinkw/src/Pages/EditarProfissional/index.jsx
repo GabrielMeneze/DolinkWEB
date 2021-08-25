@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { url } from '../../utils/constants';
 import Header from "../../components/header";
 import Footer from "../../components/footer"
 import { useToasts } from 'react-toast-notifications';
+import Acessiblidade from '../../utils/acessibility'
 
 
 const EditarProfissional = () => {
+    
+    useEffect(() => {
+        Acessiblidade()
+      }, []);
 
     const { addToast } = useToasts();
     const [nome, setNome] = useState('');

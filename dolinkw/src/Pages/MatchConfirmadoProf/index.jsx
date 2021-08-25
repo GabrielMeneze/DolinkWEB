@@ -6,22 +6,24 @@ import {  url  } from '../../utils/constants';
 import {  useHistory  } from 'react-router-dom';
 import './index.css'
 import empresaServico from '../../servicos/empresaServico';
+import Acessiblidade from '../../utils/acessibility'
 
 const MatchConfirmadoProf = () => {
-
+    
     const [titulo, setTitulo] = useState('');
     const [descricao, setDescricao] = useState('');
     const [local, setLocal] = useState('');
-
+    
     const [matchs, setMatchs] = useState([]);
-
+    
     const [idMatch, setIdMatch] = useState('');
-
+    
     const history = useHistory();
-
+    
     useEffect(() => {
-
-        listarMatch()
+        
+        Acessiblidade();
+        listarMatch();
 
     }, [matchs])
 

@@ -9,6 +9,7 @@ import { url } from '../../utils/constants';
 import jwtDecode from 'jwt-decode';
 import { useHistory } from 'react-router-dom';
 import profissionalServico from '../../servicos/empresaServico';
+import Acessiblidade from '../../utils/acessibility'
 
 const DadosProfissional = () => {
 
@@ -27,6 +28,8 @@ const DadosProfissional = () => {
     useEffect(() => {
 
         listarProfissional();
+        Acessiblidade();
+
 
     }, []);
 

@@ -5,12 +5,13 @@ import jwtDecode from 'jwt-decode';
 import {  Button, Table  } from 'react-bootstrap';
 import Header from '../../components/header';
 import Rodape from '../../components/footer'
+import Acessiblidade from '../../utils/acessibility'
 
 const ListagemVagaEspecifica = (props) => {
-
+    
     
     const token = localStorage.getItem('token-dolink');  
-
+    
     //Definindo valores da vaga que a empresa cadastrou.
     const [IdVaga, setIdVaga] = useState(props.location.state.IdVaga);
     const [titulo, setTitulo] = useState('');
@@ -20,22 +21,23 @@ const ListagemVagaEspecifica = (props) => {
     const [descricao, setDescricao] = useState('');
     const [beneficios, setBeneficios] = useState('');
     const [vagas, setVagas] = useState([]);
-
+    
     //Definindo valores do profissional que deu match na vaga.
     const [profissionais, setProfissionais] = useState([]);
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [telefone, setTelefone] = useState('');
-
-
-
+    
+    
+    
     useEffect(() => {
-
-        listarVaga()
+        
+        listarVaga();
         listarMatch();
-
+        Acessiblidade();
+        
     }, []);
-
+    
     const listarVaga = () => {
         empresaServico
         .listarvaga(IdVaga)

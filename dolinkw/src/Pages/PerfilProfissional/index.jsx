@@ -10,6 +10,8 @@ import profissionalServico from "../../servicos/profissionalServico";
 import http from "../../utils/http-axious";
 import "./index.css";
 import { LinkedIn } from "@material-ui/icons";
+import Acessiblidade from '../../utils/acessibility'
+
 
 const PerfilProfissional = () => {
   const token = localStorage.getItem("token-dolink");
@@ -75,12 +77,14 @@ const PerfilProfissional = () => {
   };
 
   useEffect(() => {
+    Acessiblidade();
+    listarProfissional();
     listarSkills();
   }, []);
 
   const listarSkills = () => {
     http
-      .get("https://localhost:44338/v1/skills", {
+      .get("https://localhost:5001/v1/skills", {
         method: "GET",
       })
       .then((resultado) => {
@@ -104,9 +108,6 @@ const PerfilProfissional = () => {
     },
   });
 
-  useEffect(() => {
-    listarProfissional();
-  }, []);
 
   const listarProfissional = () => {
     profissionalServico

@@ -7,11 +7,12 @@ import jwtDecode from 'jwt-decode';
 import http from '../../utils/http-axious';
 import { useToasts } from 'react-toast-notifications';
 import './index.css';
+import Acessiblidade from '../../utils/acessibility'
 
 const MatchProfissional = () => {
-
+    
     const { addToast } = useToasts();
-
+    
     const [vagas, setVagas] = useState([]);
     const [idVaga, setIdVaga] = useState();
     const [idMatch, setIdMatch] = useState();
@@ -19,17 +20,18 @@ const MatchProfissional = () => {
     const [descricao, setDescricao] = useState('');
     const [local, setLocal] = useState('');
     const [faixaSalarial, setFaixaSalarial] = useState('');
-
+    
     const token = localStorage.getItem('token-dolink');
-
+    
     const idProfissional = jwtDecode(token).Id;
-
+    
     useEffect(() => {
-        listarPreMatch()
+        listarPreMatch();
+        Acessiblidade();
     }, [])
-
+    
     const listarPreMatch = () => {
-        http.get('https://localhost:44338/v1/vagancy/prematch/' + idProfissional, {
+        http.get('https://localhost:5001/v1/vagancy/prematch/' + idProfissional, {
             method: 'GET',
 
             body: JSON.stringify({
@@ -49,7 +51,7 @@ const MatchProfissional = () => {
     const darMatch = (event, id) => {
         event.preventDefault();
 
-        fetch('https://localhost:44338/v1/match', {
+        fetch('https://localhost:5001/v1/match', {
             method: 'POST',
             body: JSON.stringify({
 

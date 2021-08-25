@@ -1,16 +1,20 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom";
 import Header from "../../components/header";
 import Footer from "../../components/footer"
 import LogoVaga from '../../imgs/Logovaga.png'
 import "./index.css";
 import { useToasts } from 'react-toast-notifications';
+import Acessiblidade from '../../utils/acessibility'
 
 
 
 
 const EditarVagas = () => {
-
+    
+    useEffect(() => {
+        Acessiblidade()
+      }, []);
     
     const { addToast } = useToasts();
     const [titulo, setTitulo] = useState("");
@@ -46,7 +50,7 @@ const EditarVagas = () => {
     const alterar = (event) => {
         event.preventDefault();
 
-        fetch('https://localhost:44338/v1/vagancy/update', {
+        fetch('https://localhost:5001/v1/vagancy/update', {
             method: "PUT",
             body: JSON.stringify({
                 id: "60b6710ccd5b4b4cffea7453",

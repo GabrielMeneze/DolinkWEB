@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import contaServico from '../../servicos/contaServico';
 import {  useFormik  } from 'formik';
 import './index.css';
@@ -10,8 +10,13 @@ import LinkedIn from '../../Pages/LinkedinReact';
 import { HistoryRounded } from '@material-ui/icons';
 import { url } from '../../utils/constants';
 import jwt_decode from 'jwt-decode';
+import Acessiblidade from '../../utils/acessibility'
 
 const Login = () => {
+
+    useEffect(() => {
+        Acessiblidade()
+      }, []);
 
     const { addToast } = useToasts();
 

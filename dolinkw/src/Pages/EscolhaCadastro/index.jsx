@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './index.css';
+import Acessiblidade from '../../utils/acessibility'
 
 const EscolhaCadastro = () => {
+    
+    useEffect(() => {
+        Acessiblidade()
+      }, []);
 
     return(
 

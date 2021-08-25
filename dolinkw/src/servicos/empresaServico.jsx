@@ -55,6 +55,13 @@ const excluir = dados => {
         }
     });
 }
+const alterarStatus = dados => {
+    return http.put(`vagancy/update/state/`, JSON.stringify(dados), {
+        headers : {
+            'authorization' : `Bearer ${localStorage.getItem('token-dolink')}`
+        }
+    });
+}
 
 export default {
 
@@ -62,6 +69,7 @@ export default {
     listarvagas,
     listarvaga,
     listarmatch,
-    excluirmatch
+    excluirmatch,
+    alterarStatus
 
 }

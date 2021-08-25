@@ -1,11 +1,19 @@
-import {useState, React} from 'react';
-import {  url  } from '../../utils/constants';
+import {useState, React, useEffect} from 'react';
+import {  url, urlLucas } from '../../utils/constants';
 import {useHistory} from 'react-router-dom';
 import {  useToasts  } from 'react-toast-notifications';
+import Banner from '../../components/banner'
+import { Form, Button } from 'react-bootstrap'
 import jwtDecode from 'jwt-decode';
 import './index.css';
+import Acessiblidade from '../../utils/acessibility'
 
 const CadastroProfissional = () => {   
+
+    useEffect(() => {
+        Acessiblidade()
+      }, []);
+    
 
     const { addToast } = useToasts();
     const history = useHistory();
@@ -16,20 +24,15 @@ const CadastroProfissional = () => {
 
     const login = (email, senha) => {
 
-        fetch(`${url}account/signin`, {
+        fetch(`${urlLucas}account/signin`, {
             method: 'POST',
             body: JSON.stringify({
-
                 Email: email,
                 Senha: senha
-
             }),
             headers: {
-
                 'content-type' : 'application/json'
-
-            },
-            })
+            }})
             .then(resultado => resultado.json())
             .then(resultado => {
                 if(resultado.sucesso) {
@@ -46,119 +49,87 @@ const CadastroProfissional = () => {
     const cadastrar = (event) =>{
         event.preventDefault();
 
-        fetch(`${url}professional/signup`,{
+        fetch(`${urlLucas}professional/signup`,{
             method: 'POST',
             body: JSON.stringify({
-
                 Nome: nome,
                 Email: email,
                 Senha: senha,
                 Telefone: telefone
-
             }),
             headers: {
                 'content-type': 'application/json'
-            }
-            })
-
+            }})
             .then(resultado => resultado.json())
             .then(resultado=> {
-                let a = resultado.mensagem + " " + JSON.stringify(resultado.data);
-                if(resultado.sucesso) {
-                    
+                let a = resultado.mensagem;
+
+                if(resultado.sucesso === true){
+                    addToast(resultado.mensagem, { appearance: 'success', autoDismiss : true })
                     login(email, senha);
 
-                } else {
-
-                    addToast(a, { appearance: 'error', autoDismiss : true })
-
+                }else{
+                    resultado.data.map((erro, index) => {
+                        var mensagem = `A palavra '${erro.palavra.toUpperCase()}' não pode ser usada`
+    
+                        return addToast(mensagem, { appearance: 'error', autoDismiss: true })
+                    })
+                    
+                    addToast(resultado.mensagem, { appearance: 'error', autoDismiss: true })
                 }
             })
+            .catch((err) => console.error(err));
     }
 
     return(
-        
-        <div>
-            
-            <div className="body2">
-
-                <div className="sectionLargura2">
-
-                    <div className="sectionImagePessoal">
-
-                        <img src="https://media.discordapp.net/attachments/819577034530881567/841297659721678848/unknown.png?" alt="" />
-
-                    </div>
-
-                    <div className="sectionDadosPessoais">
-
-
-                        <div className="middleSectionPessoal">
-
-                            {/* <MultiStep /> */}
-
-                            <div className="infos">
-
-                                <div className="h1ProfissionalCadastro">
-
-                                    <hr className="linhaCadastro" />
-                                    <div className="esp"></div>
-                                        <h1>Sign up</h1>
-                                    <div className="esp"></div>
-                                    <hr className="linhaCadastro" />
-
-                                </div>
-
-                                <div className="infotextprofissional">
-
-                                    <input className="inputProfissionalSign" placeholder="Nome do Profissional" value={nome} 
-                                     onChange={(event) => setNome(event.target.value)}
-                                    />
-
-                                </div>
-
-                                <div className="infotextprofissional">
-
-                                    <input type="email" className="inputProfissionalSign" placeholder="Email" value={email} 
-                                     onChange={(event) => setEmail(event.target.value)}/>
-
-                                </div>
-
-                                <div className="infotextprofissional">
-
-                                    <input type="password" autocomplete="off" className="inputProfissionalSign" placeholder="Senha" value={senha} 
-                                     onChange={(event) => setSenha(event.target.value)}/>
-
-                                </div>
-
-                                <div className="infotextprofissional">
-
-                                    <input className="inputProfissionalSign" placeholder="Telefone com DDD (Ex: 11 99999-9999)" value={telefone} 
-                                     onChange={(event) => setTelefone(event.target.value)}/>
-
-                                </div>
-
-                                <div className="btnProfissionalSign">
-
-                                    <p>Já possui cadastro?<a href="/login"> Faça Login!</a></p>
-
-                                    <button onClick={cadastrar} type="submit" className="botaoCadastroProfissional">Cadastrar</button>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
+        <div className="container_profissional_principal">
+            <Banner titulo="Preencha seus dados pessoais"
+                        texto="Informe seus dados para que possamos te ajudar a encontrar o emprego dos sonhos!"
+                        img="https://blog.ipog.edu.br/wp-content/uploads/2018/02/Profissional-de-TI.jpg"
+                    />
+            <div className="container_profissional_form">
+                <div className="titulo_profissional">
+                    <hr/>
+                    <h1>Sign Up</h1>
+                    <hr/>
                 </div>
 
+                <Form className="formulario_profissional">
+                    <Form.Group controlId="formBasicNome">
+                        <Form.Control type="text" placeholder="Informe seu nome ..."
+                                    value={nome} onChange={e => setNome(e.target.value)}/>
+                        <Form.Text className="text-muted"/>
+                    </Form.Group>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Control type="email" placeholder="Informe seu email ..."
+                                    value={email} onChange={e => setEmail(e.target.value)}/>
+                        <Form.Text className="text-muted"/>
+                    </Form.Group>
+                    <Form.Group controlId="formBasicSenha">
+                        <Form.Control type="password" placeholder="Informe sua senha ..."
+                                        value={senha} onChange={e => setSenha(e.target.value)}/>
+                        <Form.Text className="text-muted"/>
+                    </Form.Group>
+                    <Form.Group controlId="formBasicTelefone">
+                        <Form.Control type="tel" placeholder="Informe seu telefone ..."
+                                        value={telefone} onChange={e => setTelefone(e.target.value)}/>
+                        <Form.Text className="text-muted"/>
+                    </Form.Group>
+                    <div className="buttons_profissional">
+                        <p>Já possui uma conta? <a href="/">Login</a></p>
+                        {
+                            email === '' || senha === '' || nome === '' || telefone === '' ?
+                                <Button variant="success" type="submit" className="confirm" disabled>Cadastrar-se
+                                </Button>
+                                :
+                                <Button variant="success" type="submit" className="confirm" onClick={e => cadastrar(e)}>
+                                    Cadastrar-se
+                                </Button>
+                        }
+                    </div>
+                </Form>
             </div>
-
         </div>
-
     )
 
 }

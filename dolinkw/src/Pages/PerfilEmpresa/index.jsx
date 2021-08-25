@@ -9,13 +9,14 @@ import { url } from '../../utils/constants';
 import jwtDecode from 'jwt-decode';
 import { useHistory } from 'react-router-dom';
 import empresaServico from '../../servicos/empresaServico';
+import Acessiblidade from '../../utils/acessibility'
 
 const PerfilEmpresa = () => {
-
+    
     const { addToast } = useToasts();
-
+    
     const history = useHistory();
-
+    
     const [idEmpresa, setIdEmpresa] = useState('');
     const [nome, setNome] = useState('');
     const [telefone, setTelefone] = useState('');
@@ -23,26 +24,26 @@ const PerfilEmpresa = () => {
     const [cep, setCep] = useState('');
     const [regiao, setRegiao] = useState('');
     const [empresas, setEmpresas] = useState([]);
-
+    
     const token = localStorage.getItem('token-dolink');
-
+    
     const formik = useFormik({
         initialValues: {
-
+            
             id: 0,
             nome: '',
             cnpj: '',
             cep: '',
             regiao: '',
             telefone: ''
-
+            
         }
     })
-
+    
     useEffect(() => {
-
+        Acessiblidade();
         listarEmpresa();
-
+        
     }, []);
 
     const listarEmpresa = () => {
